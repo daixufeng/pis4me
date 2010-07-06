@@ -31,6 +31,8 @@ public class CostDaoTest{
 		
 		PersistenceManager pm = PMF.get().getPersistenceManager(); 
 		pm.makePersistent(cost);
+		//Query query = pm.newQuery(MCost.class);
+		
 		Log.debug("OK");
 	}
 	@Test
