@@ -1,16 +1,18 @@
 ﻿package com.pis.action;
 
 import java.io.BufferedReader;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.JSONObject;
+import net.sf.json.*;
 
 @SuppressWarnings("serial")
 public class Login extends HttpServlet {
 	
 	IResponse _response = null; 
 
+	@Override
 	public void doPost(HttpServletRequest req, HttpServletResponse resp){ 		
  		_response = new Response();
  		
@@ -22,11 +24,12 @@ public class Login extends HttpServlet {
 	 		while((line = reader.readLine()) != null) {                
 	 			json.append(line);            
 			} 
-	 		JSONObject o = new JSONObject(json.toString());
+	 		JSONObject o = (JSONObject)JSONSerializer.toJSON(json.toString());
 	 		JSONObject param  = (JSONObject)o.get("params");
-	 		if(param.get("UserId").toString().equals("admin") && param.get("Password").toString().equals("250588")){
-				_response.setHasError(false);
-	 			_response.setMsg("登陆成功！");
+	 		if(param.get("UserId").toString().equals("admin") 
+	 				&& param.get("Password").toString().equals("250588")){
+	 			_response.setHasError(false);
+	 			_response.setMsg(req.getSession().getId());
 	 			resp.getWriter().println(_response.GetResponseString());	
 	 			//resp.sendRedirect("/main.jsp");
 	 		}else{

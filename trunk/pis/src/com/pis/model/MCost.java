@@ -1,76 +1,77 @@
 package com.pis.model;
 
-//import java.io.Serializable;
+import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.IdentityType;
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
-import javax.persistence.Entity; 
-import javax.persistence.GeneratedValue; 
-import javax.persistence.GenerationType; 
-import javax.persistence.Id; 
-
-@Entity 
+@PersistenceCapable(identityType=IdentityType.APPLICATION)
 public class MCost {
-	/**
-	 * 
-	 */
-	@Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private Long _costId;
-
-	private String _costDate;
-
-	private String _kind;
-
-	private float _cost;
-
-	private String _remark;
+	
+	@PrimaryKey
+	@Persistent(valueStrategy=IdGeneratorStrategy.IDENTITY)
+	private Long costId;
+	
+	@Persistent
+	private String costDate;
+	
+	@Persistent
+	private String kind;
+	
+	@Persistent
+	private double cost;
+	
+	@Persistent
+	private String remark;
 	
 	public MCost(){}
 	
 	public MCost(Long costId,String costDate,String kind, float cost,String remark){
-		_costId = costId;
-		_costDate = costDate;
-		_kind = kind;
-		_cost = cost;
-		_remark = remark;
+		this.costId = costId;
+		this.costDate = costDate;
+		this.kind = kind;
+		this.cost = cost;
+		this.remark = remark;
 	}	
 	
 	public Long getCostId(){
-		return _costId;		
+		return this.costId;		
 	}
 	
 	public void setCostId(Long costId){
-		_costId = costId;
+		this.costId = costId;
 	}
 	
 	public String getCostDate(){
-		return _costDate;		
+		return this.costDate;		
 	}
 	
 	public void setCostDate(String costDate){
-		_costDate = costDate;
+		this.costDate = costDate;
 	}
 	
 	public String getKind(){
-		return _kind;
+		return this.kind;
 	} 
 	
 	public void setKind(String kind){
-		_kind = kind;
+		this.kind = kind;
 	}
 	
 	public String getRemark(){
-		return _remark;
+		return this.remark;
 	}
 	
 	public void setRemark(String remark){
-		_remark = remark;
+		this.remark = remark;
 	}
 	
-	public float getCost(){
-		return _cost;
+	public double getCost(){
+		return this.cost;
 	}
 	
-	public void setCost(float cost){
-		_cost = cost;		
+	public void setCost(double cost){
+		this.cost = cost;		
 	}
 }

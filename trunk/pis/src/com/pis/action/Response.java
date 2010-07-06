@@ -1,5 +1,5 @@
-package com.pis.action;
-import org.json.*;
+﻿package com.pis.action;
+import net.sf.json.*;
 
 public class Response implements IResponse {
 	private Boolean _hasError = false;
@@ -35,6 +35,5 @@ public class Response implements IResponse {
 	public void setResponseObject(Object responseObject) {
 		_responseObject = responseObject;
 	}
-
 	
 }

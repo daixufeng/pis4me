@@ -1,17 +1,16 @@
-package com.pis.action.actions;
+锘縫ackage com.pis.action.actions;
 
-import org.json.JSONException;
 
 public class User extends AbstractAction {
 	
-	public void Login() throws JSONException{
+	public void Login(){
 		
 		if(this.getRequestParams().get("UserId").toString().equals("admin") &&
 				this.getRequestParams().get("Password").toString().equals("250588")){
-			this.getResponse().setMsg("登陆成功");
+			this.getResponse().setMsg("鐧婚檰鎴愬姛");
 		}else{
 			this.getResponse().setHasError(true);
-			this.getResponse().setMsg("用户名密码错误！");
+			this.getResponse().setMsg("鐢ㄦ埛鍚嶅瘑鐮侀敊璇紒");
 		}
 	}
 }
