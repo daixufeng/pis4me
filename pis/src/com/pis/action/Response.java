@@ -9,14 +9,10 @@ public class Response implements IResponse {
 	@Override
 	public String GetResponseString() {
 		JSONObject o = new JSONObject();
-		try {
-			o.put("hasError", _hasError);
-			o.put("Msg", _msg);
-			o.put("ResponseObject", _responseObject);
-		} catch (JSONException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
+		o.put("hasError", _hasError);
+		o.put("Msg", _msg);
+		o.put("ResponseObject", _responseObject);		
 		
 		return o.toString();
 	}
