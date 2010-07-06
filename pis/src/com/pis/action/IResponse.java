@@ -1,4 +1,4 @@
-package com.pis.action;
+﻿package com.pis.action;
 
 public interface IResponse {
      void setHasError(Boolean hasError);

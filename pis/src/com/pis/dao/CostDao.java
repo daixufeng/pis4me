@@ -5,22 +5,17 @@ import com.pis.model.MCost;
 import com.pis.model.PMF;
 
 import java.util.List;
-import javax.jdo.JDOHelper;
+
 import javax.jdo.PersistenceManager;
-import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
 
 
 public class CostDao implements ICostDao {
-	private static final PersistenceManagerFactory pmfInstance = JDOHelper
-	.getPersistenceManagerFactory("transactions-optional");
-
-	public static PersistenceManagerFactory getPersistenceManagerFactory() {
-		return pmfInstance;
-	}
 
 	@Override
 	public void save(MCost cost) {
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+
 		try {
 			pm.makePersistent(cost);
 		} catch (Exception ex) {
@@ -33,14 +28,19 @@ public class CostDao implements ICostDao {
 
 	@SuppressWarnings("unchecked")
 	public List<MCost> getCost(MCost cost) {
-		PersistenceManager pm = PMF.get().getPersistenceManager(); 
-		String query = "select from " + MCost.class.getName();
-		return (List<MCost>) pm.newQuery(query).execute();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+	
+		Query query = pm.newQuery(MCost.class);
+	    //query.setFilter("costId >= CostId");
+	    //query.declareParameters("Long CostId");
+		List<MCost> list = (List<MCost>)query.execute();
+		//pm.close();
+		return list;
 	}
 
 	public void delete(MCost cost) {
-		PersistenceManager pm = getPersistenceManagerFactory()
-				.getPersistenceManager();
+		PersistenceManager pm = PMF.get().getPersistenceManager();
+				
 		try {
 			pm.currentTransaction().begin();
 

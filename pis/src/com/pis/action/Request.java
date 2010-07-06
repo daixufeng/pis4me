@@ -1,10 +1,9 @@
-package com.pis.action;
+﻿package com.pis.action;
 
 import java.io.BufferedReader;
 
 import javax.servlet.http.HttpServletRequest;
-
-import org.json.JSONObject;
+import net.sf.json.*;
 
 public class Request {
 	
@@ -41,8 +40,11 @@ public class Request {
 	 		while((line = reader.readLine()) != null) {                
 	 			json.append(line);            
 			} 
-	 		JSONObject o = new JSONObject(json.toString());
-	 		_requestParams = (JSONObject)o.get(PARAMS);
+	 		
+	 		JSONObject params = (JSONObject)JSONSerializer.toJSON(json.toString());   
+	 		
+	 		_requestParams = (JSONObject)params.get(PARAMS);
+	 		
 		} catch (Exception e) {			
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-package com.pis.action;
+﻿package com.pis.action;
 
 import java.lang.reflect.Method;
 import javax.servlet.http.HttpServlet;
@@ -47,6 +47,7 @@ public class Controller extends HttpServlet {
 			
 			action.dispose();
 		}catch(Exception e){
+			action.getResponse().setMsg(e.getMessage());
 			e.printStackTrace();
 		}
 	}	
