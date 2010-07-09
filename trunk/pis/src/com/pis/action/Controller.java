@@ -11,7 +11,7 @@ import com.pis.action.actions.AbstractAction;
 public class Controller extends HttpServlet {	
 	private Method _method;
 	
-	AbstractAction action = null;		
+	AbstractView view = null;		
 
 	public void doGet(HttpServletRequest req, HttpServletResponse resp) {
 		doPost(req,resp);
@@ -27,8 +27,8 @@ public class Controller extends HttpServlet {
 			resp.getWriter().println(action.getResponse().GetResponseString());	
 			System.out.println(action.getResponse().GetResponseString());
 		}catch(Exception e){
-			action.getResponse().setHasError(true);
-			action.getResponse().setMsg(e.getMessage());
+			view.getResponse().setHasError(true);
+			view.getResponse().setMsg(e.getMessage());
 			System.out.println(e.getMessage());
 		}		
 	}
@@ -37,13 +37,13 @@ public class Controller extends HttpServlet {
 		try{			
 			Request request = new Request(req);
 			  
-			action = (AbstractAction)Class.forName(request.getClassName()).newInstance();
-			action.setRequestParams(request.getRequestParams());				
+			view = (AbstractView)Class.forName(request.getClassName()).newInstance();
+			view.setRequestParams(request.getRequestParams());				
 			_method = action.getClass().getMethod(request.getMethodName(),new Class[0]);
 			
-			action.init();
+			view.init();
 		
-			_method.invoke(action,new Object[]{});
+			_method.invoke(view,new Object[]{});
 			
 			action.dispose();
 		}catch(Exception e){
