@@ -7,7 +7,7 @@
 	<script type="text/javascript" src="/Script/adapter/ext/ext-base.js"></script> 
 	<script type="text/javascript" src="/Script/ext-all-debug.js"></script>
 	<script type="text/javascript" src="/Script/ext-util.js"></script>
-	<script type="text/javascript" src="CostManage.js"></script>
+	<script type="text/javascript" src="Fee.js"></script>
   </head>
   <body></body>
   </html>

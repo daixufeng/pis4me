@@ -8,17 +8,17 @@
 		<property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
 	</system-properties>
 	
-	<static-files>
+	<!-- <static-files>
         <include path="/**.*"  />
-       <!--  <include path="/**.png" />
+        <include path="/**.png" />
         <include path="/**.swf" />
         <include path="/**.psd" />  
         <include path="/script/resources/css/ext-all.css" />  
         <include path="/script/adapter/ext/ext-base.js" />
         <include path="/script/ext-all-debug.js" />
-        <include path="/script/ext-util.js" /> -->        
-    </static-files>
-    
-	<resource-files/> 
+        <include path="/script/ext-util.js" />       
+    </static-files>-->
+     
+	
 	
 </appengine-web-app>
