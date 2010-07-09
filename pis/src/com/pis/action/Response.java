@@ -8,6 +8,7 @@ public class Response implements IResponse {
 	
 	@Override
 	public String GetResponseString() {
+		
 		JSONObject o = new JSONObject();
 		
 		o.put("hasError", _hasError);

@@ -7,7 +7,7 @@ import com.pis.action.Response;
 import net.sf.json.*;
 
 
-public abstract class AbstractAction {
+public abstract class AbstractView {
 	private IResponse _response = new Response();
 	
 	private JSONObject _requestParams;

@@ -8,7 +8,7 @@ import net.sf.json.JSONObject;
 import com.pis.dao.CostDao;
 import com.pis.model.MCost;
 
-public class Cost extends AbstractAction {
+public class Cost extends AbstractView {
 	
 	MCost cost = null;
 	CostDao dao = null;
