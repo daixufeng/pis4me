@@ -1,7 +1,0 @@
-F:\Projects\MyWork\MyWork.DAL\bin\Debug\MyWork.DAL.dll
-F:\Projects\MyWork\MyWork.DAL\bin\Debug\MyWork.DAL.pdb
-F:\Projects\MyWork\MyWork.DAL\bin\Debug\MyWork.Model.dll
-F:\Projects\MyWork\MyWork.DAL\bin\Debug\MyWork.Model.pdb
-F:\Projects\MyWork\MyWork.DAL\obj\Debug\ResolveAssemblyReference.cache
-F:\Projects\MyWork\MyWork.DAL\obj\Debug\MyWork.DAL.dll
-F:\Projects\MyWork\MyWork.DAL\obj\Debug\MyWork.DAL.pdb
