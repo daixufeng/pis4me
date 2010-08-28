@@ -1,0 +1,61 @@
+﻿.main
+{
+	width: 1024px;
+	margin:auto;
+	padding:0;
+	border:solid 1px silver;
+}
+.title
+{
+	height:30px;
+	padding: 5px;	
+	text-align:center;
+	font-family:@楷体;
+	font-size:18px;
+}
+.tbar
+{
+	border: solid 1px silver;
+	height:25px;
+	padding:5px;
+	margin:5px 5px 0px 5px;
+}
+.panel
+{
+	border:solid 1px silver;
+	margin:5px;
+	height:600px;
+	text-align: center;
+	overflow:scroll;
+}
+.panel table td
+{
+	border-bottom:solid 1px #FFFFFF;
+	border-right:solid 1px #FFFFFF;
+}
+.panel table th
+{
+	border-bottom:solid 1px #FFFFFF;
+	border-right:solid 1px #FFFFFF;
+}
+.empytmp
+{
+	
+}
+.editview
+{
+	width:580px;
+}
+.editview table
+{
+	width:100%;
+}
+.label
+{
+	width:150px;
+	text-align:right;
+}
+.button
+{
+	background-image:url("images/blue.gif");
+}
