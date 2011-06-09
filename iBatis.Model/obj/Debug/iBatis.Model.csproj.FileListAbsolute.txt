@@ -1,0 +1,15 @@
+F:\Projects\iBatis\Model\bin\Debug\Model.dll
+F:\Projects\iBatis\Model\bin\Debug\Model.pdb
+F:\Projects\iBatis\Model\obj\Debug\ResolveAssemblyReference.cache
+F:\Projects\iBatis\Model\obj\Debug\Model.dll
+F:\Projects\iBatis\Model\obj\Debug\Model.pdb
+F:\Projects\iBatis\iBatis.Model\bin\Debug\iBatis.Model.dll
+F:\Projects\iBatis\iBatis.Model\bin\Debug\iBatis.Model.pdb
+F:\Projects\iBatis\iBatis.Model\obj\Debug\ResolveAssemblyReference.cache
+F:\Projects\iBatis\iBatis.Model\obj\Debug\iBatis.Model.dll
+F:\Projects\iBatis\iBatis.Model\obj\Debug\iBatis.Model.pdb
+C:\MyProjects\iBatis\iBatis.Model\bin\Debug\iBatis.Model.dll
+C:\MyProjects\iBatis\iBatis.Model\bin\Debug\iBatis.Model.pdb
+C:\MyProjects\iBatis\iBatis.Model\obj\Debug\ResolveAssemblyReference.cache
+C:\MyProjects\iBatis\iBatis.Model\obj\Debug\iBatis.Model.dll
+C:\MyProjects\iBatis\iBatis.Model\obj\Debug\iBatis.Model.pdb
