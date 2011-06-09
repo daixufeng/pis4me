@@ -1,0 +1,11 @@
+D:\MyProjects\NHibernateTest\NHibernateTest.App\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\NHibernateTest.App.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\NHibernateTest.App.pdb
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\Iesi.Collections.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\log4net.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\NHibernate.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\obj\Debug\NHibernateTest.App.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\obj\Debug\NHibernateTest.App.pdb
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\hibernate.cfg.xml
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\NHibernate.ByteCode.LinFu.dll
+D:\MyProjects\NHibernateTest\NHibernateTest.App\bin\Debug\LinFu.DynamicProxy.dll

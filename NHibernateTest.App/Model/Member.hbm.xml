@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" 
+		namespace="NHibernateTest.App.Model" assembly="NHibernateTest.App">
+	<class name="Member" table="Member">
+		<!-- Primary Key(s) -->
+		<id name="Id" column="Id" type="Int32">
+			<generator class="identity" />
+		</id>
+		<property name="Name" />
+		<joined-subclass name="NHibernateTest.App.Model.Department,NHibernateTest.App" table="Department">
+			<key column="Id" />
+			<many-to-one class="NHibernateTest.App.Model.Employee" name="Manager"></many-to-one>
+			<many-to-one class="NHibernateTest.App.Model.Department" name="Parent"></many-to-one>
+			<property name="CreateDate"/>
+		</joined-subclass>
+		<joined-subclass name="NHibernateTest.App.Model.Employee,NHibernateTest.App" table="Employee">
+			<key column="id" />
+			<many-to-one class="NHibernateTest.App.Model.Department" name="Department"></many-to-one>
+			<property name="NickName"/>
+			<property name="Email"/>
+		</joined-subclass>
+	</class>
+</hibernate-mapping>

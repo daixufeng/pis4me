@@ -1,0 +1,5 @@
+D:\MyProjects\NHibernateTest\WebUI\bin\WebUI.dll
+D:\MyProjects\NHibernateTest\WebUI\bin\WebUI.pdb
+D:\MyProjects\NHibernateTest\WebUI\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\NHibernateTest\WebUI\obj\Debug\WebUI.dll
+D:\MyProjects\NHibernateTest\WebUI\obj\Debug\WebUI.pdb

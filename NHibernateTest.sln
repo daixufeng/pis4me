@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTest.App", "NHibernateTest.App\NHibernateTest.App.csproj", "{835BE5EB-CF62-4D7A-A3ED-666B97C0292E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHibernateTest.AppTest", "NHibernateTest.AppTest\NHibernateTest.AppTest.csproj", "{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernateTest.Libaray", "NHibernateTest.Libaray", "{AD0EC33D-D14E-4E17-A437-B502CD99E1D9}"
+	ProjectSection(SolutionItems) = preProject
+		NHibernateTest.Libaray\Iesi.Collections.dll = NHibernateTest.Libaray\Iesi.Collections.dll
+		NHibernateTest.Libaray\LinFu.DynamicProxy.dll = NHibernateTest.Libaray\LinFu.DynamicProxy.dll
+		NHibernateTest.Libaray\log4net.dll = NHibernateTest.Libaray\log4net.dll
+		NHibernateTest.Libaray\NHibernate.ByteCode.LinFu.dll = NHibernateTest.Libaray\NHibernate.ByteCode.LinFu.dll
+		NHibernateTest.Libaray\NHibernate.dll = NHibernateTest.Libaray\NHibernate.dll
+		NHibernateTest.Libaray\nunit.framework.dll = NHibernateTest.Libaray\nunit.framework.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernateTest.App", "NHibernateTest.App", "{F13E4ED1-4DD7-4502-A0CC-BFD5F987A24C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NHibernateTest.WebUI", "NHibernateTest.WebUI", "{26AB44F3-7661-4B67-BF21-E1CCB9E66540}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{835BE5EB-CF62-4D7A-A3ED-666B97C0292E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{835BE5EB-CF62-4D7A-A3ED-666B97C0292E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{835BE5EB-CF62-4D7A-A3ED-666B97C0292E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{835BE5EB-CF62-4D7A-A3ED-666B97C0292E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B47A0EA-23FA-4CDA-802A-9DEEF95DDA16} = {F13E4ED1-4DD7-4502-A0CC-BFD5F987A24C}
+		{835BE5EB-CF62-4D7A-A3ED-666B97C0292E} = {F13E4ED1-4DD7-4502-A0CC-BFD5F987A24C}
+		{6D622D91-C8E4-49FA-9E92-D24B4E2DEEB8} = {26AB44F3-7661-4B67-BF21-E1CCB9E66540}
+	EndGlobalSection
+EndGlobal
