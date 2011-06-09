@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<sqlMap namespace="iBatis.DAL.DSys" xmlns="http://ibatis.apache.org/mapping" 
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+  <!-- XML "behind" document for the People service class. -->
+
+	<alias>
+		<typeAlias alias="MUser" type="iBatis.Model.Sys.MUser, iBatis.Model" />
+	</alias>
+	
+	<resultMaps>
+		<resultMap id="SelectResult" class="MUser">
+			<result property="UserId" column="UserId" />
+			<result property="UserNo" column="UserNo" />
+			<result property="UserName" column="UserName" />
+			<result property="Password" column="Password" />
+			<result property="Address" column="Address" />
+			<result property="Tel" column="Tel" />
+		</resultMap>
+	</resultMaps>
+	
+	<statements>	
+		<select id="User_Select" parameterClass="int" resultMap="SelectResult">
+      select
+      UserId,
+      UserNo,
+      UserName,
+      Password,
+      Address,
+      Tel
+      from T_Sys_User
+      <dynamic prepend="WHERE">
+				<isParameterPresent>
+					UserId = #value#
+				</isParameterPresent>
+			</dynamic>
+		</select>
+
+		<insert id="User_Insert" parameterClass="MUser" resultClass="int">
+      insert into T_Sys_User
+      (UserNo,UserName,Password,Address,Tel)
+      values
+      (#UserNo#, #UserName#,#Password#, #Address#, #Tel#)
+    </insert>
+
+		<update id="User_Update" parameterClass="MUser" resultClass="int">
+      update T_Sys_User set
+      UserNo = #UserNo#,
+      UserName = #UserName#,
+      Password = #Password#,
+      Address = #Address#,
+      Tel = #Tel#
+      where UserId = #UserId#
+    </update>
+
+    <delete id="User_Delete" parameterClass="int" resultClass="int">
+		delete from T_Sys_User
+        where UserId = #UserId#
+    </delete>
+    
+	</statements>
+	
+</sqlMap>
