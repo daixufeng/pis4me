@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" 
+		namespace="COCO.App.Entity" assembly="COCO.App">
+	<class name="ServicePackage" table="ServicePackage">
+		<!-- Primary Key(s) -->
+		<id name="Id" column="Id" type="Int32">
+			<generator class="identity" />
+		</id>
+		<property name="PackageName" />
+		<property name="Price" />
+	</class>
+</hibernate-mapping>

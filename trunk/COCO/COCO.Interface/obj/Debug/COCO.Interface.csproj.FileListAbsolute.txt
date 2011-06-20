@@ -1,0 +1,6 @@
+D:\MyProjects\COCO\COCO.Interface\bin\Debug\COCO.Interface.dll.config
+D:\MyProjects\COCO\COCO.Interface\bin\Debug\COCO.Interface.dll
+D:\MyProjects\COCO\COCO.Interface\bin\Debug\COCO.Interface.pdb
+D:\MyProjects\COCO\COCO.Interface\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\COCO\COCO.Interface\obj\Debug\COCO.Interface.dll
+D:\MyProjects\COCO\COCO.Interface\obj\Debug\COCO.Interface.pdb

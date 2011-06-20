@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" 
+		namespace="COCO.App.Entity" assembly="COCO.App">
+	<class name="OperationLog" table="OperationLog">
+		<!-- Primary Key(s) -->
+		<id name="Id" column="Id" type="Int32">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Operator" class="Sys_User" column="Operator"/>
+		<property name="CreateDate" />
+		<property name="Operation" />
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,11 @@
+D:\MyProjects\COCO\COCO.Client\bin\Debug\COCO.Client.exe.config
+D:\MyProjects\COCO\COCO.Client\bin\Debug\COCO.Client.exe
+D:\MyProjects\COCO\COCO.Client\bin\Debug\COCO.Client.pdb
+D:\MyProjects\COCO\COCO.Client\bin\Debug\COCO.App.dll
+D:\MyProjects\COCO\COCO.Client\bin\Debug\COCO.App.pdb
+D:\MyProjects\COCO\COCO.Client\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\COCO\COCO.Client\obj\Debug\COCO.Client.Properties.Resources.resources
+D:\MyProjects\COCO\COCO.Client\obj\Debug\GenerateResource.read.1.tlog
+D:\MyProjects\COCO\COCO.Client\obj\Debug\GenerateResource.write.1.tlog
+D:\MyProjects\COCO\COCO.Client\obj\Debug\COCO.Client.exe
+D:\MyProjects\COCO\COCO.Client\obj\Debug\COCO.Client.pdb
