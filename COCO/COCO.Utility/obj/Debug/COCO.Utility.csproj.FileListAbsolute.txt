@@ -1,0 +1,6 @@
+D:\MyProjects\COCO\COCO.Utility\bin\Debug\COCO.Utility.dll.config
+D:\MyProjects\COCO\COCO.Utility\bin\Debug\COCO.Utility.dll
+D:\MyProjects\COCO\COCO.Utility\bin\Debug\COCO.Utility.pdb
+D:\MyProjects\COCO\COCO.Utility\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\COCO\COCO.Utility\obj\Debug\COCO.Utility.dll
+D:\MyProjects\COCO\COCO.Utility\obj\Debug\COCO.Utility.pdb

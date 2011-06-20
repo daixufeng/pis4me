@@ -1,0 +1,2 @@
+2011-06-15 19:09:28,883 [TestRunnerThread] ERROR COCO.App.DAL.AbstractDAL`1[[COCO.App.Entity.Sys_User, COCO.App, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]] [(null)] - System.Exception: test message
+   at COCO.App.DAL.Sys_UserDAL.ErrorTest() in D:\MyProjects\COCO\COCO.App\DAL\Sys_UserDAL.cs:line 17

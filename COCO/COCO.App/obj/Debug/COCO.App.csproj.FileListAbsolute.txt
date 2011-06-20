@@ -1,0 +1,16 @@
+D:\MyProjects\COCO\COCO.App\bin\Debug\COCO.App.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\COCO.App.pdb
+D:\MyProjects\COCO\COCO.App\obj\Debug\ResolveAssemblyReference.cache
+D:\MyProjects\COCO\COCO.App\obj\Debug\COCO.App.dll
+D:\MyProjects\COCO\COCO.App\obj\Debug\COCO.App.pdb
+D:\MyProjects\COCO\COCO.App\bin\Debug\hibernate.cfg.xml
+D:\MyProjects\COCO\COCO.App\bin\Debug\Iesi.Collections.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\LinFu.DynamicProxy.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\log4net.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\NHibernate.ByteCode.LinFu.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\NHibernate.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\nunit.framework.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\MySql.Data.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\COCO.Utility.dll
+D:\MyProjects\COCO\COCO.App\bin\Debug\COCO.Utility.pdb
+D:\MyProjects\COCO\COCO.App\bin\Debug\Common.Logging.dll

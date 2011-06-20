@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2" default-lazy="true" 
+		namespace="COCO.App.Entity" assembly="COCO.App">
+	<class name="ConsumptionDetail" table="ConsumptionDetail">
+		<!-- Primary Key(s) -->
+		<id name="Id" column="Id" type="Int32">
+			<generator class="identity" />
+		</id>
+		<many-to-one name="Customer" class="Customer" column="Customer"/>
+		<many-to-one name="Operator" class="Sys_User" column="Operator"/>
+		<property name="CreateDate" />
+		<property name="Cost" />
+		<many-to-one name="Waiter" class="Sys_User" column="Waiter"/>
+		<many-to-one name="Service" class="Service" column="Service"/>
+		<property name="Status" type="NHibernate.Type.EnumStringType`1[[COCO.App.BLL.ConsumptionStatus, COCO.App]], NHibernate"/>
+	</class>
+</hibernate-mapping>

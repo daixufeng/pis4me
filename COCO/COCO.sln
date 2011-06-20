@@ -1,0 +1,77 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.App", "COCO.App", "{0DCBF2AE-05BC-45A8-AAD6-9B84BDC55521}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.Client", "COCO.Client", "{BA4C9D9C-37EC-4017-9F9F-A8746ED157EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.Libaray", "COCO.Libaray", "{E593F224-29D0-4B1D-9E48-75124C055984}"
+	ProjectSection(SolutionItems) = preProject
+		COCO.Libaray\Common.Logging.dll = COCO.Libaray\Common.Logging.dll
+		COCO.Libaray\Iesi.Collections.dll = COCO.Libaray\Iesi.Collections.dll
+		COCO.Libaray\LinFu.DynamicProxy.dll = COCO.Libaray\LinFu.DynamicProxy.dll
+		COCO.Libaray\log4net.dll = COCO.Libaray\log4net.dll
+		COCO.Libaray\MySql.Data.dll = COCO.Libaray\MySql.Data.dll
+		COCO.Libaray\NHibernate.ByteCode.LinFu.dll = COCO.Libaray\NHibernate.ByteCode.LinFu.dll
+		COCO.Libaray\NHibernate.dll = COCO.Libaray\NHibernate.dll
+		COCO.Libaray\nunit.framework.dll = COCO.Libaray\nunit.framework.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.Utility", "COCO.Utility", "{1DE84DB4-036E-44BA-BA16-AC9E4EE77169}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.Data", "COCO.Data", "{ED033104-B24A-4E55-8A65-069D7C0B6588}"
+	ProjectSection(SolutionItems) = preProject
+		COCO.Data\COCO.accdb = COCO.Data\COCO.accdb
+		COCO.Data\COCO.mdb = COCO.Data\COCO.mdb
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "COCO.Interface", "COCO.Interface", "{B5059F74-C26B-4133-8D01-7CC51F385197}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COCO.App", "COCO.App\COCO.App.csproj", "{61A6663D-85D0-4741-A571-F22C32E9D35B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COCO.Client", "COCO.Client\COCO.Client.csproj", "{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COCO.Interface", "COCO.Interface\COCO.Interface.csproj", "{594D4A0F-504A-4CF0-8C44-191EDBA29A00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COCO.Utility", "COCO.Utility\COCO.Utility.csproj", "{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "COCO.AppTest", "COCO.AppTest\COCO.AppTest.csproj", "{4CE1D552-1484-4457-9D2C-ACEA17191D7F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{61A6663D-85D0-4741-A571-F22C32E9D35B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A6663D-85D0-4741-A571-F22C32E9D35B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A6663D-85D0-4741-A571-F22C32E9D35B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A6663D-85D0-4741-A571-F22C32E9D35B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{594D4A0F-504A-4CF0-8C44-191EDBA29A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{594D4A0F-504A-4CF0-8C44-191EDBA29A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{594D4A0F-504A-4CF0-8C44-191EDBA29A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{594D4A0F-504A-4CF0-8C44-191EDBA29A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CE1D552-1484-4457-9D2C-ACEA17191D7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CE1D552-1484-4457-9D2C-ACEA17191D7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CE1D552-1484-4457-9D2C-ACEA17191D7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CE1D552-1484-4457-9D2C-ACEA17191D7F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{61A6663D-85D0-4741-A571-F22C32E9D35B} = {0DCBF2AE-05BC-45A8-AAD6-9B84BDC55521}
+		{4CE1D552-1484-4457-9D2C-ACEA17191D7F} = {0DCBF2AE-05BC-45A8-AAD6-9B84BDC55521}
+		{AC2E23DE-D769-4769-B3B6-A4F0EB86D21F} = {BA4C9D9C-37EC-4017-9F9F-A8746ED157EC}
+		{640EBC1F-D9BF-4685-8DF9-B81C383DB5DB} = {1DE84DB4-036E-44BA-BA16-AC9E4EE77169}
+		{594D4A0F-504A-4CF0-8C44-191EDBA29A00} = {B5059F74-C26B-4133-8D01-7CC51F385197}
+	EndGlobalSection
+EndGlobal
