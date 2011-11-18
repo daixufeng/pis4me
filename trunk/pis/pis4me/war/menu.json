@@ -1,0 +1,33 @@
+﻿{
+	text: '菜单',
+	url: '#',
+	children: [{
+		text: '系统设置',
+		leaf: false,
+		children: [{
+			text: '类别设置',
+			leaf: true,
+			url: '/Sys/Kind.jsps'
+		}, {
+			text: 'UnKnowMenu',
+			leaf: true
+		}]
+	},{
+		text: '个人财务',
+		url: '/Desk.jsp',
+		leaf: false,
+		children:[{
+			url: '/Finance/Item.jsps',
+			leaf: true,
+			text: '科目设置'
+		},{
+			url: '/Finance/Fee.jsps',
+			leaf: true,
+			text: '每日费用'	
+		},{
+			url: '/Finance/Analysis.jsps',
+			leaf: true,
+			text: '数据分析'	
+		}]
+	}]
+}
