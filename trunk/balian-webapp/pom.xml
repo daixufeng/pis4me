@@ -1,0 +1,36 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+		<groupId>com.balian</groupId>
+    <artifactId>balian</artifactId>
+    <version>1.0</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.balian.webapp</groupId>
+  <artifactId>balian-webapp</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>balian-webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+    <dependency>
+			<groupId>com.balian.app</groupId>
+			<artifactId>balian-app</artifactId>
+			<version>1.0</version>
+		</dependency>
+  </dependencies>
+  <build>
+		<finalName>balian</finalName>
+		<outputDirectory>src/main/webapp/WEB-INF/classes</outputDirectory>
+		<plugins>
+			<plugin>
+				<artifactId>maven-war-plugin</artifactId>
+				<configuration>
+					<webappDirectory>target/balian-webapp</webappDirectory>
+					<warSourceDirectory>src/main/webapp</warSourceDirectory>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
