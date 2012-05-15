@@ -25,4 +25,8 @@ public class SmServiceImpl implements SmService {
 		else 
 			return false;		
 	}
+	
+	public void createUser(User user){
+		userDao.create(user);
+	}
 }

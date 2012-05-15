@@ -7,4 +7,6 @@ public interface SmService {
 	public User getUserById(Long id);
 	
 	public boolean doLogin(User user);
+	
+	public void createUser(User user);
 }

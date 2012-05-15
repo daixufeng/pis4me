@@ -45,8 +45,10 @@ public class SmUserDaoTest extends TestSupport{
 		try{
 			SmService smService = (SmService) getContext().getBean("smService");
 			User user = new User();
+			//user.setEmail("wangqin@qq.com");
 			user.setUserName("xufeng");
-			user.setPassword("111111");
+			user.setPassword("11111");
+			//smService.createUser(user);
 			boolean flg = smService.doLogin(user);
 			System.out.println(flg);
 		}

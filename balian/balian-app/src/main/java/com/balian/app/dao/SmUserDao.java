@@ -114,7 +114,7 @@ public class SmUserDao{
 			conn = getConnection();
 			conn.setAutoCommit(false);
 			
-			String strSql = "insert into sm_user (username, password, email) values(?,?,?)";
+			String strSql = "INSERT INTO sm_user (username, password, email) VALUES(?,?,?)";
 			for(User user:users){
 				PreparedStatement psd = conn.prepareStatement(strSql);
 				psd.setString(1, user.getUserName());
@@ -144,7 +144,7 @@ public class SmUserDao{
 		
 		try{
 			conn = getConnection();
-			PreparedStatement psd = conn.prepareStatement("update sm_user set username = ? where userid = ?");
+			PreparedStatement psd = conn.prepareStatement("UPDATE sm_user SET username = ? WHERE userid = ?");
 			psd.setString(1, userName);
 			psd.setInt(2,userId);
 			psd.execute();
