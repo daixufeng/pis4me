@@ -27,7 +27,7 @@ public class TestSupport  extends TestCase{
 	}
 	
 //加载单个spring文件
-//ApplicationContext context00 = new ClassPathXmlApplicationContext("spring-global-db.xml");
+//ApplicationContext context00  = new ClassPathXmlApplicationContext("spring-global-db.xml");
   
 //加载类路径下的配置文件ClassPathXmlApplicationContex
 //ApplicationContext context0 = new ClassPathXmlApplicationContext(
