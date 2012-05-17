@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
+<!-- above set at the top of the file will set     -->
+<!-- the browser's rendering engine into           -->
+<!-- "Quirks Mode". Replacing this declaration     -->
+<!-- with a "Standards Mode" doctype is supported, -->
+<!-- but may lead to some differences in layout.   -->
+
+<html>
+<head>
+	<title></title>
+	<script type="text/javascript" src="/js/jquery.js"></script>
+	<script>
+	 function formValidate(){
+		 var strMsg = "";
+		 if($("username").text() == ""){
+			 strMsg = "Please input UserName";
+		 }else if($("nickname").text() == ""){
+			 strMsg = "Please input NickName";
+		 }else if($("email").text() == ""){
+			 strMsg = "Please input Email";
+		 }else if($("password").text() == ""){
+			 strMsg = "Please input Password";
+		 }
+		 
+		 if(strMsg != ""){
+			 alert(strMsg);
+			 return false;
+		 }else
+			 return true;
+	 }
+	</script>
+	<link href="/style/site.css" media="screen" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<form action="/base/createuser.do" onsubmit="return formValidate()">
+		<table class="form">
+			<tr>
+				<th>UserName:</th><td><input type="text" id="username" name="username" /></td>
+			</tr>
+			<tr>
+				<th>NickName:</th><td><input type="text" id="nickname" name="nickname" /></td>
+			</tr>
+			<tr>
+				<th>Email:</th><td><input type="text" id="email" name="email" /></td>
+			</tr>
+			<tr>
+				<th>Password:</th><td><input type="password" id="password" name="password" /></td>
+			</tr>
+			<tr>
+				<th>Type:</th>
+				<td>
+					<select name="type" >
+						<option value="admin">admin</option>
+						<option value="user">user</option>
+					</select>
+					</td>
+			</tr>
+			<tr>
+				<td></td><td><input type="submit" value="Save" style="width:60px;"/></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+
