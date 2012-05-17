@@ -1,7 +1,7 @@
-﻿<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="UTF-8"%>
-<%@ page import="com.pis.base.SmUser" %>
-<%@ page import="com.pis.base.UserDao" %>
+<%@ page import="com.pis.domain.SmUser" %>
+<%@ page import="com.pis.service.SmService" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -18,26 +18,26 @@
 </head>
 <body>
 	<%
-	Long id = new Long(request.getParameter("id"));
-	UserDao userDao = new UserDao();
-	SmUser user = userDao.getById(id);
+		Long id = new Long(request.getParameter("id"));
+		SmService userDao = new SmService();
+		SmUser user = userDao.getById(id);
 	%>
-	<form  action="/base/updateuser">
+	<form  action="/base/updateuser.do">
 	<table class="form">		
 			<tr>
-				<th >ç¨æ·åï¼</th><td><input type="text" name="username" value="<%=user.getUserName() %>" /></td>
+				<th >UserName:</th><td><input type="text" name="username" value="<%=user.getUserName() %>" /></td>
 			</tr>
 			<tr>
 				<th>NickName:</th><td><input type="text" name="nickname" value="<%=user.getNickName() %>"/></td>
 			</tr>
 			<tr>
-				<th>Emailï¼</th><td><input type="text" name="email" value="<%=user.getEmail() %>" /></td>
+				<th>Email:</th><td><input type="text" name="email" value="<%=user.getEmail() %>" /></td>
 			</tr>
 			<tr>
-				<th>å¯ç ï¼</th><td><input type="password" name="password" value="<%=user.getPassword() %>" /></td>
+				<th>Password:</th><td><input type="password" name="password" value="<%=user.getPassword() %>" /></td>
 			</tr>
 			<tr>
-				<th>ç±»å«ï¼</th><td><input type="text" name="type" value="<%=user.getType() %>" /></td>
+				<th>Type:</th><td><input type="text" name="type" value="<%=user.getType() %>" /></td>
 			</tr>
 			<tr>
 				<td><input type="hidden" name="id" value="<%=user.getId() %>"/></td><td><input type="submit" value="Save"/></td>

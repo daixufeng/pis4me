@@ -1,7 +1,11 @@
 package com.pis.base;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig;
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper;
+import com.pis.service.SmService;
 
 import org.junit.After;
 import org.junit.Before;
@@ -25,15 +29,15 @@ public class UserDaoTest{
     // run this test twice to prove we're not leaking any state across tests
     @Test
     public void doTest() {
-    	UserDao userDao = new UserDao();
-    	SmUser user = new SmUser();
+    	SmService smService = new SmService();
+    	Map<String,Object> user = new HashMap<String,Object>();
     	
-    	user.setNickName("XuFeng");
-    	user.setUserName("daixuf");
-    	user.setPassword("882019");
-    	user.setEmail("xufeng.dai@qq.com");
-    	user.setType("admin");
+		user.put("nickname","XuFeng");
+		user.put("username","daixuf");
+		user.put("password","882019");
+		user.put("email","xufeng.dai@qq.com");
+		user.put("type","admin");
     	
-    	userDao.createUser(user);
+    	smService.createUser(user);
     }
 }

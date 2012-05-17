@@ -1,7 +1,8 @@
-package com.pis.base;
+package com.pis.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.EntityNotFoundException;
@@ -9,8 +10,11 @@ import com.google.appengine.api.datastore.Key;
 import com.google.appengine.api.datastore.KeyFactory;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.pis.domain.EntityFactory;
+import com.pis.domain.EntityField;
+import com.pis.domain.SmUser;
 
-public class UserDao extends BaseDao {
+public class SmService extends BaseService {
 	public SmUser getById(Long id){
 		SmUser user = new SmUser();
 		Entity entity = null;
@@ -37,7 +41,7 @@ public class UserDao extends BaseDao {
 	}
 	
 	public SmUser getByUserName(String userName){		
-		SmUser user = new SmUser();
+		SmUser user = null;
 		
 		Query q = new Query("SmUser");
 		q.addFilter("UserName", Query.FilterOperator.EQUAL, userName);
@@ -48,6 +52,7 @@ public class UserDao extends BaseDao {
 		Entity entity = pq.asSingleEntity();
 		
 		if(entity != null){
+			user = new SmUser();
 			user.setId(entity.getKey().getId());
 			user.setUserName( (String) entity.getProperty("UserName"));
 			user.setNickName(entity.getProperty("NickName").toString());
@@ -59,18 +64,12 @@ public class UserDao extends BaseDao {
 		return user;
 	}
 	
-	public SmUser createUser(SmUser user){		
-		try{
-			Entity entity = new Entity("SmUser");
-			entity.setProperty("UserName", user.getUserName());
-			entity.setProperty("NickName", user.getNickName());
-			entity.setProperty("Type", user.getType());
-			entity.setProperty("Password", user.getPassword());
-			entity.setProperty("Email", user.getEmail());
-			
+	public Entity createUser(Map<String,Object> user){		
+		try{	
+			Entity entity = EntityFactory.getEntityFromMap(user, EntityField.user);
+			entity.removeProperty("Id");
 			datastore.put(entity);
-			//user.setId(new Long(entity.getProperty("id").toString()));
-			return user;
+			return entity;
 		}
 		catch(Exception ex){
 			System.out.print(ex);
@@ -78,8 +77,11 @@ public class UserDao extends BaseDao {
 		}
 	}	
 	
-	public SmUser updateUser(SmUser user){
-		Key key = KeyFactory.createKey("SmUser", user.getId());
+	public Entity updateUser(Map<String,Object> user){
+		Entity newEntity = EntityFactory.getEntityFromMap(user, EntityField.user);
+		
+		Long id = new Long(user.get("Id").toString());
+		Key key = KeyFactory.createKey("User", id);
 		Entity entity = null;
 		try {
 			entity = datastore.get(key);
@@ -88,16 +90,11 @@ public class UserDao extends BaseDao {
 			e.printStackTrace();
 		}
 		if(entity != null){
-			entity.setProperty("UserName", user.getUserName());
-			entity.setProperty("NickName", user.getNickName());
-			entity.setProperty("Type", user.getType());
-			entity.setProperty("Password", user.getPassword());
-			entity.setProperty("Email", user.getEmail());
-			
+			EntityFactory.copyEntity(newEntity, entity, false);			
 			datastore.put(entity);
 		}
-		//user.setId(new Long(entity.getProperty("id").toString()));
-		return user;
+
+		return entity;
 		
 	}
 	

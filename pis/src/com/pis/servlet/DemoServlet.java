@@ -1,13 +1,13 @@
-package com.pis.finance;
+package com.pis.servlet;
 
 import java.io.IOException;
 import javax.servlet.http.*;
 
 @SuppressWarnings("serial")
-public class Pis_financeServlet extends HttpServlet {
+public class DemoServlet  extends HttpServlet {
 	public void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws IOException {
-		resp.setContentType("text/plain");
-		resp.getWriter().println("Hello, world");
+		resp.setContentType("text/html");
+		resp.setCharacterEncoding("utf-8");
 	}
 }

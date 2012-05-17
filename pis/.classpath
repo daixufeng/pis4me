@@ -16,5 +16,10 @@
 			<attribute name="javadoc_location" value="file:/D:/Program%20Files/Eclipse/plugins/com.google.appengine.eclipse.sdkbundle_1.6.4.v201203300216r37/appengine-java-sdk-1.6.4/docs/javadoc/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="E:/Workspace/pis/finance/pis-finance/lib/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="E:/Workspace/pis/finance/pis-finance/lib/commons-collections-3.2.jar"/>
+	<classpathentry kind="lib" path="E:/Workspace/pis/finance/pis-finance/lib/commons-lang-2.4.jar"/>
+	<classpathentry kind="lib" path="E:/Workspace/pis/finance/pis-finance/lib/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="E:/Workspace/pis/finance/pis-finance/lib/json-lib-2.3-jdk15.jar"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

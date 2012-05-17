@@ -1,4 +1,4 @@
-package com.pis.base;
+package com.pis.domain;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
