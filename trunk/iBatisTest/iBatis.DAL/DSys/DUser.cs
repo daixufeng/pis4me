@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using iBatis.Model.Sys;
-using IBatisNet.DataMapper;
 
 namespace iBatis.DAL.DSys
 {
-    public class DUser:DALSupport
+    public class DUser : DALSupport
     {
-        public IList<MUser> GetAll() {
+        public IList<MUser> GetAll()
+        {
             return Session.QueryForList<MUser>("User_Select", null);
         }
         public void Save(MUser user)
@@ -19,12 +16,15 @@ namespace iBatis.DAL.DSys
 
         public void Update(MUser user)
         {
-            Session.Update("User_Update",user);
+            Session.Update("User_Update", user);
         }
 
         public void Delete(MUser user)
         {
-            Session.Update("User_Delete", user);
+            if (Session != null)
+            {
+                Session.Update("User_Delete", user);
+            }
         }
     }
 }

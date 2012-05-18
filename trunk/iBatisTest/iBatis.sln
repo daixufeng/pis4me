@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBatis.DAL", "iBatis.DAL\iBatis.DAL.csproj", "{69DD968F-5570-4F90-9683-38E8DF4E8331}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iBatis.Factory", "iBatis.Factory\iBatis.Factory.csproj", "{0AAD725B-99E6-46A7-9101-87A082668F97}"
