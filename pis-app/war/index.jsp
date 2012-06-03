@@ -20,7 +20,7 @@
         <td colspan="2" style="font-weight:bold;">Available Servlets:</td>        
       </tr>
       <tr>
-        <td><a href="pis_app">Pis_app</a></td>
+        <td><a href="/login">login</a></td>
       </tr>
     </table>
   </body>
