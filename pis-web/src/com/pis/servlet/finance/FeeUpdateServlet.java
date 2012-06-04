@@ -1,4 +1,4 @@
-package com.pis.servlet;
+package com.pis.servlet.finance;
 
 public class FeeUpdateServlet {
 
