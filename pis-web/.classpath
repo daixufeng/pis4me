@@ -2,9 +2,6 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/appengine-api-1.0-sdk-1.6.4.jar"/>
-	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/appengine-api-labs-1.6.4.jar"/>
-	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/appengine-jsr107cache-1.6.4.jar"/>
 	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/datanucleus-appengine-1.0.10.final.jar"/>
 	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/datanucleus-core-1.1.5.jar"/>
 	<classpathentry kind="lib" path="E:/Workspace/pis/pis-web/war/WEB-INF/lib/datanucleus-jpa-1.1.5.jar"/>
