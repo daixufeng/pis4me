@@ -18,23 +18,29 @@
 			http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 			http://www.springframework.org/schema/context 
 			http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-    <!--
-              使Spring支持自动检测组件，如注解的Controller
-    -->
-    <context:component-scan base-package="com.pis.controllers"/>
-   
-    <bean id="viewResolver"
-          class="org.springframework.web.servlet.view.InternalResourceViewResolver"
-          p:prefix="/views/" p:suffix=".jsp" />
-          
-    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->     
-    <bean id="annotationMethodHandlerAdapter"
-    			class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />     
-    
-    <bean id="controllerClassNameHandlerMapping"
-    			class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/>
+	
+    <!-- SpringMVC相关Bean配置 --> 
+		<context:component-scan base-package="com.pis.controllers" />
 		
-		<!--<bean id="multipartResolver"     
-          class="org.springframework.web.multipart.commons.CommonsMultipartResolver"     
-          p:defaultEncoding="utf-8" />   --> 
-</beans>
+		<!-- 配置静态文件
+    <mvc:resources mapping="/js/**" location="/js/" />
+		<mvc:resources mapping="/style/**" location="/style/" />
+		<mvc:resources mapping="/images/**" location="/images/" />
+      -->
+    <!-- View Resolver -->
+    <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" /> 
+        <property name="prefix" value="/views/" /> 
+        <property name="suffix" value=".jsp" /> 
+    </bean>
+    
+    <!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射   
+    <bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter" />  
+		 --> 
+
+    <!-- <bean id="viewNameTranslator" class="org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator"/> 
+    <bean id="handlerMapping" class="org.springframework.web.servlet.mvc.support.ControllerClassNameHandlerMapping"/> 
+    
+    <bean id="handlerAdapter" class="org.springframework.web.servlet.mvc.SimpleControllerHandlerAdapter"/> --> 
+		
+</beans> 
