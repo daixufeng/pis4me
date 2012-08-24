@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entity name="DailyPay">
+	<properties>
+		<property name="Id" type="Long"/>
+		<property name="CategoryId" type="Long" not-null="true" description="Category"/>
+		<property name="Qty" type="Double" not-null="true" description="Quantity"/>
+		<property name="CreateDate" type="Date" not-null="true" description="Create Date"/>
+		<property name="DeleteFlag" type="Boolean"/>
+		<property name="Remark"/>
+	</properties>
+	<criteria>
+		<property name="CategoryId" type="Long"/>
+		<property name="BegDate"/>
+		<property name="EndDate"/>
+	</criteria>
+</Entity>
