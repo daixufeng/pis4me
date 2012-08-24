@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Validation>
+	<properties>
+		<property name="UserName">/^[a-z]([0-9a-z_])+$/i</property>
+		<property name="Email">/^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/</property>
+		<property name="Password">/^([0-9a-zA-Z])+$/</property>
+	</properties>
+</Validation>

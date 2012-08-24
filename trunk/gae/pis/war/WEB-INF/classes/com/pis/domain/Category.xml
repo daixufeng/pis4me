@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Entity name="Category">
+	<properties>
+		<property name="Id" type="Long"/>
+		<property name="Name" type="String" not-null="true"/>
+		<property name="DictionaryId" type="Int" not-null="true"  description="Type"/>
+		<property name="DeleteFlag" type="Boolean"/>
+	</properties>
+	<criteria>
+		<property name="Name" type="String"/>
+		<property name="DictionaryId" type="Int"/>
+	</criteria>
+</Entity>
