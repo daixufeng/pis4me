@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyMono", "MyMono\MyMono.csproj", "{779D2155-79AA-49DE-AE21-60B37B1D4FE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebUI", "WebUI\WebUI.csproj", "{C0D240F1-E9C0-465C-B59F-431E0488C4F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Console", "Console\Console.csproj", "{83C25BC6-3F66-4CDD-99DB-772E2399E549}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{779D2155-79AA-49DE-AE21-60B37B1D4FE2}.Debug|x86.ActiveCfg = Debug|x86
+		{779D2155-79AA-49DE-AE21-60B37B1D4FE2}.Debug|x86.Build.0 = Debug|x86
+		{779D2155-79AA-49DE-AE21-60B37B1D4FE2}.Release|x86.ActiveCfg = Release|x86
+		{779D2155-79AA-49DE-AE21-60B37B1D4FE2}.Release|x86.Build.0 = Release|x86
+		{83C25BC6-3F66-4CDD-99DB-772E2399E549}.Debug|x86.ActiveCfg = Debug|x86
+		{83C25BC6-3F66-4CDD-99DB-772E2399E549}.Debug|x86.Build.0 = Debug|x86
+		{83C25BC6-3F66-4CDD-99DB-772E2399E549}.Release|x86.ActiveCfg = Release|x86
+		{83C25BC6-3F66-4CDD-99DB-772E2399E549}.Release|x86.Build.0 = Release|x86
+		{C0D240F1-E9C0-465C-B59F-431E0488C4F2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C0D240F1-E9C0-465C-B59F-431E0488C4F2}.Debug|x86.Build.0 = Debug|Any CPU
+		{C0D240F1-E9C0-465C-B59F-431E0488C4F2}.Release|x86.ActiveCfg = Release|Any CPU
+		{C0D240F1-E9C0-465C-B59F-431E0488C4F2}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Console\Console.csproj
+	EndGlobalSection
+EndGlobal
