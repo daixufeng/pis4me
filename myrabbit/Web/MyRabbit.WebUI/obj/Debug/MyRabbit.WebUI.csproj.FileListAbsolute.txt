@@ -1,0 +1,15 @@
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\obj\Debug\MyRabbit.WebUI.csprojResolveAssemblyReference.cache
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.WebUI.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.WebUI.pdb
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.Entity.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.Service.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.UserControl.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\SINOMA.Utility.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\Spring.Core.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.Entity.pdb
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.Service.pdb
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\MyRabbit.UserControl.pdb
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\SINOMA.Utility.pdb
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\bin\Spring.Core.xml
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\obj\Debug\MyRabbit.WebUI.dll
+D:\My Projects\MyRabbit\Web\MyRabbit.WebUI\obj\Debug\MyRabbit.WebUI.pdb

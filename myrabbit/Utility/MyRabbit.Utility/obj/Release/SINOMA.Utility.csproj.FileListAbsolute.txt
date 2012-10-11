@@ -1,0 +1,5 @@
+D:\MyProjects\SINOMA\SINOMA.Utility\bin\Release\SINOMA.Utility.dll
+D:\MyProjects\SINOMA\SINOMA.Utility\bin\Release\SINOMA.Utility.pdb
+D:\MyProjects\SINOMA\SINOMA.Utility\obj\Release\ResolveAssemblyReference.cache
+D:\MyProjects\SINOMA\SINOMA.Utility\obj\Release\SINOMA.Utility.dll
+D:\MyProjects\SINOMA\SINOMA.Utility\obj\Release\SINOMA.Utility.pdb

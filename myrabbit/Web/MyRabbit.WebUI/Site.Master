@@ -1,0 +1,138 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="MyRabbit.WebUI.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>Home Page</title>
+    <meta content="" ie="EmulateIE7" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="" />
+    <meta name="GENERATOR" content="MSHTML 9.00.8112.16430" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery-1.4.1.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.8.14.custom.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.metadata.js"></script>
+    <script type="text/javascript" src="Scripts/messages_cn.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        var onlineCheckId = 0;
+        window.onload = function () {
+            prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_beginRequest(ShowWaitingPanel);
+            //onlineCheckId = setInterval("OnlineCheck()", 60000);
+        }
+
+        function ShowWaitingPanel() {
+            var shade = document.getElementById("myShade");
+            var height = (document.documentElement.scrollHeight > document.documentElement.clientHeight) ?
+                     document.documentElement.scrollHeight : document.documentElement.clientHeight;
+            shade.style.height = height + "px";
+            shade.getElementsByTagName("IMG")[0].style.marginTop = (document.documentElement.clientHeight / 2 - 40) + "px";
+        }
+
+        function OnlineCheck() {
+            $.ajax({
+                type: "GET",
+                url: "../OnlineCheck.aspx",
+                data: "NickName=Test",
+                success: function (resp) {}
+            });
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server" id="mainForm">
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
+    <div class="master-waper">
+        <div class="header">
+            <div class="logo">
+            </div>
+            <div class="languageselector">
+            </div>
+            <div class="links">
+                <a href="/home">Home</a> <span class="separator">|</span><a>Clear Cache</a>
+            </div>
+            <div class="login-info">
+                <a href="https://appengine.google.com/dashboard?&app_id=s~daixuf">xufeng.dai@hotmail.com</a>
+                <a href="/logout">Logout?</a>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="header-menu">
+            <ul class="sf-menu">
+                <li><a title="View the dashboard" href="/">
+                    <img alt="Dashboard" src="/images/ico-dashboard.png" />Dashboard </a></li>
+                <li><a title="Catalog Home" href="/">
+                    <img alt="Catalog" src="/images/ico-catalog.png" />
+                    Daily Pay </a>
+                    <ul>
+                        <li><a title="科目管理" href="">科目</a></li>
+                        <li><a title="Products Home" href="/">Daily Pay</a></li>
+                        <li><a title="Attributes Home" href="">Attributes</a>
+                            <ul>
+                                <li><a title="Manage Product Attributes" href="">Product Attributes</a></li>
+                                <li><a title="Manage Specification Attributes" href="">Product Specifications</a></li>
+                                <li><a title="Manage Checkout Attributes" href="">Checkout Attributes</a></li>
+                            </ul>
+                        </li>
+                        <li><a title="Manage Product Manufacturers" href="">Manufacturers</a></li>
+                    </ul>
+                </li>
+                <li><a title="Configuration Home" href="">
+                    <img alt="Configuration" src="/images/ico-configuration.png" />
+                    Account </a>
+                    <ul>
+                        <li><a title="Configure Global Settings" href="/">Sign in</a></li>
+                        <li><a title="Configure Email Accounts" href="/">Change Password</a></li>
+                        <li><a title="Manage banned IP addresses and networks" href="#">Blacklist</a></li>
+                        <li><a title="Payment Settings Home" href="#">Payment</a>
+                            <ul>
+                                <li><a title="Manage Credit Cards" href="#">Credit Cards</a></li>
+                                <li><a title="Manage Payment Methods" href="#">Payment Methods</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a title="System Home" href="#">
+                    <img alt="System" src="images/ico-system.png" />
+                    System </a>
+                    <ul>
+                        <li><a title="User Management" href="UserMgt.aspx">User Management</a></li>
+                    </ul>
+                </li>
+                <li><a title="Help Home" href="#">
+                    <img alt="Help" src="/images/ico-help.png" />
+                    Help </a>
+                    <ul>
+                        <li><a title="View Help Topics" href="#">Help Topics</a></li>
+                        <li><a title="Visit nopCommerce Community Forum" href="#">Community Forums</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="master-waper-page">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            <div id="footer">
+                All right reserved xufeng.dai@hotmail.com
+            </div>
+        </div>
+    </div>
+    <asp:UpdateProgress ID="udpWaiting" runat="server" DisplayAfter="1000">
+        <ProgressTemplate>
+            <div id="myShade" class="myshade" style="z-index: 2147483647;">
+                <img src="<%=ResolveUrl("~/images/ajax-loader.gif")%>" alt="" />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    </form>
+</body>
+</html>

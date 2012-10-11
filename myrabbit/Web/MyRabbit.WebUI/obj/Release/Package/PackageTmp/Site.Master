@@ -1,0 +1,154 @@
+<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="SINOMA.WebUI.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head runat="server">
+    <title>中国中材设备</title>
+    <meta content="" ie="EmulateIE7" http-equiv="X-UA-Compatible" />
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+    <meta name="description" content="" />
+    <meta name="GENERATOR" content="MSHTML 9.00.8112.16430" />
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styles/jquery.ui.all.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery-1.4.1.js"></script>
+    <script type="text/javascript" src="Scripts/jquery-ui-1.8.14.custom.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="Scripts/jquery.metadata.js"></script>
+    <script type="text/javascript" src="Scripts/messages_cn.js" charset="UTF-8"></script>
+    <script type="text/javascript">
+        var onlineCheckId = 0;
+        window.onload = function () {
+            prm = Sys.WebForms.PageRequestManager.getInstance();
+            prm.add_beginRequest(ShowWaitingPanel);
+            //onlineCheckId = setInterval("OnlineCheck()", 60000);
+        }
+
+        function ShowWaitingPanel() {
+            var shade = document.getElementById("myShade");
+            var height = (document.documentElement.scrollHeight > document.documentElement.clientHeight) ?
+                     document.documentElement.scrollHeight : document.documentElement.clientHeight;
+            shade.style.height = height + "px";
+            shade.getElementsByTagName("IMG")[0].style.marginTop = (document.documentElement.clientHeight / 2 - 40) + "px";
+        }
+
+        function btnLogin_Click(o, e) {
+            var reVal = false;
+            if ($("#<%#txtLoginName.ClientID %>").val() == "")
+                alert("用户名不能为空！");
+            else if ($("#<%#txtPassword.ClientID %>").val() == "")
+                alert("密码不能为空！");
+            else reVal = true;
+            return reVal;
+        }
+
+        function Form_KeyDown(o, e) {
+            var evt = event || e;
+            var keyCode = evt.keyCode || evt.which;
+            if(keyCode == 13)
+                $("#<%=btnLogin.ClientID %>").trigger("click");
+            return false;
+        }
+
+        function OnlineCheck() {
+            $.ajax({
+                type: "GET",
+                url: "../OnlineCheck.aspx",
+                data: "NickName=Test",
+                success: function (resp) {
+                }
+            });
+        }
+    </script>
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form runat="server" id="mainForm">
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    </asp:ToolkitScriptManager>
+    <div class="master-waper">
+        <div class="header">
+            <div class="header-logo">
+                <a class="logo" href="<%=ResolveUrl("~/Default.aspx")%>"></a>
+            </div>
+            <div class="header-links-wrapper">
+                <asp:UpdatePanel runat="server" ID="LoginPanel">
+                    <ContentTemplate>
+                        <asp:Panel runat="server" ID="panelLogin" CssClass="header-links" onkeydown="Form_KeyDown(this,event)">
+                            <ul>
+                                <li>用户名：</li>
+                                <li>
+                                    <asp:TextBox runat="server" ID="txtLoginName" Width="150" CssClass="textbox"></asp:TextBox></li>
+                                <li>密码：</li>
+                                <li>
+                                    <asp:TextBox runat="server" ID="txtPassword" Width="150" TextMode="Password" CssClass="textbox"></asp:TextBox></li>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="btnLogin" CssClass="button" Width="60px" OnClientClick="return btnLogin_Click(this,event)"
+                                        OnClick="btnLogin_Click"><ins>登 录</ins></asp:LinkButton></li>
+                            </ul>
+                        </asp:Panel>
+                        <asp:Panel runat="server" ID="panelUserInfor" Visible="false" CssClass="header-links">
+                            <ul>
+                                <li>
+                                    <asp:LinkButton runat="server" ID="lblLoginName" PostBackUrl="~/Account.aspx" CssClass="account"></asp:LinkButton></li>
+                                <li><a href="<%=ResolveUrl("~/Logout.aspx")%>" class="ico-logout">退出</a> </li>
+                                <li><asp:LinkButton runat="server" ID="lblAdmin" PostBackUrl="~/Admin/Default.aspx" class="ico-admin">后台管理</asp:LinkButton>
+                                </li>
+                            </ul>
+                        </asp:Panel>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </div>
+        <div class="headermenu">
+            <div class="searchbox">
+                <asp:UpdatePanel runat="server" ID="searchUpl">
+                    <ContentTemplate>
+                        <ul>
+                            <li>
+                                <asp:TextBox runat="server" ID="txtKeyWord" onkeydown="if(event.which || event.keyCode){if ((event.which == 13) || (event.keyCode == 13)) {document.getElementById('ctl00_ctl00_ctrlHeaderMenu_ctrlSearchBox_btnSearch').click();return false;}} else {return true}; "
+                                    class="searchboxtext" onfocus="if(this.value=='产品搜索')this.value=''" Style="width: 200px;"
+                                    value="产品搜索" type="text"></asp:TextBox>&nbsp;</li>
+                            <%--<li>
+                                <asp:DropDownList runat="server" ID="dplCategory" CssClass="searchboxcombox">
+                                    <asp:ListItem Value="0">分类</asp:ListItem>
+                                </asp:DropDownList>
+                                &nbsp; </li>--%>
+                            <li>
+                                <asp:Button runat="server" CssClass="searchboxbutton" ID="btnSearch" OnClick="btnSearch_Click" /></li>
+                        </ul>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a class="<%=HomeActive %>" href="<%=ResolveUrl("~/Default.aspx")%>"><span>主页</span>
+                    </a></li>
+                    <li style='<%=IsSalesDisplay?"display:block;": "display:none;"%>'><a class="<%= ProductSalesDetailActive%>" href="<%=ResolveUrl("~/ProductSalesDetail.aspx")%>"><span>数据汇总</span></a></li>
+                    <%--<li><a href="<%=ResolveUrl("~/Default.aspx")%>">合同信息</a> </li>--%>
+                    <li><a class="<%=AccountActive %>" href="<%=ResolveUrl("~/Account.aspx")%>"><span>修改密码</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="master-waper-page">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+        <div class="footer">
+            <div id="footer">
+                All right reserved sinoma.com
+            </div>
+        </div>
+    </div>
+    <asp:UpdateProgress ID="udpWaiting" runat="server" DisplayAfter="1000">
+        <ProgressTemplate>
+            <div id="myShade" class="myshade" style="z-index: 2147483647;">
+                <img src="<%=ResolveUrl("~/images/ajax-loader.gif")%>" />
+            </div>
+        </ProgressTemplate>
+    </asp:UpdateProgress>
+    </form>
+</body>
+</html>

@@ -1,0 +1,231 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyRabbit.Entity.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MyRabbitEntityStoreContainer">
+          <EntitySet Name="pm_project" EntityType="MyRabbit.Entity.Store.pm_project" store:Type="Tables" Schema="myrabbit" />
+          <EntitySet Name="pm_task" EntityType="MyRabbit.Entity.Store.pm_task" store:Type="Tables" Schema="myrabbit" />
+          <EntitySet Name="pm_task_track" EntityType="MyRabbit.Entity.Store.pm_task_track" store:Type="Tables" Schema="myrabbit" />
+          <EntitySet Name="sm_role" EntityType="MyRabbit.Entity.Store.sm_role" store:Type="Tables" Schema="myrabbit" />
+          <EntitySet Name="sm_user" EntityType="MyRabbit.Entity.Store.sm_user" store:Type="Tables" Schema="myrabbit" />
+        </EntityContainer>
+        <EntityType Name="pm_project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+          <Property Name="ManagerId" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="CreatorId" Type="int" />
+          <Property Name="Comments" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="pm_task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="EsdStartDate" Type="date" />
+          <Property Name="EsdEndDate" Type="date" />
+          <Property Name="FactStartDate" Type="date" />
+          <Property Name="FactEndDate" Type="date" />
+        </EntityType>
+        <EntityType Name="pm_task_track">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="TaskId" Type="int" />
+          <Property Name="Percentage" Type="int" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="Comments" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="sm_role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="sm_user">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="NickName" Type="varchar" MaxLength="20" />
+          <Property Name="Password" Type="varchar" MaxLength="20" />
+          <Property Name="CreateDate" Type="date" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="IsLogon" Type="tinyint" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyRabbit.Entity" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Project" EntityType="MyRabbit.Entity.Project" />
+          <EntitySet Name="Task" EntityType="MyRabbit.Entity.Task" />
+          <EntitySet Name="TaskTrack" EntityType="MyRabbit.Entity.TaskTrack" />
+          <EntitySet Name="User" EntityType="MyRabbit.Entity.User" />
+          <EntitySet Name="Role" EntityType="MyRabbit.Entity.Role" />
+        </EntityContainer>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" />
+          <Property Name="ManagerId" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="CreatorId" Type="Int32" />
+          <Property Name="Comments" Type="String" />
+        </EntityType>
+        <EntityType Name="Task">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="Name" Type="String" />
+          <Property Name="OwnerId" Type="Int32" />
+          <Property Name="EsdStartDate" Type="DateTime" />
+          <Property Name="EsdEndDate" Type="DateTime" />
+          <Property Name="FactStartDate" Type="DateTime" />
+          <Property Name="FactEndDate" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="TaskTrack">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="TaskId" Type="Int32" />
+          <Property Name="Percentage" Type="Int32" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="Comments" Type="String" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LoginName" Type="String" />
+          <Property Name="Email" Type="String" />
+          <Property Name="NickName" Type="String" />
+          <Property Name="Password" Type="String" />
+          <Property Name="CreateDate" Type="DateTime" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Type="SByte" Name="IsLogon" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyRabbitEntityStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Project">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.Project">
+              <MappingFragment StoreEntitySet="pm_project">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Task">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.Task">
+              <MappingFragment StoreEntitySet="pm_task">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="EsdStartDate" ColumnName="EsdStartDate" />
+                <ScalarProperty Name="EsdEndDate" ColumnName="EsdEndDate" />
+                <ScalarProperty Name="FactStartDate" ColumnName="FactStartDate" />
+                <ScalarProperty Name="FactEndDate" ColumnName="FactEndDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TaskTrack">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.TaskTrack">
+              <MappingFragment StoreEntitySet="pm_task_track">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="TaskId" ColumnName="TaskId" />
+                <ScalarProperty Name="Percentage" ColumnName="Percentage" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.User">
+              <MappingFragment StoreEntitySet="sm_user">
+                <ScalarProperty Name="IsLogon" ColumnName="IsLogon" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Role">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.Role">
+              <MappingFragment StoreEntitySet="sm_role">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="MyRabbit">
+        <EntityTypeShape EntityType="MyRabbit.Entity.Project" Width="1.5" PointX="0.75" PointY="0.75" Height="2.172587890625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyRabbit.Entity.Task" Width="1.5" PointX="2.75" PointY="0.75" Height="2.5571907552083326" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyRabbit.Entity.TaskTrack" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyRabbit.Entity.User" Width="1.5" PointX="6.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyRabbit.Entity.Role" Width="1.5" PointX="8.625" PointY="0.75" Height="1.4033821614583317" />
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

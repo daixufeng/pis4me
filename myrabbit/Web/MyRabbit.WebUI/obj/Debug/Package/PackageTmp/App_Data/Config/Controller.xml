@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object id="heroController" type="EfSampel.WebApp.Controllers.HeroController, EfSampel.WebApp" singleton="false" scope="request">
+    <property name="ModelRepository" ref="heroRepository"/>
+  </object>
+
+  <object id="raceController" type="EfSampel.WebApp.Controllers.RaceController, EfSampel.WebApp" singleton="false" scope="request">
+    <property name="ModelRepository" ref="raceRepository"/>
+  </object>
+</objects>

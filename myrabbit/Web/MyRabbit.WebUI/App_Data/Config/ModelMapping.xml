@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<objects xmlns="http://www.springframework.net">
+  <object id="addPrefixMappingStrategy" type="EfSample.Model.Ef.Mappings.Strategies.AddPrefixMappingStrategy, EfSample.Model.Ef" singleton="true">
+    <constructor-arg index="0" value="tbl"/>
+  </object>
+
+  <object id="addUnderscoresBetweenWordsMappingStrategy" type="EfSample.Model.Ef.Mappings.Strategies.AddUnderscoresBetweenWordsMappingStrategy, EfSample.Model.Ef" singleton="true"/>
+
+  <object id="toLowerMappingStrategy" type="EfSample.Model.Ef.Mappings.Strategies.ToLowerMappingStrategy, EfSample.Model.Ef" singleton="true"/>
+
+  <object id="sampleMappingStrategy" type="EfSample.Model.Ef.Mappings.Strategies.CompositeMappingStrategy&lt;string&gt;, EfSample.Model.Ef" singleton="true">
+    <property name="Strategies">
+      <list element-type="EfSample.Model.Ef.Mappings.Strategies.IMappingStrategy&lt;string&gt;, EfSample.Model.Ef">
+        <ref object="addPrefixMappingStrategy"/>
+        <ref object="addUnderscoresBetweenWordsMappingStrategy"/>
+        <ref object="toLowerMappingStrategy"/>
+      </list>
+    </property>
+  </object>
+
+  <object id="heroMapping" type="EfSample.Model.Ef.Mappings.HeroMapping, EfSample.Model.Ef" singleton="true">
+    <constructor-arg index="0" ref="sampleMappingStrategy"/>
+  </object>
+
+  <object id="raceMapping" type="EfSample.Model.Ef.Mappings.RaceMapping, EfSample.Model.Ef" singleton="true">
+    <constructor-arg index="0" ref="sampleMappingStrategy"/>
+  </object>
+</objects>

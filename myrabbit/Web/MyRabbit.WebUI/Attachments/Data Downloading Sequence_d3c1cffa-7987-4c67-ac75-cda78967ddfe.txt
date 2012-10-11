@@ -1,0 +1,7 @@
+Data Downloading Sequence
+1.btnBusinessServer_Click
+2.DataDistributor.BeginLoading
+3.this.Invoker = new DataloadingInvokerHandle(Loading);
+4.Loading(DataLoadingParameter parameter)
+5.ETOT3.ServerBusinessLogic.TaskDistribution.TaskDistributior.Hanle(string taskKey)
+6.ETOT3.ServerBusinessLogic.TaskDistribution.TaskDistributior.Work(List<TaskConfiguration> taskConfigurations, string chub)

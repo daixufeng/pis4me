@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyRabbit.Entity.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="MyRabbitEntityStoreContainer">
+    <EntitySet Name="pm_project" EntityType="MyRabbit.Entity.Store.pm_project" store:Type="Tables" Schema="myrabbit" />
+    <EntitySet Name="pm_task" EntityType="MyRabbit.Entity.Store.pm_task" store:Type="Tables" Schema="myrabbit" />
+    <EntitySet Name="pm_task_track" EntityType="MyRabbit.Entity.Store.pm_task_track" store:Type="Tables" Schema="myrabbit" />
+    <EntitySet Name="sm_role" EntityType="MyRabbit.Entity.Store.sm_role" store:Type="Tables" Schema="myrabbit" />
+    <EntitySet Name="sm_user" EntityType="MyRabbit.Entity.Store.sm_user" store:Type="Tables" Schema="myrabbit" />
+  </EntityContainer>
+  <EntityType Name="pm_project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+    <Property Name="ManagerId" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="CreatorId" Type="int" />
+    <Property Name="Comments" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="pm_task">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="OwnerId" Type="int" />
+    <Property Name="EsdStartDate" Type="date" />
+    <Property Name="EsdEndDate" Type="date" />
+    <Property Name="FactStartDate" Type="date" />
+    <Property Name="FactEndDate" Type="date" />
+  </EntityType>
+  <EntityType Name="pm_task_track">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="TaskId" Type="int" />
+    <Property Name="Percentage" Type="int" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="Comments" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="sm_role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="sm_user">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="LoginName" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="NickName" Type="varchar" MaxLength="20" />
+    <Property Name="Password" Type="varchar" MaxLength="20" />
+    <Property Name="CreateDate" Type="date" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="IsLogon" Type="tinyint" />
+  </EntityType>
+</Schema>
