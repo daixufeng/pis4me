@@ -1,5 +1,0 @@
-D:\MyProjects\SINOMA\SINOMA.UserControl\bin\Debug\SINOMA.UserControl.dll
-D:\MyProjects\SINOMA\SINOMA.UserControl\bin\Debug\SINOMA.UserControl.pdb
-D:\MyProjects\SINOMA\SINOMA.UserControl\obj\Debug\ResolveAssemblyReference.cache
-D:\MyProjects\SINOMA\SINOMA.UserControl\obj\Debug\SINOMA.UserControl.dll
-D:\MyProjects\SINOMA\SINOMA.UserControl\obj\Debug\SINOMA.UserControl.pdb

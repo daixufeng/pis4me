@@ -1,5 +1,0 @@
-D:\My Projects\MyRabbit\Utility\MyRabbit.Utility\bin\Debug\SINOMA.Utility.dll
-D:\My Projects\MyRabbit\Utility\MyRabbit.Utility\bin\Debug\SINOMA.Utility.pdb
-D:\My Projects\MyRabbit\Utility\MyRabbit.Utility\obj\Debug\MyRabbit.Utility.csprojResolveAssemblyReference.cache
-D:\My Projects\MyRabbit\Utility\MyRabbit.Utility\obj\Debug\SINOMA.Utility.dll
-D:\My Projects\MyRabbit\Utility\MyRabbit.Utility\obj\Debug\SINOMA.Utility.pdb

@@ -9,6 +9,7 @@
           <EntitySet Name="pm_project" EntityType="MyRabbit.Entity.Store.pm_project" store:Type="Tables" Schema="myrabbit" />
           <EntitySet Name="pm_task" EntityType="MyRabbit.Entity.Store.pm_task" store:Type="Tables" Schema="myrabbit" />
           <EntitySet Name="pm_task_track" EntityType="MyRabbit.Entity.Store.pm_task_track" store:Type="Tables" Schema="myrabbit" />
+          <EntitySet Name="sm_operation_log" EntityType="MyRabbit.Entity.Store.sm_operation_log" store:Type="Tables" Schema="myrabbit" />
           <EntitySet Name="sm_role" EntityType="MyRabbit.Entity.Store.sm_role" store:Type="Tables" Schema="myrabbit" />
           <EntitySet Name="sm_user" EntityType="MyRabbit.Entity.Store.sm_user" store:Type="Tables" Schema="myrabbit" />
         </EntityContainer>
@@ -47,6 +48,16 @@
           <Property Name="CreateDate" Type="date" />
           <Property Name="Comments" Type="varchar" MaxLength="200" />
         </EntityType>
+        <EntityType Name="sm_operation_log">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="OperationType" Type="int" />
+          <Property Name="Message" Type="varchar" MaxLength="1024" />
+          <Property Name="OperatorId" Type="int" />
+          <Property Name="CreateTime" Type="date" />
+        </EntityType>
         <EntityType Name="sm_role">
           <Key>
             <PropertyRef Name="Id" />
@@ -77,6 +88,7 @@
           <EntitySet Name="TaskTrack" EntityType="MyRabbit.Entity.TaskTrack" />
           <EntitySet Name="User" EntityType="MyRabbit.Entity.User" />
           <EntitySet Name="Role" EntityType="MyRabbit.Entity.Role" />
+          <EntitySet Name="OperationLogs" EntityType="MyRabbit.Entity.OperationLogs" />
         </EntityContainer>
         <EntityType Name="Project">
           <Key>
@@ -132,6 +144,16 @@
           </Key>
           <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Name" />
+        </EntityType>
+        <EntityType Name="OperationLogs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int64" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="OperationType" />
+          <Property Type="String" Name="Message" />
+          <Property Type="Int32" Name="OperatorId" />
+          <Property Type="DateTime" Name="CreateTime" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -199,6 +221,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OperationLogs">
+            <EntityTypeMapping TypeName="MyRabbit.Entity.OperationLogs">
+              <MappingFragment StoreEntitySet="sm_operation_log">
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+                <ScalarProperty Name="OperatorId" ColumnName="OperatorId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="OperationType" ColumnName="OperationType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -225,6 +258,7 @@
         <EntityTypeShape EntityType="MyRabbit.Entity.TaskTrack" Width="1.5" PointX="4.75" PointY="0.75" Height="2.1725878906249996" IsExpanded="true" />
         <EntityTypeShape EntityType="MyRabbit.Entity.User" Width="1.5" PointX="6.75" PointY="0.75" Height="2.3648893229166656" IsExpanded="true" />
         <EntityTypeShape EntityType="MyRabbit.Entity.Role" Width="1.5" PointX="8.625" PointY="0.75" Height="1.4033821614583317" />
+        <EntityTypeShape EntityType="MyRabbit.Entity.OperationLogs" Width="1.5" PointX="0.75" PointY="4.75" Height="1.9802864583333326" IsExpanded="true" />
       </Diagram>
     </Diagrams>
   </Designer>
