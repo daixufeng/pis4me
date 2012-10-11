@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="用户管理" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="UserMgt.aspx.cs" Inherits="MyRabbit.WebUI.UserMgt" %>
+    CodeBehind="UserManagement.aspx.cs" Inherits="MyRabbit.WebUI.UserMgt" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Assembly="MyRabbit.UserControl" Namespace="MyRabbit.UserControl" TagPrefix="aspx" %>

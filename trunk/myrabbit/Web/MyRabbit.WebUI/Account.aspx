@@ -89,50 +89,6 @@
                 密码修改</a>
     </div>--%>
     <div class="master-waper-edit-form">
-        <div id="baseInforTab">
-            <table>
-                <tr>
-                    <th>
-                        姓名：
-                    </th>
-                    <td>
-                        <asp:TextBox runat="server" ID="txtName"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        姓名：
-                    </th>
-                    <td>
-                        <asp:TextBox runat="server" ID="TextBox2"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        姓名：
-                    </th>
-                    <td>
-                        <asp:TextBox runat="server" ID="TextBox3"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        姓名：
-                    </th>
-                    <td>
-                        <asp:TextBox runat="server" ID="TextBox4"></asp:TextBox>
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        姓名：
-                    </th>
-                    <td>
-                        <asp:TextBox runat="server" ID="TextBox5"></asp:TextBox>
-                    </td>
-                </tr>
-            </table>
-        </div>
         <div id="pwdChgTab">
             <table>
                 <tr>

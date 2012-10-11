@@ -76,15 +76,6 @@ namespace MyRabbit.WebUI {
         protected global::System.Web.UI.WebControls.Button btnDelete;
         
         /// <summary>
-        /// gvwUserPager control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::MyRabbit.UserControl.GridViewPager gvwUserPager;
-        
-        /// <summary>
         /// gvwUser control.
         /// </summary>
         /// <remarks>
@@ -92,6 +83,15 @@ namespace MyRabbit.WebUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvwUser;
+        
+        /// <summary>
+        /// gvwUserPager control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::MyRabbit.UserControl.GridViewPager gvwUserPager;
         
         /// <summary>
         /// modalUserEdit control.

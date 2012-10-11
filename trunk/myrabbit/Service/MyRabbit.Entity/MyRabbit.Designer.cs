@@ -144,6 +144,22 @@ namespace MyRabbit.Entity
             }
         }
         private ObjectSet<Role> _Role;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<OperationLogs> OperationLogs
+        {
+            get
+            {
+                if ((_OperationLogs == null))
+                {
+                    _OperationLogs = base.CreateObjectSet<OperationLogs>("OperationLogs");
+                }
+                return _OperationLogs;
+            }
+        }
+        private ObjectSet<OperationLogs> _OperationLogs;
 
         #endregion
 
@@ -188,6 +204,14 @@ namespace MyRabbit.Entity
         {
             base.AddObject("Role", role);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the OperationLogs EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToOperationLogs(OperationLogs operationLogs)
+        {
+            base.AddObject("OperationLogs", operationLogs);
+        }
 
         #endregion
 
@@ -196,6 +220,159 @@ namespace MyRabbit.Entity
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="MyRabbit.Entity", Name="OperationLogs")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class OperationLogs : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new OperationLogs object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        public static OperationLogs CreateOperationLogs(global::System.Int64 id)
+        {
+            OperationLogs operationLogs = new OperationLogs();
+            operationLogs.Id = id;
+            return operationLogs;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int64 _Id;
+        partial void OnIdChanging(global::System.Int64 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> OperationType
+        {
+            get
+            {
+                return _OperationType;
+            }
+            set
+            {
+                OnOperationTypeChanging(value);
+                ReportPropertyChanging("OperationType");
+                _OperationType = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OperationType");
+                OnOperationTypeChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _OperationType;
+        partial void OnOperationTypeChanging(Nullable<global::System.Int32> value);
+        partial void OnOperationTypeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String Message
+        {
+            get
+            {
+                return _Message;
+            }
+            set
+            {
+                OnMessageChanging(value);
+                ReportPropertyChanging("Message");
+                _Message = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("Message");
+                OnMessageChanged();
+            }
+        }
+        private global::System.String _Message;
+        partial void OnMessageChanging(global::System.String value);
+        partial void OnMessageChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> OperatorId
+        {
+            get
+            {
+                return _OperatorId;
+            }
+            set
+            {
+                OnOperatorIdChanging(value);
+                ReportPropertyChanging("OperatorId");
+                _OperatorId = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("OperatorId");
+                OnOperatorIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _OperatorId;
+        partial void OnOperatorIdChanging(Nullable<global::System.Int32> value);
+        partial void OnOperatorIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.DateTime> CreateTime
+        {
+            get
+            {
+                return _CreateTime;
+            }
+            set
+            {
+                OnCreateTimeChanging(value);
+                ReportPropertyChanging("CreateTime");
+                _CreateTime = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("CreateTime");
+                OnCreateTimeChanged();
+            }
+        }
+        private Nullable<global::System.DateTime> _CreateTime;
+        partial void OnCreateTimeChanging(Nullable<global::System.DateTime> value);
+        partial void OnCreateTimeChanged();
+
+        #endregion
+
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.

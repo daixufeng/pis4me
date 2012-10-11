@@ -1,5 +1,0 @@
-D:\My Projects\MyRabbit\Web\MyRabbit.UserControl\obj\Debug\MyRabbit.UserControl.csprojResolveAssemblyReference.cache
-D:\My Projects\MyRabbit\Web\MyRabbit.UserControl\bin\Debug\MyRabbit.UserControl.dll
-D:\My Projects\MyRabbit\Web\MyRabbit.UserControl\bin\Debug\MyRabbit.UserControl.pdb
-D:\My Projects\MyRabbit\Web\MyRabbit.UserControl\obj\Debug\MyRabbit.UserControl.dll
-D:\My Projects\MyRabbit\Web\MyRabbit.UserControl\obj\Debug\MyRabbit.UserControl.pdb

@@ -1,5 +1,0 @@
-D:\MyProjects\SINOMA\SINOMA.Utility\bin\Debug\SINOMA.Utility.dll
-D:\MyProjects\SINOMA\SINOMA.Utility\bin\Debug\SINOMA.Utility.pdb
-D:\MyProjects\SINOMA\SINOMA.Utility\obj\Debug\ResolveAssemblyReference.cache
-D:\MyProjects\SINOMA\SINOMA.Utility\obj\Debug\SINOMA.Utility.dll
-D:\MyProjects\SINOMA\SINOMA.Utility\obj\Debug\SINOMA.Utility.pdb
