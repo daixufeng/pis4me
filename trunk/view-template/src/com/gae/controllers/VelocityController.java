@@ -18,8 +18,10 @@ public class VelocityController {
 		Map<String, Object> user = new HashMap<String, Object>();
 		List<Map<String, Object>> users = new ArrayList<Map<String, Object>>();
 		
-		user.put("objH", "Hello ");
+		user.put("email", "Hello ");
 		user.put("name", "Xufeng!");
+		user.put("sex", "Male");
+		user.put("phone", "13888888888");
 		
 		users.add(user);
 		
