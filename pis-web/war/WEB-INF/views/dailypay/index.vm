@@ -1,0 +1,103 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+#include("/shared/source.vm")
+<script type="text/javascript">
+	function onDelete() {
+		var hasSelected = false;
+		var checkboxs = $("input:checkbox", $("#usergrid"));
+
+		for ( var i = 1; i < checkboxs.length; i++) {
+			if (hasSelected = (hasSelected != checkboxs[i].checked))
+				break;
+		}
+		if (!hasSelected) {
+			alert("请选择要删除的数据！");
+			return;
+		}
+	}
+	$(document).ready(function() {
+		$("#begdate").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+		$("#enddate").datepicker({
+			dateFormat : 'yy-mm-dd'
+		});
+	})
+</script>
+</head>
+<body>
+	<div class="master-wrapper-page">
+		<div class="master-wrapper-content">
+			#include("/shared/header.vm")
+			<div class="content">
+				<div class="cph">
+					<div class="section-title">
+						<img alt="Dashboard" src="/images/ico-dashboard.png"/>DailyPay List
+					</div>
+					<div class="section-body">
+						<form action="/dailypay">
+							<table class="table-container">
+								<tr>
+									<th>Category:</th>
+									<td>
+										<select name="categoryid">
+											<option value="">Please select category</option>
+											#foreach($o in $categories)
+											<option #if($o.Id == $criteria.categoryid) selected #end value="$o.Id"> $o.Name </option>
+											#end
+										</select>
+									</td>
+									<th>Beg Date:</th>
+									<td><input type="text" class="textBox" id="begdate" name="begdate" value="$!criteria.begdate" /></td>
+									<th>End Date:</th>
+									<td><input type="text" class="textBox" id="enddate" name="enddate" value="$!criteria.enddate" /></td>
+									<td>
+										<input type="submit" value="Search" /> 
+										<input type="reset" value="Clear" onclick="window.location.href='/dailypay';" /> 
+										<input type="button" value="Add" onclick="window.location.href='/dailypay/add';" /> 
+										<input type="button" value="Delete" onclick="onDelete()" />
+									</td>
+								</tr>
+							</table>
+						</form>
+						<div class="blackbar"></div>
+						<table id="dailypaygrid"
+							style="width: 1000px; border-collapse: collapse;" class="tablestyle"
+							border="1" cellspacing="0">
+							<tr class="headerstyle">
+								<th style="width: 12px;"><input type="checkbox" /></th>
+								<th>Category</th>
+								<th>Quantity(元)</th>
+								<th>Date</th>
+								<th>Remark</th>
+								<th>Edit</th>
+							</tr>
+							<tbody>
+								#foreach($o in $dailypays)
+								<tr #if($foreach.index %2 == 0) class="rowstyle" #else class="altrowstyle" #end>									
+									<td><input type="checkbox" /></td>
+									<td>$o.CategoryName</td>
+									<td>$o.Qty </td>
+									<td>$!date.format("yyyy-MM-dd", $!o.CreateDate)</td>
+									<td>$!o.Remark</td>
+									<td><a href="/dailypay/edit/$o.Id">Edit</a></td>
+									</tr>
+								#end
+								<tr>
+									<td colspan="6">$pager</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="blackbar"></div>
+						<div>
+							合计：$model.total
+							&nbsp;&nbsp;&nbsp;&nbsp;元
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.pis.controllers;
+package com.pis.web.controllers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,35 +26,12 @@ import com.pis.service.UserService;
 
 @Controller
 public class UserController {
+	@Autowired
 	private UserService userService;
-
-	public UserService getUserService() {
-		return userService;
-	}
-
-	public void setUserService(UserService userService) {
-		this.userService = userService;
-	}
-
+	@Autowired
 	private CategoryService categoryService;
-
-	public CategoryService getCategoryService() {
-		return categoryService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
+	@Autowired
 	private DictionaryService dictionaryService;
-
-	public DictionaryService dictionaryService() {
-		return dictionaryService;
-	}
-
-	public void setDictionaryService(DictionaryService dictionaryService) {
-		this.dictionaryService = dictionaryService;
-	}
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
 	public ModelAndView user(HttpServletRequest request, Model model) {

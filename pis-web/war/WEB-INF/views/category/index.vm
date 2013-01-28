@@ -1,10 +1,7 @@
-﻿<%@ page language="java" contentType="text/html; charset=utf-8"
-	pageEncoding="utf-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
 <html>
 <head>
-<%@ include file="/views/shared/source.ref"%>
+	#include("/shared/source.vm")
 <script type="text/javascript">
 	function showDialog(title, html, action) {
 		$("#edit")
@@ -130,48 +127,39 @@
 <body>
 	<div class="master-wrapper-page">
 		<div class="master-wrapper-content">
-			<%@include file="/views/shared/header.jsp"%>
+			#include("/shared/header.vm")
 			<div class="content">
 				<div class="cph">
 					<div class="section-title">
-						<img alt="Dashboard" src="/images/ico-dashboard.png" />Category
-						List
+						<img alt="Dashboard" src="/images/ico-dashboard.png" />Category List
 					</div>
 					<div class="section-body">
 						<form action="/category/index/1">
 							<table class="table-container">
 								<tr>
 									<th>Type:</th>
-									<td><select id="dictionaryid" name="dictionaryid"
-										class="comBox">
+									<td>
+										<select id="dictionaryid" name="dictionaryid" class="comBox">
 											<option value="">Please select type</option>
-											<c:forEach items="${dictionaries }" var="o">
-												<c:choose>
-													<c:when test="${o.Id == criteria.dictionaryid}">
-														<option selected value="${o.Id }">${o.Value }</option>
-													</c:when>
-													<c:otherwise>
-														<option value="${o.Id }">${o.Value }</option>
-													</c:otherwise>
-												</c:choose>
-											</c:forEach>
-									</select></td>
+										   #foreach($o in $dictionaries)
+												<option #if($o.Id == $criteria.dictionaryid) selected #end value="$!o.Id">$!o.Value</option>
+											#end
+										</select>
+									</td>
 									<th>Category Name:</th>
-									<td><input type="text" class="textBox" id="name"
-										name="name" /></td>
-									<td><input type="submit" value="Search" /> <input
-										type="reset" value="Clear"
-										onclick="window.location.href='/category';" /> <!-- <input type="button"
+									<td><input type="text" class="textBox" id="name" name="name" /></td>
+									<td>
+										<input type="submit" value="Search" /> 
+										<input type="reset" value="Clear" onclick="window.location.href='/category';" /> <!-- <input type="button"
 										value="Add New"
 										 /> <input
-										type="button" value="AjaxPost" id="doSearch" /> --> <input
-										type="button" value="Add"
-										onclick="window.location.href='/category/add';" /></td>
+										type="button" value="AjaxPost" id="doSearch" /> --> 
+										<input type="button" value="Add" onclick="window.location.href='/category/add';" /></td>
 								</tr>
 							</table>
 						</form>
 						<div class="blackbar"></div>
-						<%@include file="list.jsp"%>
+						#parse("/category/list.vm")						
 					</div>
 				</div>
 			</div>
