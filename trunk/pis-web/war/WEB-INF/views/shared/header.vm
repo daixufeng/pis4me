@@ -6,7 +6,7 @@
 						Cache</a>
 				</div>
 				<div class="login-info">
-					<a href="https://appengine.google.com/dashboard?&app_id=s~daixuf"><%=request.getUserPrincipal().getName() %></a> <a href="/logout">Logout?</a>
+					<a href="https://appengine.google.com/dashboard?&app_id=s~daixuf">Console</a> <a href="/logout">Logout?</a>
 				</div>
 			</div>
 			<div class="clear"></div>
