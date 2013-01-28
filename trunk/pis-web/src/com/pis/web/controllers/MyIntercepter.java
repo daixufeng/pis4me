@@ -1,4 +1,4 @@
-package com.pis.controllers;
+package com.pis.web.controllers;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

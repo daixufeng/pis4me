@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+	#include("/shared/source.vm")
+<script type="text/javascript">
+	function onsubmit() {
+		if ($("#name").val() == "") {
+			alert("Category Name can't be null!");
+			return false;
+		}
+	}
+</script>
+</head>
+<body>
+	<div class="master-wrapper-page">
+		<div class="master-wrapper-content">
+			#include("/shared/header.vm")
+			<div class="content">
+				<div class="cph">
+					<div class="section-title">
+						<img alt="Dashboard" src="/images/ico-dashboard.png"/>$title
+					</div>
+					<div class="section-body">
+						<form method="post" action="$action"
+							onsubmit="return onsubmit()">
+							<table class="table-container">
+								<tr>
+									<th>Type:</th>
+									<td>
+										<select id="type" name="dictionaryid" class="comBox">
+											<option value="">Please select type</option>
+											#foreach($o in $dictionaries)
+											<option #if($o.Id == $category.DictionaryId) selected #end value="$o.Id">$o.Value</option>
+											#end
+										</select>
+										<span class="warnings-message">$!messages.DictionaryId</span>
+									</td>
+								</tr>
+								<tr>
+									<th>Name:</th>
+									<td>
+										<input type="text" id="name" name="name" value="$!category.Name" class="textBox" />
+										<span class="warnings-message">$!messages.Name</span>
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										#if($model.success == true)
+										<input type="button" value="Add New" onclick="window.location.href = '/category/add';"/>
+										#else
+										<input type="submit" value="Submit"/>
+										<input type="reset" value="Reset"/>
+										#end
+										<input type="button" value="Back to list" onclick="window.location.href = '/category';"/>
+									</td>
+								</tr>
+							</table>
+							<input type="hidden" name="id" value="$!category.Id" />
+						</form>
+						#parse("/shared/warning.vm")
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

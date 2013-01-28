@@ -1,36 +1,19 @@
-package com.pis.controllers;
+package com.pis.web.controllers;
 
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.pis.service.CategoryService;
 import com.pis.service.DailyPayService;
 
 @Controller
 public class DashboardController {
-	private CategoryService categoryService;
-
-	public CategoryService getCategoryService() {
-		return categoryService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-	
+	@Autowired
 	private DailyPayService dailyPayService;
-
-	public DailyPayService getDailyPayService() {
-		return dailyPayService;
-	}
-
-	public void setDailyPayService(DailyPayService dailyPayService) {
-		this.dailyPayService = dailyPayService;
-	}
 	
 	@RequestMapping(value="/dashboard")
 	public ModelAndView dashboard(Model model){

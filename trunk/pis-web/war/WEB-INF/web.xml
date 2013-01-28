@@ -63,7 +63,7 @@
 
   <security-constraint>
       <web-resource-collection>
-          <url-pattern>/views/*</url-pattern>
+          <url-pattern>WEB-INF/views/*</url-pattern>
       </web-resource-collection>
       <auth-constraint>
           <role-name>admin</role-name>

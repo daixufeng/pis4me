@@ -1,9 +1,10 @@
-package com.pis.controllers;
+package com.pis.web.controllers;
 
 import java.util.Calendar;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,15 +16,8 @@ import com.pis.service.DailyPayService;
 
 @Controller
 public class HomeController {
+	@Autowired
 	private DailyPayService dailyPayService;
-
-	public DailyPayService getDailyPayService() {
-		return dailyPayService;
-	}
-
-	public void setDailyPayService(DailyPayService dailyPayService) {
-		this.dailyPayService = dailyPayService;
-	}
 	
 	@RequestMapping("/home")
 	public String home(HttpServletRequest request) {

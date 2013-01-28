@@ -1,10 +1,11 @@
-package com.pis.controllers;
+package com.pis.web.controllers;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,31 +22,24 @@ import com.pis.domain.ViewPager;
 import com.pis.service.DictionaryService;
 
 @Controller
+@RequestMapping(value = "/dictionary")
 public class DictionaryController {
-
+	@Autowired
 	private DictionaryService dictionaryService;
 
-	public DictionaryService dictionaryService() {
-		return dictionaryService;
-	}
-
-	public void setDictionaryService(DictionaryService dictionaryService) {
-		this.dictionaryService = dictionaryService;
-	}
-
-	@RequestMapping(value = "/dictionary", method = RequestMethod.GET)
+	@RequestMapping(value = "", method = RequestMethod.GET)
 	public ModelAndView dictionary(HttpServletRequest request, Model model) {
 		return search(1, request, model);
 	}
 
-	@RequestMapping(value = "/dictionary/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public ModelAndView add(Model model) {
 		model.addAttribute("action", "/dictionary/save");
 		model.addAttribute("title", "Dictionary Add");
 		return new ModelAndView("dictionary/edit", "model", model);
 	}
 
-	@RequestMapping(value = "/dictionary/edit/{dictionaryId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/edit/{dictionaryId}", method = RequestMethod.GET)
 	public ModelAndView edit(@PathVariable Long dictionaryId, Model model) {
 		if(!model.containsAttribute("dictionary")){
 			Map<String, Object> dictionary = dictionaryService.getById(dictionaryId);
@@ -56,7 +50,7 @@ public class DictionaryController {
 		return new ModelAndView("dictionary/edit", "model", model);
 	}
 
-	@RequestMapping(value = "/dictionary/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
 	public ModelAndView update(HttpServletRequest request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Dictionary.class);
@@ -79,7 +73,7 @@ public class DictionaryController {
 		return edit(userId, model);
 	}
 
-	@RequestMapping(value = "/dictionary/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public ModelAndView save(HttpServletRequest request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Dictionary.class);
@@ -106,17 +100,17 @@ public class DictionaryController {
 		}
 	}
 
-	@RequestMapping(value = "/dictionary/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request) {
 		return "redirect:/dictionary";
 	}
 
-	@RequestMapping(value = "/dictionary/index/{page}", method = RequestMethod.GET)
+	@RequestMapping(value = "/index/{page}", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable int page, HttpServletRequest request, Model model) {
 		return search(page, request, model);
 	}
 
-	@RequestMapping(value = "/dictionary/index/{index}", method = RequestMethod.POST)
+	@RequestMapping(value = "/index/{index}", method = RequestMethod.POST)
 	public ModelAndView search(@PathVariable int index,
 			HttpServletRequest request, Model model) {
 		int pageSize = 15;
