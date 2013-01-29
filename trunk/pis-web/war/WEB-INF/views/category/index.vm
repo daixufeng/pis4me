@@ -142,7 +142,7 @@
 										<select id="dictionaryid" name="dictionaryid" class="comBox">
 											<option value="">Please select type</option>
 										   #foreach($o in $dictionaries)
-												<option #if($o.Id == $criteria.dictionaryid) selected #end value="$!o.Id">$!o.Value</option>
+												<option #if($o.id == $criteria.dictionaryid) selected #end value="$!o.id">$!o.value</option>
 											#end
 										</select>
 									</td>

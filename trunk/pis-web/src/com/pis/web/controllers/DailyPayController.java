@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.appengine.api.datastore.Entity;
@@ -36,7 +37,7 @@ public class DailyPayController {
 	private DictionaryService dictionaryService;
 
 	@RequestMapping(value = "/dailypay", method = RequestMethod.GET)
-	public ModelAndView dailyPay(HttpServletRequest request, Model model) {
+	public ModelAndView dailyPay(@RequestParam Map<String,Object> request, Model model) {
 		return search(1, request, model);
 	}
 
@@ -64,7 +65,7 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/update", method = RequestMethod.POST)
-	public ModelAndView update(HttpServletRequest request, Model model) {
+	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.DailyPay.class);
 		if (!result.validation) {
@@ -88,7 +89,7 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request, Model model) {
+	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.DailyPay.class);
 		if (!result.validation) {
@@ -119,11 +120,11 @@ public class DailyPayController {
 
 	@RequestMapping(value = "/dailypay/index/{index}", method = RequestMethod.GET)
 	public ModelAndView index(@PathVariable int index,
-			HttpServletRequest request, Model model) {
+			@RequestParam Map<String,Object> request, Model model) {
 		return search(index, request, model);
 	}
 
-	public ModelAndView search(int index, HttpServletRequest request,
+	public ModelAndView search(int index, @RequestParam Map<String,Object> request,
 			Model model) {
 		int pageSize = 15;
 		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(
@@ -133,24 +134,24 @@ public class DailyPayController {
 		Map<String, Object> sortMap = new HashMap<String, Object>();
 
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		if (params.get("categoryid") != null)
-			filterMap.put("CategoryId", params.get("categoryid"));
+		if (params.get("categoryId") != null)
+			filterMap.put("CategoryId", params.get("categoryId"));
 
 		Calendar calendar = Calendar.getInstance();
-		if (params.get("begdate") == null) {
+		if (params.get("begDate") == null) {
 			calendar.set(calendar.get(Calendar.YEAR),
 					calendar.get(Calendar.MONTH), 1, 0, 0, 0);
 			
-			params.put("begdate",sdf.format(calendar.getTime()));
+			params.put("begDate",sdf.format(calendar.getTime()));
 		}
-		filterMap.put("BegDate",params.get("begdate"));
-		if (params.get("enddate") == null) {
+		filterMap.put("BegDate",params.get("begDate"));
+		if (params.get("endDate") == null) {
 			calendar.set(calendar.get(Calendar.YEAR),
 					calendar.get(Calendar.MONTH),
 					calendar.getActualMaximum(Calendar.DATE), 23, 59, 59);
-			params.put("enddate", sdf.format(calendar.getTime()));
+			params.put("endDate", sdf.format(calendar.getTime()));
 		}
-		filterMap.put("EndDate",params.get("enddate"));
+		filterMap.put("EndDate",params.get("endDate"));
 
 		Page page = this.dailyPayService.getPageData(index, pageSize,
 				filterMap, likeMap, sortMap);
@@ -160,7 +161,7 @@ public class DailyPayController {
 
 		float total = 0;
 		for (Map<String, Object> o : page.data) {
-			total += new Float(o.get("Qty").toString());
+			total += new Float(o.get("qty").toString());
 		}
 
 		model.addAttribute("categories", categories);
@@ -176,14 +177,14 @@ public class DailyPayController {
 		Map<String, Object> item = dictionaryService.getByTypeAndValue(
 				"Category", "DailyPay");
 		List<Map<String, Object>> categories = this.categoryService
-				.getByType(Long.parseLong(item.get("Id").toString()));
+				.getByType(Long.parseLong(item.get("id").toString()));
 		return categories;
 	}
 
 	private void setCategoryName(Entity dailyPay) {
 		Long categoryId = Long.parseLong(dailyPay.getProperty("CategoryId")
 				.toString());
-		Object value = categoryService.getById(categoryId).get("Name");
+		Object value = categoryService.getById(categoryId).get("name");
 		dailyPay.setProperty("CategoryName", value);
 	}
 }

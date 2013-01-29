@@ -21,14 +21,14 @@
 											<option value="">Please select type</option>
 											#set ($o=["Category","Location"])
 											#foreach($o in ["Category","Location"])
-												<option #if($o == $dictionary.Type) selected #end>$o</option>													
+												<option #if($o == $dictionary.type) selected #end>$o</option>													
 											#end
 									</select><span class="warnings-message">$!messages.Type</span></td>
 								</tr>
 								<tr>
 									<th>Value:</th>
 									<td>
-										<input type="text" class="textBox" name="value" value="$!dictionary.Value" /><span class="warnings-message">$!messages.Value</span></td>
+										<input type="text" class="textBox" name="value" value="$!dictionary.value" /><span class="warnings-message">$!messages.Value</span></td>
 								</tr>
 								<tr>
 									<th>Remark:</th>
@@ -46,7 +46,7 @@
 									<input type="button" value="Back to list" onclick="window.location.href = '/dictionary';" /></td>
 								</tr>
 							</table>
-							<input type="hidden" name="id" value="$!dictionary.Id" />
+							<input type="hidden" name="id" value="$!dictionary.id" />
 						</form>
 						<div style="line-height:32px;">
             		#if($!success == true)

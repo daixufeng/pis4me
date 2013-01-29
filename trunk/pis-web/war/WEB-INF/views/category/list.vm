@@ -10,9 +10,9 @@
 		#foreach($o in $categories)
 		<tr #if($foreach.index % 2 == 0) class="rowstyle" #else  class="altrowstyle" #end>
 			<td><input type="checkbox" /></td>
-			<td>$o.Name</td>
-			<td>$o.DictionaryValue</td>
-			<td><a id="$o.Id" href="/category/edit/$o.Id">Edit</a></td>
+			<td>$o.name</td>
+			<td>$o.dictionaryValue</td>
+			<td><a href="/category/edit/$o.id">Edit</a></td>
 			</tr>
 		#end
 		<tr>

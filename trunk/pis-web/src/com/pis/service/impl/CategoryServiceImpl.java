@@ -24,7 +24,7 @@ public class CategoryServiceImpl extends BaseService implements CategoryService 
 		}
 		
 		for(Map<String, Object> o : all){
-			Long categoryId = Long.parseLong(o.get("Id").toString());
+			Long categoryId = Long.parseLong(o.get("id").toString());
 			if(id.equals(categoryId))
 				entity = o;
 		}
@@ -42,7 +42,7 @@ public class CategoryServiceImpl extends BaseService implements CategoryService 
 		}
 		
 		for(Map<String, Object> o : all){
-			Long id = Long.parseLong(o.get("DictionaryId").toString());
+			Long id = Long.parseLong(o.get("dictionaryId").toString());
 			if(id.equals(dictionaryId))
 				categories.add(o);
 		}

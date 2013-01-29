@@ -59,8 +59,7 @@ public class ViewPager {
 
         content.append("<div style=\"width:100%; height:26px;\"><table style=\"float:right;\"><tr><td></td>");
 
-        if (getPageIndex() > 1)
-        {
+        if (getPageIndex() > 1){
         	//content.append("<td style=\"padding:0px;\"><a title=\"第一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat 1px -2px;\" href=\"" + getPath() + "/1" + "\"></a></td>");
         	content.append("<td style=\"padding:0px;\"><a title=\"第一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat 1px -2px;\" href=\"");
         	content.append(getPath());
@@ -75,21 +74,18 @@ public class ViewPager {
         	content.append(getParameters());
         	content.append("\"></a></td>");
         }
-        else
-        {
+        else{
         	content.append("<td style=\"padding:0px;\"><a title=\"第一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -16px -2px;\" href=\"#\"></a></td>");
         	content.append("<td style=\"padding:0px;\"><a title=\"前一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -111px -2px;\" href=\"#\"></a></td>");
         }
 
         content.append("<td style=\"text-align:center; padding:0px 10px 0px 10px;\">" + getPageIndex() + "&nbsp;&nbsp;/&nbsp;&nbsp;" + getPageCount() + "页</td>");
 
-        if (getPageIndex() < getPageCount())
-        {
+        if (getPageIndex() < getPageCount()){
         	content.append("<td style=\"padding:0px;\"><a title=\"下一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -65px -2px;\" href=\"" + getPath() + "/" + (getPageIndex() + 1) + getParameters() + "\"></a></td>");
         	content.append("<td style=\"padding:0px;\"><a title=\"最后一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -33px -2px;\" href=\"" + getPath() + "/" + getPageCount() + getParameters() + "\"></a></td>");
         }
-        else
-        {
+        else{
         	content.append("<td style=\"padding:0px;\"><a title=\"下一页\"  style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -80px -2px;\" href=\"#\"></a></td>");
         	content.append("<td style=\"padding:0px;\"><a title=\"最后一页\"  style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(/images/gridview-pager.png) no-repeat -50px -2px;\" href=\"#\"></a></td>");
         }
