@@ -194,7 +194,7 @@ public class DailyPayServiceImpl extends BaseService implements DailyPayService 
 		Map<String, Object> item = dictionaryService.getByTypeAndValue(
 				"Category", "DailyPay");
 		List<Map<String, Object>> categories = this.categoryService
-				.getByType(Long.parseLong(item.get("Id").toString()));
+				.getByType(Long.parseLong(item.get("id").toString()));
 
 		Map<String, Object> filterMap = new HashMap<String, Object>();
 		Calendar calendar = Calendar.getInstance();
@@ -214,25 +214,25 @@ public class DailyPayServiceImpl extends BaseService implements DailyPayService 
 		List<Map<String, Object>> data = monthDailyPay.data;
 		double total = 0.0;
 		for (Map<String, Object> category : categories) {
-			String categoryId = category.get("Id").toString();
+			String categoryId = category.get("id").toString();
 			double qty = 0;
 			for (Map<String, Object> dailyPay : data) {
-				if (dailyPay.get("CategoryId").toString().equals(categoryId)) {
-					qty += Double.parseDouble(dailyPay.get("Qty").toString());
+				if (dailyPay.get("categoryId").toString().equals(categoryId)) {
+					qty += Double.parseDouble(dailyPay.get("qty").toString());
 				}
 			}
 			if (qty > 0) {
 				Map<String, String> record = new HashMap<String, String>();
-				record.put("CategoryId", categoryId);
-				record.put("CategoryName", category.get("Name").toString());
-				record.put("Qty", String.valueOf(qty));
+				record.put("categoryId", categoryId);
+				record.put("categoryName", category.get("name").toString());
+				record.put("qty", String.valueOf(qty));
 				total += qty;
 				monthData.add(record);
 			}
 		}
 		Map<String, String> totalRecord = new HashMap<String, String>();
-		totalRecord.put("CategoryName", "Total(￥)");
-		totalRecord.put("Qty", String.valueOf(total));
+		totalRecord.put("categoryName", "Total(￥)");
+		totalRecord.put("qty", String.valueOf(total));
 		monthData.add(totalRecord);
 		return monthData;
 	}
@@ -265,10 +265,10 @@ public class DailyPayServiceImpl extends BaseService implements DailyPayService 
 			double qty = 0;
 			for (Map<String, Object> o : monthData) {
 
-				Date date = (Date) (o.get("CreateDate"));
+				Date date = (Date) (o.get("createDate"));
 				calendar.setTime(date);
 				if (calendar.get(Calendar.DATE) == i) {
-					qty += Double.parseDouble(o.get("Qty").toString());
+					qty += Double.parseDouble(o.get("qty").toString());
 				}
 			}
 			DecimalFormat df = new DecimalFormat("0.00");

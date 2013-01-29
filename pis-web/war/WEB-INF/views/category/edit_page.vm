@@ -30,16 +30,16 @@
 										<select id="type" name="dictionaryid" class="comBox">
 											<option value="">Please select type</option>
 											#foreach($o in $dictionaries)
-											<option #if($o.Id == $category.DictionaryId) selected #end value="$o.Id">$o.Value</option>
+											<option #if($o.Id == $category.dictionaryId) selected #end value="$o.id">$o.Value</option>
 											#end
 										</select>
-										<span class="warnings-message">$!messages.DictionaryId</span>
+										<span class="warnings-message">$!messages.dictionaryId</span>
 									</td>
 								</tr>
 								<tr>
 									<th>Name:</th>
 									<td>
-										<input type="text" id="name" name="name" value="$!category.Name" class="textBox" />
+										<input type="text" id="name" name="name" value="$!category.name" class="textBox" />
 										<span class="warnings-message">$!messages.Name</span>
 									</td>
 								</tr>
@@ -55,7 +55,7 @@
 									</td>
 								</tr>
 							</table>
-							<input type="hidden" name="id" value="$!category.Id" />
+							<input type="hidden" name="id" value="$!category.id" />
 						</form>
 						#parse("/shared/warning.vm")
 					</div>

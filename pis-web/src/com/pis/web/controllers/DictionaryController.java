@@ -3,14 +3,13 @@ package com.pis.web.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.appengine.api.datastore.Entity;
@@ -28,7 +27,7 @@ public class DictionaryController {
 	private DictionaryService dictionaryService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public ModelAndView dictionary(HttpServletRequest request, Model model) {
+	public ModelAndView dictionary(@RequestParam Map<String,Object> request, Model model) {
 		return search(1, request, model);
 	}
 
@@ -51,7 +50,7 @@ public class DictionaryController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public ModelAndView update(HttpServletRequest request, Model model) {
+	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Dictionary.class);
 		if (!result.validation) {
@@ -74,7 +73,7 @@ public class DictionaryController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request, Model model) {
+	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Dictionary.class);
 		Entity dictionary = result.entity;
@@ -100,19 +99,19 @@ public class DictionaryController {
 		}
 	}
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String delete(HttpServletRequest request) {
+	@RequestMapping(value = "/delete")
+	public String delete(@RequestParam Map<String, Object> ids) {
 		return "redirect:/dictionary";
 	}
 
-	@RequestMapping(value = "/index/{page}", method = RequestMethod.GET)
-	public ModelAndView index(@PathVariable int page, HttpServletRequest request, Model model) {
+	@RequestMapping(value = "/index/{page}")
+	public ModelAndView index(@PathVariable int page, @RequestParam Map<String,Object> request, Model model) {
 		return search(page, request, model);
 	}
 
 	@RequestMapping(value = "/index/{index}", method = RequestMethod.POST)
 	public ModelAndView search(@PathVariable int index,
-			HttpServletRequest request, Model model) {
+			@RequestParam Map<String,Object> request, Model model) {
 		int pageSize = 15;
 		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(request,
 				MyEntities.Dictionary.class);
@@ -128,7 +127,7 @@ public class DictionaryController {
 		sortMap.put("Value", "Value");
 		sortMap.put("Type", "Type");
 
-		Page page = this.dictionaryService.getPageData(index, pageSize,
+		Page page = dictionaryService.getPageData(index, pageSize,
 				filterMap, likeMap, sortMap);
 		ViewPager pager = new ViewPager("/dictionary/index", index, pageSize,
 				page.count, params);

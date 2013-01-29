@@ -1,5 +1,5 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 #include ("/shared/source.vm")
 <style type="text/style">
@@ -9,7 +9,7 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
-	$("#createdate").datepicker({
+	$("#createDate").datepicker({
 		dateFormat : 'yy-mm-dd'
 	});
 })
@@ -88,27 +88,27 @@ var category = $("#category"),
 							<table class="table-container">
 								<tr>
 									<th>Category:</th>
-									<td><select id="category" name="categoryid">
+									<td><select id="category" name="categoryId">
 											<option value="">Please select category</option>
 											#foreach($o in $categories)
-												<option #if($o.Id == $dailypay.CategoryId) selected #end value="$o.Id">$o.Name</option>
+												<option #if($o.id == $dailypay.categoryId) selected #end value="$o.id">$o.name</option>
 											#end
 									</select><span class="warnings-message">$!{messages.CategoryId}</span></td>
 								</tr>
 								<tr>
 									<th>Quantity(元):</th>
-									<td><input type="text" class="textBox" id="qty" name="qty" value="$!{dailypay.Qty}" />
+									<td><input type="text" class="textBox" id="qty" name="qty" value="$!{dailypay.qty}" />
 										<span class="warnings-message">$!messages.Qty</span></td>
 								</tr>
 								<tr>
 									<th>Create Date:</th>
 									<td>
-										<input type="text" id="createdate" name="createdate" value="$!date.format('yyyy-MM-dd',$dailypay.CreateDate)" />
+										<input type="text" id="createDate" name="createDate" value="$!date.format('yyyy-MM-dd',$dailypay.createDate)" />
 										<span class="warnings-message">$!messages.CreateDate</span></td>
 								</tr>
 								<tr>
 									<th>Remark:</th>
-									<td><textarea rows="4" cols="21" name="remark">$!{dailypay.Remark}</textarea>
+									<td><textarea rows="4" cols="21" name="remark">$!{dailypay.remark}</textarea>
 									</td>
 								</tr>
 								<tr>
@@ -123,8 +123,7 @@ var category = $("#category"),
 									</td>
 								</tr>
 							</table>
-
-							<input type="hidden" name="id" value="$!dailypay.Id" />
+							<input type="hidden" name="id" value="$!dailypay.id" />
 						</form>
 						<div class="blackbar"></div>
 						<div class="blackbar"></div>

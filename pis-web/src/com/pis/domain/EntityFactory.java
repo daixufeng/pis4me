@@ -9,8 +9,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.servlet.http.HttpServletRequest;
-
 import com.google.appengine.api.datastore.Entity;
 import com.pis.util.XmlUtil;
 
@@ -66,7 +64,7 @@ public class EntityFactory {
 	 * @param request
 	 * @return com.google.appengine.api.datastore.Entity
 	 */
-	public static MyEntity getEntityFormRequest(HttpServletRequest request,
+	public static MyEntity getEntityFormRequest(Map<String, Object> request,
 			Class<?> myClass) {
 		MyEntity result = new MyEntity();
 		Entity entity = new Entity(myClass.getSimpleName());
@@ -82,9 +80,11 @@ public class EntityFactory {
 			String notNull = schema.get("not-null").toLowerCase();
 			String description = schema.get("description");
 
-			String propertyName = name.toLowerCase();
+			//String propertyName = name.toLowerCase();
+			//for fit the  camel style
+			String propertyName = name.substring(0, 1).toLowerCase() + name.substring(1);
 			String columnName = name;
-			String oVal = request.getParameter(propertyName);
+			Object oVal = request.get(propertyName);
 			if (oVal == null || oVal == "") {
 				if (notNull != null && notNull.equals("true")) {
 					messages.put(name, description + " is required.");
@@ -115,7 +115,7 @@ public class EntityFactory {
 	 * @return java.util.Map query criteria
 	 */
 	public static Map<String, Object> getCriteriaFromRequest(
-			HttpServletRequest request, Class<?> myClass) {
+			Map<String, Object> request, Class<?> myClass) {
 		Map<String, Object> item = new HashMap<String, Object>();
 
 		List<Map<String, String>> properties = XmlUtil
@@ -124,9 +124,9 @@ public class EntityFactory {
 		for (int i = 0; i < properties.size(); i++) {
 			String name = properties.get(i).get("name");
 			String type = properties.get(i).get("type").toLowerCase();
-			String propertyName = name.toLowerCase();
+			String propertyName = name.substring(0,1).toLowerCase() + name.substring(1);
 
-			String oVal = request.getParameter(propertyName);
+			Object oVal = request.get(propertyName);
 			if (oVal == null || oVal == "")
 				continue;
 
@@ -178,11 +178,12 @@ public class EntityFactory {
 	public static Map<String, Object> entityToMap(Entity entity) {
 		Map<String, Object> item = new HashMap<String, Object>();
 		Map<String, Object> o = entity.getProperties();
-		for (String str : o.keySet())
-			item.put(str, o.get(str));
-
+		for (String str : o.keySet()){
+			String key  = str.substring(0,1).toLowerCase() + str.substring(1);
+			item.put(key, o.get(str));
+		}
 		Long id = entity.getKey().getId();
-		item.put("Id", id);
+		item.put("id", id);
 		return item;
 	}
 
@@ -193,19 +194,19 @@ public class EntityFactory {
 	 * @param oValue
 	 * @return
 	 */
-	private static Object castValue(String type, String oValue) {
+	private static Object castValue(String type, Object oValue) {
 		Object value = null;
 
 		if (type.equals("long"))
 			value = Long.parseLong(oValue.toString());
 		else if (type.equals("double"))
-			value = Double.parseDouble(oValue);
+			value = Double.parseDouble(oValue.toString());
 		else if (type.equals("int"))
-			value = Integer.parseInt(oValue);
+			value = Integer.parseInt(oValue.toString());
 		else if (type.equals("date")) {
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 			try {
-				value = sdf.parse(oValue);
+				value = sdf.parse(oValue.toString());
 			} catch (ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -224,7 +225,7 @@ public class EntityFactory {
 	 * @return
 	 * @throws Exception
 	 */
-	private static Object castValue(Map<String, String> schema, String oValue)
+	private static Object castValue(Map<String, String> schema, Object oValue)
 			throws Exception {
 		String msg = validate(schema, oValue);
 		if (msg != "")
@@ -239,9 +240,10 @@ public class EntityFactory {
 	 * @param oValue
 	 * @return
 	 */
-	private static String validate(Map<String, String> schema, String oValue) {
+	private static String validate(Map<String, String> schema, Object oValue) {
 		String message = "";
 		String description = schema.get("description");
+		String val = oValue.toString();
 
 		String len = schema.get("length");
 		if (len != null) {
@@ -251,9 +253,9 @@ public class EntityFactory {
 				int min = Integer.parseInt(len.split(",")[0]);
 				int max = Integer.parseInt(len.split(",")[1]);
 
-				if (oValue.length() < min)
+				if (val.length() < min)
 					return description + " is less than min length.";
-				if (oValue.length() > max)
+				if (val.length() > max)
 					return description + " is less than min length.";
 			}
 		}
@@ -261,7 +263,7 @@ public class EntityFactory {
 		if (validation != null && validation != "") {
 			String regexString = XmlUtil.getRegexString(validation);
 			Pattern pattern = Pattern.compile(regexString);
-			Matcher matcher = pattern.matcher(oValue);
+			Matcher matcher = pattern.matcher(val);
 			if (!matcher.matches())
 				return description + " is invalid.";
 		}

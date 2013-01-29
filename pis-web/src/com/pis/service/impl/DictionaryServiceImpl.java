@@ -57,8 +57,9 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
         }*/
 		
 		for(Map<String, Object> o : all){
-			if(o.get("Type").toString().equals(type))
+			if(o.get("type").toString().equals(type)){
 				items.add(o);
+			}
 		}
 		
 		return items;

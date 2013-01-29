@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.appengine.api.datastore.Entity;
@@ -34,7 +35,7 @@ public class UserController {
 	private DictionaryService dictionaryService;
 
 	@RequestMapping(value = "/user", method = RequestMethod.GET)
-	public ModelAndView user(HttpServletRequest request, Model model) {
+	public ModelAndView user(@RequestParam Map<String,Object> request, Model model) {
 		return search(1, request, model);
 	}
 
@@ -58,7 +59,7 @@ public class UserController {
 
 	@RequestMapping(value = "/user/index/{index}", method = RequestMethod.GET)
 	public ModelAndView search(@PathVariable int index,
-			HttpServletRequest request, Model model) {
+			@RequestParam Map<String,Object> request, Model model) {
 		int pageSize = 15;
 		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(
 				request, MyEntities.User.class);
@@ -109,7 +110,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
-	public ModelAndView update(HttpServletRequest request, Model model) {
+	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.User.class);
 		//if do validation is failure.
@@ -135,7 +136,7 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "/user/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request, Model model) {
+	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.User.class);
 		Entity user = result.entity;
@@ -171,14 +172,14 @@ public class UserController {
 		Map<String, Object> item = dictionaryService.getByTypeAndValue(
 				"Category", "User");
 		List<Map<String, Object>> categories = this.categoryService
-				.getByType(Long.parseLong(item.get("Id").toString()));
+				.getByType(Long.parseLong(item.get("id").toString()));
 		return categories;
 	}
 
 	private void setCategoryName(Entity user) {
 		Long categoryId = Long.parseLong(user.getProperty("CategoryId")
 				.toString());
-		Object value = categoryService.getById(categoryId).get("Name");
+		Object value = categoryService.getById(categoryId).get("name");
 		user.setProperty("CategoryName", value);
 	}
 }

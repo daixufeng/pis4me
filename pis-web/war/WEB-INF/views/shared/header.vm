@@ -15,9 +15,10 @@
 					<li><a title="View the dashboard" href="/"> <img
 							alt="Dashboard" src="/images/ico-dashboard.png" />Dashboard
 					</a></li>
-					<li><a title="Catalog Home" href="/home"> <img alt="Catalog"
-							src="/images/ico-catalog.png" /> Daily Pay
-					</a>
+					<li>
+						<a title="Catalog Home" href="/home"> 
+							<img alt="Catalog" src="/images/ico-catalog.png" /> Daily Pay
+						</a>
 						<ul>
 							<li><a title="Daily Pay" href="/dailypay"> Daily Pay</a></li>						
 						</ul>

@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.appengine.api.datastore.Entity;
@@ -31,7 +32,7 @@ public class CategoryController {
 	private DictionaryService dictionaryService;
 
 	@RequestMapping(value = "/category", method = RequestMethod.GET)
-	public ModelAndView category(HttpServletRequest request, Model model) {
+	public ModelAndView category(@RequestParam Map<String,Object> request, Model model) {
 		search(1, request, model);
 		return new ModelAndView("category/index", "model", model);
 	}
@@ -62,7 +63,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/category/update", method = RequestMethod.POST)
-	public ModelAndView update(HttpServletRequest request, Model model) {
+	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Category.class);
 		if (!result.validation) {
@@ -88,7 +89,7 @@ public class CategoryController {
 	}
 
 	@RequestMapping(value = "/category/save", method = RequestMethod.POST)
-	public ModelAndView save(HttpServletRequest request, Model model) {
+	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Category.class);
 		if (!result.validation) {
@@ -121,19 +122,19 @@ public class CategoryController {
 
 	@RequestMapping(value = "/category/index/{index}", method = RequestMethod.GET)
 	public ModelAndView post(@PathVariable int index,
-			HttpServletRequest request, Model model) {
+			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
 		return new ModelAndView("category/index", "model", model);
 	}
 
 	@RequestMapping(value = "/category/list/{index}", method = RequestMethod.POST)
 	public ModelAndView list(@PathVariable int index,
-			HttpServletRequest request, Model model) {
+			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
 		return new ModelAndView("category/list", "model", model);
 	}
 
-	private Model search(int index, HttpServletRequest request, Model model) {
+	private Model search(int index, @RequestParam Map<String,Object> request, Model model) {
 		int pageSize = 15;
 		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(
 				request, MyEntities.Category.class);
