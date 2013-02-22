@@ -27,10 +27,10 @@
 								<tr>
 									<th>Type:</th>
 									<td>
-										<select id="type" name="dictionaryid" class="comBox">
+										<select id="type" name="dictionaryId" class="comBox">
 											<option value="">Please select type</option>
 											#foreach($o in $dictionaries)
-											<option #if($o.Id == $category.dictionaryId) selected #end value="$o.id">$o.Value</option>
+											<option #if($o.id == $category.dictionaryId) selected #end value="$o.id">$o.value</option>
 											#end
 										</select>
 										<span class="warnings-message">$!messages.dictionaryId</span>
