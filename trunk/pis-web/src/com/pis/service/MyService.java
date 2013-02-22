@@ -46,6 +46,13 @@ public interface MyService {
 	 * @return all user entities
 	 */
 	public List<Map<String,Object>> getAll();
+
+	/**
+	 * get entities bye criteria
+	 * @param user
+	 * @return all user entities
+	 */
+	public List<Map<String, Object>> find(Map<String, Object> filterMap, Map<String, Object> likeMap, Map<String, Object> sortMap);
 	
 	/**
 	 * get user page data

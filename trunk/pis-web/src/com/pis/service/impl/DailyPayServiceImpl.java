@@ -15,6 +15,7 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.appengine.api.datastore.QueryResultList;
 import com.pis.domain.EntityFactory;
 import com.pis.domain.MyEntities;
@@ -76,6 +77,50 @@ public class DailyPayServiceImpl extends BaseService implements DailyPayService 
 	}
 
 	@SuppressWarnings("deprecation")
+	public List<Map<String, Object>> find(Map<String, Object> filterMap, Map<String, Object> likeMap, Map<String, Object> sortMap){
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		List<Map<String, Object>> entites = new ArrayList<Map<String, Object>>();
+		Query q = new Query(getEntityName());
+
+		// set filter parameters;
+		if (filterMap.get("CategoryId") != null)
+			q.addFilter("CategoryId", Query.FilterOperator.EQUAL,
+					filterMap.get("CategoryId"));
+		if (filterMap.get("BegDate") != null) {
+			try {
+				q.addFilter("CreateDate",
+						Query.FilterOperator.GREATER_THAN_OR_EQUAL,
+						sdf.parse(filterMap.get("BegDate").toString()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		if (filterMap.get("EndDate") != null) {
+			try {
+				q.addFilter("CreateDate",
+						Query.FilterOperator.LESS_THAN_OR_EQUAL,
+						sdf.parse(filterMap.get("EndDate").toString()));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		// set sort fields
+		q.addSort("CreateDate", SortDirection.DESCENDING);
+
+		PreparedQuery pq = datastore.prepare(q);
+
+		for (Entity o : pq.asIterable()) {
+			Map<String, Object> item = EntityFactory.entityToMap(o);
+			entites.add(item);
+		}
+		return entites;
+	}
+	
+	@SuppressWarnings("deprecation")
 	@Override
 	public Page getPageData(int pageNo, int pageSize,
 			Map<String, Object> filterMap, Map<String, Object> likeMap,
@@ -114,7 +159,7 @@ public class DailyPayServiceImpl extends BaseService implements DailyPayService 
 		}
 
 		// set sort fields
-		q.addSort("CreateDate");
+		q.addSort("CreateDate", SortDirection.DESCENDING);
 
 		count = getDataCount(q);
 
