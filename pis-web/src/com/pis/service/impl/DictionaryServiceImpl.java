@@ -29,9 +29,11 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
 		}
 		
 		for(Map<String, Object> o : all){
-			Long dictionaryId = Long.parseLong(o.get("Id").toString());
-			if(id.equals(dictionaryId))
+			Long dictionaryId = Long.parseLong(o.get("id").toString());
+			if(id.equals(dictionaryId)){
 				entity = o;
+				break;
+			}
 		}
 		return entity;
 	}

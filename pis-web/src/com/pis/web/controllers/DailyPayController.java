@@ -181,7 +181,6 @@ public class DailyPayController {
 		Map<String, Object> sortMap = new HashMap<String, Object>();
 		
 		List<Map<String, Object>> list = dailyPayService.find(filterMap, likeMap, sortMap);
-		Map<String, Object> model = new HashMap<String, Object>();
 		
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put("id", "Id");
@@ -194,7 +193,7 @@ public class DailyPayController {
 		list.add(0, header);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		model.put(ExcelView.XLS_MODEL_KEY, list);
+		map.put(ExcelView.XLS_MODEL_KEY, list);
 		return new ModelAndView(new ExcelView(), map);
 	}
 	
