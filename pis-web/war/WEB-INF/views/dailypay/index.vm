@@ -58,6 +58,7 @@
 										<input type="reset" value="Clear" onclick="window.location.href='/dailypay';" /> 
 										<input type="button" value="Add" onclick="window.location.href='/dailypay/add';" /> 
 										<input type="button" value="Delete" onclick="onDelete()" />
+										<input type="button" value="Export" onclick="window.location.href='/dailypay/export?begDate=$!criteria.begDate&endDate=$!criteria.endDate';" /> 
 									</td>
 								</tr>
 							</table>

@@ -26,6 +26,7 @@ import com.pis.domain.ViewPager;
 import com.pis.service.CategoryService;
 import com.pis.service.DailyPayService;
 import com.pis.service.DictionaryService;
+import com.pis.web.common.ExcelView;
 
 @Controller
 public class DailyPayController {
@@ -173,6 +174,30 @@ public class DailyPayController {
 		return new ModelAndView("dailypay/index", "model", model);
 	}
 
+	@RequestMapping(value = "/dailypay/export")
+	public ModelAndView export(@RequestParam Map<String,Object> request) {
+		Map<String, Object> filterMap = new HashMap<String, Object>();
+		Map<String, Object> likeMap = new HashMap<String, Object>();
+		Map<String, Object> sortMap = new HashMap<String, Object>();
+		
+		List<Map<String, Object>> list = dailyPayService.find(filterMap, likeMap, sortMap);
+		Map<String, Object> model = new HashMap<String, Object>();
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("id", "Id");
+		header.put("categoryId", "CategoryId");
+		header.put("categoryName", "类别名称");
+		header.put("qty", "金额");
+		header.put("createDate", "日期");
+		header.put("remark", "备注");
+		
+		list.add(0, header);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		model.put(ExcelView.XLS_MODEL_KEY, list);
+		return new ModelAndView(new ExcelView(), map);
+	}
+	
 	private List<Map<String, Object>> getCategories() {
 		Map<String, Object> item = dictionaryService.getByTypeAndValue(
 				"Category", "DailyPay");
