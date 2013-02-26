@@ -155,7 +155,8 @@
 										value="Add New"
 										 /> <input
 										type="button" value="AjaxPost" id="doSearch" /> --> 
-										<input type="button" value="Add" onclick="window.location.href='/category/add';" /></td>
+										<input type="button" value="Add" onclick="window.location.href='/category/add';" />
+										<input type="button" value="Export" onclick="window.location.href='/category/export?name=';" /></td>
 								</tr>
 							</table>
 						</form>

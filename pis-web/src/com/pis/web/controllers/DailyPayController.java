@@ -175,11 +175,30 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/export")
-	public ModelAndView export(@RequestParam Map<String,Object> request) {
+	public ModelAndView export(@RequestParam Map<String,Object> params) {
 		Map<String, Object> filterMap = new HashMap<String, Object>();
 		Map<String, Object> likeMap = new HashMap<String, Object>();
 		Map<String, Object> sortMap = new HashMap<String, Object>();
-		
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if (params.get("categoryId") != null)
+			filterMap.put("CategoryId", params.get("categoryId"));
+
+		Calendar calendar = Calendar.getInstance();
+		if (params.get("begDate") == null) {
+			calendar.set(calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH), 1, 0, 0, 0);			
+			params.put("begDate",sdf.format(calendar.getTime()));
+		}
+		filterMap.put("BegDate",params.get("begDate"));
+		if (params.get("endDate") == null) {
+			calendar.set(calendar.get(Calendar.YEAR),
+					calendar.get(Calendar.MONTH),
+					calendar.getActualMaximum(Calendar.DATE), 23, 59, 59);
+			params.put("endDate", sdf.format(calendar.getTime()));
+		}
+		filterMap.put("EndDate",params.get("endDate"));
+
 		List<Map<String, Object>> list = dailyPayService.find(filterMap, likeMap, sortMap);
 		
 		Map<String, Object> header = new HashMap<String, Object>();
@@ -194,7 +213,7 @@ public class DailyPayController {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(ExcelView.XLS_MODEL_KEY, list);
-		return new ModelAndView(new ExcelView(), map);
+		return new ModelAndView(new ExcelView("Dialy-Pay-List"), map);
 	}
 	
 	private List<Map<String, Object>> getCategories() {

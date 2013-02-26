@@ -113,8 +113,7 @@ public class DictionaryServiceImpl extends BaseService implements DictionaryServ
 	@Override
 	public List<Map<String, Object>> find(Map<String, Object> filterMap, Map<String, Object> likeMap,
 			Map<String, Object> sortMap) {
-		// TODO Auto-generated method stub
-		return null;
+		return getAll();
 	}
 
 	@Override
