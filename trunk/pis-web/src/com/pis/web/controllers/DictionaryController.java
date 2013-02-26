@@ -1,6 +1,7 @@
 package com.pis.web.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,7 @@ import com.pis.domain.MyEntity;
 import com.pis.domain.Page;
 import com.pis.domain.ViewPager;
 import com.pis.service.DictionaryService;
+import com.pis.web.common.ExcelView;
 
 @Controller
 @RequestMapping(value = "/dictionary")
@@ -109,6 +111,27 @@ public class DictionaryController {
 		return search(page, request, model);
 	}
 
+	@RequestMapping(value = "/dictionary/export")
+	public ModelAndView export(@RequestParam Map<String,Object> params) {
+		Map<String, Object> filterMap = new HashMap<String, Object>();
+		Map<String, Object> likeMap = new HashMap<String, Object>();
+		Map<String, Object> sortMap = new HashMap<String, Object>();
+
+		List<Map<String, Object>> list = dictionaryService.find(filterMap, likeMap, sortMap);
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("id", "Id");
+		header.put("type", "类别");
+		header.put("value", "字典名称");
+		header.put("remark", "remark");
+		
+		list.add(0, header);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(ExcelView.XLS_MODEL_KEY, list);
+		return new ModelAndView(new ExcelView("Dictionary-List"), map);
+	}
+	
 	@RequestMapping(value = "/index/{index}", method = RequestMethod.POST)
 	public ModelAndView search(@PathVariable int index,
 			@RequestParam Map<String,Object> request, Model model) {

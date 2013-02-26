@@ -46,6 +46,7 @@
 									<td><input type="submit" value="Search" /> <input type="reset" value="Clear" /> 
 										<input type="button" value="Add" onclick="window.location.href='/dictionary/add';" />
 										<input type="button" value="Delete" onclick="onDelete()" />
+										<input type="button" value="Export" onclick="window.location.href='/dictionary/export?name=';" />
 									</td>
 								</tr>
 							</table>

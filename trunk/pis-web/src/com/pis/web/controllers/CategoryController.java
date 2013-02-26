@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,6 +22,7 @@ import com.pis.domain.Page;
 import com.pis.domain.ViewPager;
 import com.pis.service.CategoryService;
 import com.pis.service.DictionaryService;
+import com.pis.web.common.ExcelView;
 
 @Controller
 public class CategoryController {
@@ -31,13 +31,13 @@ public class CategoryController {
 	@Autowired
 	private DictionaryService dictionaryService;
 
-	@RequestMapping(value = "/category", method = RequestMethod.GET)
+	@RequestMapping(value = "/category")
 	public ModelAndView category(@RequestParam Map<String,Object> request, Model model) {
 		search(1, request, model);
 		return new ModelAndView("category/index", "model", model);
 	}
 
-	@RequestMapping(value = "/category/add", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/add")
 	public ModelAndView add(Model model) {
 		List<Map<String, Object>> dictionaries = dictionaryService
 				.getByType("Category");
@@ -48,7 +48,7 @@ public class CategoryController {
 		return new ModelAndView("category/edit_page", "model", model);
 	}
 
-	@RequestMapping(value = "/category/edit/{categoryId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/edit/{categoryId}")
 	public ModelAndView edit(@PathVariable Long categoryId, Model model) {
 		List<Map<String, Object>> dictionaries = dictionaryService
 				.getByType("Category");
@@ -62,7 +62,7 @@ public class CategoryController {
 		return new ModelAndView("category/edit_page", "model", model);
 	}
 
-	@RequestMapping(value = "/category/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/update")
 	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Category.class);
@@ -88,7 +88,7 @@ public class CategoryController {
 		return edit(categoryId, model);
 	}
 
-	@RequestMapping(value = "/category/save", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/save")
 	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
 		MyEntity result = EntityFactory.getEntityFormRequest(request,
 				MyEntities.Category.class);
@@ -115,25 +115,46 @@ public class CategoryController {
 		}
 	}
 
-	@RequestMapping(value = "/category/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/delete")
 	public String delete(HttpServletRequest request) {
 		return "redirect:/category/index/1";
 	}
 
-	@RequestMapping(value = "/category/index/{index}", method = RequestMethod.GET)
+	@RequestMapping(value = "/category/index/{index}")
 	public ModelAndView post(@PathVariable int index,
 			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
 		return new ModelAndView("category/index", "model", model);
 	}
 
-	@RequestMapping(value = "/category/list/{index}", method = RequestMethod.POST)
+	@RequestMapping(value = "/category/list/{index}")
 	public ModelAndView list(@PathVariable int index,
 			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
 		return new ModelAndView("category/list", "model", model);
 	}
 
+	@RequestMapping(value = "/category/export")
+	public ModelAndView export(@RequestParam Map<String,Object> params) {
+		Map<String, Object> filterMap = new HashMap<String, Object>();
+		Map<String, Object> likeMap = new HashMap<String, Object>();
+		Map<String, Object> sortMap = new HashMap<String, Object>();
+
+		List<Map<String, Object>> list = categoryService.find(filterMap, likeMap, sortMap);
+		
+		Map<String, Object> header = new HashMap<String, Object>();
+		header.put("id", "Id");
+		header.put("dictionaryId", "DictionaryId");
+		header.put("dictionaryValue", "字典名称");
+		header.put("name", "类别名称");
+		
+		list.add(0, header);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put(ExcelView.XLS_MODEL_KEY, list);
+		return new ModelAndView(new ExcelView("Category-List"), map);
+	}
+	
 	private Model search(int index, @RequestParam Map<String,Object> request, Model model) {
 		int pageSize = 15;
 		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(
@@ -167,7 +188,7 @@ public class CategoryController {
 	private void setDictionaryValue(Entity category) {
 		Long dictionaryId = Long.parseLong(category.getProperty("DictionaryId")
 				.toString());
-		Object value = dictionaryService.getById(dictionaryId).get("Value");
+		Object value = dictionaryService.getById(dictionaryId).get("value");
 		category.setProperty("DictionaryValue", value);
 	}
 }

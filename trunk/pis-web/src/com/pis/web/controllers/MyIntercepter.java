@@ -22,6 +22,6 @@ public class MyIntercepter implements HandlerInterceptor {
 			HttpServletResponse response, Object obj, ModelAndView modelAndView)
 			throws Exception {
 		// TODO Auto-generated method stub
-
+		System.out.println(obj);
 	}
 }
