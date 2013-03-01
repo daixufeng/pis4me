@@ -20,7 +20,11 @@
 							<img alt="Catalog" src="/images/ico-catalog.png" /> Daily Pay
 						</a>
 						<ul>
-							<li><a title="Daily Pay" href="/dailypay"> Daily Pay</a></li>						
+							<li><a title="Daily Pay" href="/dailypay"> List</a>
+							<ul class="sf-menu">								
+								<li><a title="Add" href="/dailypay/add"> Add</a></li>	
+							</ul>
+							</li>	
 						</ul>
 					</li>					
 					<li><a title="System Home" href="#"> <img alt="System"
