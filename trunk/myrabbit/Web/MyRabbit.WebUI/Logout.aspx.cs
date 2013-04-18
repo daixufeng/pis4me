@@ -18,7 +18,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
             }
             finally
             {

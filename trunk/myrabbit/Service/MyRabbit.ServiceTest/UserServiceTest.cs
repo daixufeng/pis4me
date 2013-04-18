@@ -2,34 +2,43 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using MyRabbit.Service;
 using MyRabbit.Entity;
 using NUnit.Framework;
+using MyRabbit.IService;
+using Microsoft.Practices.Unity;
+using MyRabbit.Service;
+using MyRabbit.Entity.EntityRepositories;
+using MyRabbit.Entity.DBInteractions;
 
 namespace MyRabbit.ServiceTest
 {
-    public class UserServiceTest:TestSupport
+    public class UserServiceTest: TestSupport
     {
         [Test]
         public void GetAll() {
-            UserService service = new UserService();
-            IList<User> users = service.GetAll();
-            Log.Debug(users.Count);
+           
+            IUserService userService = container.Resolve<IUserService>();
+            //IEnumerable<User> users = userService.GetAll();
+
+            IEnumerable<User>  users = userService
+                .GetMany(p => p.NickName.Contains("xu")).AsEnumerable<User>();
+
+
+            Log.Debug("Count:" + users.Count<User>());
         }
 
         [Test]
         public void Update()
         {
-            UserService service = new UserService();
-            
+            IUserService userService = container.Resolve<IUserService>();
+            User user = userService.GetById(1);
+            Log.Debug(user.NickName);
         }
 
         [Test]
         public void GetById()
         {
-            UserService service = new UserService();
-           User user =  service.GetById(1);
-           Log.Debug(user.NickName);
+
         }
     }
 }

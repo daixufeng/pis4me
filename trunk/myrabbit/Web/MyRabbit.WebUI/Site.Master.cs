@@ -6,14 +6,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 using MyRabbit.Entity;
-using MyRabbit.Service;
+using MyRabbit.IService;
 
 namespace MyRabbit.WebUI
 {
     public partial class SiteMaster : System.Web.UI.MasterPage
     {
         #region Fileds
-        protected UserService userService = new UserService();
+        protected IUserService userService { get; set; }
         
         protected User LogonUser
         {

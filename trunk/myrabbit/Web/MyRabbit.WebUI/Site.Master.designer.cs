@@ -31,13 +31,13 @@ namespace MyRabbit.WebUI {
         protected global::System.Web.UI.HtmlControls.HtmlForm mainForm;
         
         /// <summary>
-        /// ToolkitScriptManager1 control.
+        /// ToolkitScriptManager control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager1;
+        protected global::AjaxControlToolkit.ToolkitScriptManager ToolkitScriptManager;
         
         /// <summary>
         /// MainContent control.

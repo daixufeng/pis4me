@@ -1,158 +1,23 @@
-﻿<%@ Page Title="用户管理" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true"
-    CodeBehind="UserManagement.aspx.cs" Inherits="MyRabbit.WebUI.UserMgt" %>
+﻿<%@ Page Title="项目管理" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ProjectManagement.aspx.cs" Inherits="MyRabbit.WebUI.ProjectManagement" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Assembly="MyRabbit.UserControl" Namespace="MyRabbit.UserControl" TagPrefix="aspx" %>
-<asp:Content ID="HeaderContent" ContentPlaceHolderID="HeadContent" runat="server">
-    <script type="text/javascript">
-        function SelectAll(o) {
-            $(o).parentsUntil("table").find("TR").each(function (index, domElm) {
-                $($($(domElm).find("TD").get(0)).find("input").get(0)).attr("checked", $(o).attr("checked"));
-            });
-        }
-
-        function btnDelete_Click() {
-            var has = false;
-            $("#<%=gvwUser.ClientID %>").find("TR").each(function (index, domElm) {
-                if ($($($(domElm).find("TD").get(0)).find("input").get(0)).attr("checked")) {
-                    has = true;
-                };
-            });
-            if (!has) {
-                alert("请选择要删除的用户！");
-                return false;
-            } else {
-                return window.confirm("确定删除选中的数据吗？");
-            }
-        }
-
-        function btnSave_Click(o, e) {
-            var oUserName = document.getElementById("<%=txtNickName.ClientID %>");
-            var oLoginName = document.getElementById("<%=txtLoginName.ClientID %>");
-            var oPassword = document.getElementById("<%=txtPassword.ClientID %>");
-
-            //            if ($("#<%=hdfEditStatus.ClientID %>").val() == "")
-            //                return userNameValidator(oUserName, e)
-            //                    && loginNameValidator(oLoginName, e) && PasswordValidator(oPassword, e);
-        }
-
-        function userNameValidator(o, e) {
-            var result = false;
-            var message = "";
-
-            if (o.value == "") {
-                message = "姓名不能为空";
-            }
-            else {
-                $.ajax({
-                    async: false,
-                    url: "Handlers/UserMgtHandler.ashx?userName=" + o.value,
-                    data: {},
-                    success: function (resp) {
-                        result = !eval("(" + resp + ")").returnValue;
-                    },
-                    failure: function (resp) {
-                        alert(resp);
-                    }
-                });
-
-                if (!result) {
-                    message = "姓名已经存在";
-                }
-            }
-
-            $("#lblUserNameChkMsg").empty();
-            if (!result) {
-                $("#lblUserNameChkMsg").text(message);
-            } else {
-                var validMsg = document.createElement("IMG");
-                $(validMsg).attr("src", "../images/checked.png");
-                $(validMsg).appendTo($("#lblUserNameChkMsg"));
-            }
-
-            //return result;
-            return true;
-        }
-
-        function loginNameValidator(o, e) {
-            var result = false;
-            var message = "";
-
-            if (o.value == "") {
-                message = "用户名不能为空";
-            }
-            else {
-                $.ajax({
-                    async: false,
-                    url: "Handlers/UserMgtHandler.ashx?loginName=" + o.value,
-                    data: {},
-                    success: function (resp) {
-                        result = !eval("(" + resp + ")").returnValue;
-                    }
-                });
-
-                if (!result) {
-                    message = "用户名已经存在";
-                }
-            }
-
-            $("#lblLoginNameChkMsg").empty();
-            if (!result) {
-                $("#lblLoginNameChkMsg").text(message);
-            } else {
-                var validMsg = document.createElement("IMG");
-                $(validMsg).attr("src", "../images/checked.png");
-                $(validMsg).appendTo($("#lblLoginNameChkMsg"));
-            }
-
-            //return result;
-            return true;
-        }
-
-        function PasswordValidator(o, e) {
-            var result = false;
-            var message = "";
-
-            if (o.value == "") {
-                message = "密码不能为空";
-            } else if (o.value.lastIndexOf(" ") > 0) {
-                message = "密码不能包含空字符";
-            } else {
-                result = true;
-            }
-
-            $("#lblPasswordChkMsg").empty();
-            if (!result) {
-                $("#lblPasswordChkMsg").text(message);
-            } else {
-                var validMsg = document.createElement("IMG");
-                $(validMsg).attr("src", "../images/checked.png");
-                $(validMsg).appendTo($("#lblPasswordChkMsg"));
-            }
-
-            return result;
-        }
-
-
-    </script>
+<asp:Content ID="HeaderContent" runat="server" ContentPlaceHolderID="HeadContent">
 </asp:Content>
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
-    <div class="content">
+<asp:Content ID="BodyContent" runat="server" ContentPlaceHolderID="MainContent">
+<div class="content">
         <div class="cph">
             <div class="section-title">
-                <img alt="Dashboard" src="/images/ico-dashboard.png" />用户管理
+                <img alt="Dashboard" src="/images/ico-dashboard.png" />项目管理
             </div>
             <div class="section-body">
-                <asp:UpdatePanel runat="server">
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <Triggers>
                         <asp:AsyncPostBackTrigger ControlID="gvwUserPager" />
                     </Triggers>
                     <ContentTemplate>
+                    <div 
                         <table class="table-container">
                             <tr>
-                                <th>
-                                    Nick Name:
-                                </th>
+                                <th>Nick Name:</th>
                                 <td>
                                     <asp:TextBox runat="server" CssClass="textBox" ID="NickName"></asp:TextBox>
                                 </td>
@@ -172,9 +37,9 @@
                                     </asp:DropDownList>
                                 </td>
                                 <td>
-                                    <asp:Button runat="server" ID="btnSearch" Text="Search" OnClick="btnSearch_Click" />
+                                    <asp:Button runat="server" ID="btnSearch" Text="Search"/>
                                     <asp:Button runat="server" ID="btnClear" Text="Clear" />
-                                    <asp:Button runat="server" ID="btnAdd" Text="Add" OnClick="btnAdd_Click" />
+                                    <asp:Button runat="server" ID="btnAdd" Text="Add" />
                                     <asp:Button runat="server" ID="btnDelete" Text="Delete" />
                                 </td>
                             </tr>
@@ -183,8 +48,7 @@
                         </div>
                         <div style="width: 1024px; position: relative;">
                             <asp:GridView runat="server" ID="gvwUser" AutoGenerateColumns="False" CssClass="tablestyle"
-                                ForeColor="#245D75" GridLines="None" OnRowEditing="gvwUser_RowEditing" OnSelectedIndexChanging="gvwUser_SelectedIndexChanging"
-                                OnRowDataBound="gvwUser_RowDataBound" HeaderStyle-CssClass="headerstyle" RowStyle-CssClass="rowstyle"
+                                ForeColor="#245D75" GridLines="None" HeaderStyle-CssClass="headerstyle" RowStyle-CssClass="rowstyle"
                                 HorizontalAlign="Center">
                                 <EmptyDataRowStyle CssClass="headerstyle" />
                                 <AlternatingRowStyle BackColor="White" />
@@ -217,7 +81,7 @@
                                 </Columns>
                                 <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
                             </asp:GridView>
-                            <aspx:GridViewPager runat="server" ID="gvwUserPager" PageSize="3" OnPageIndexChanged="gvwUser_PageIndexChanged"
+                            <aspx:GridViewPager runat="server" ID="gvwUserPager" PageSize="3"
                                 IconImageUrl="../images/gridview-pager.png" />
                         </div>
                         <asp:ModalPopupExtender ID="modalUserEdit" runat="server" BackgroundCssClass="modalbackbround"
@@ -294,7 +158,7 @@
                     </table>
                 </div>
                 <div style="padding: 10px; float: right;">
-                    <asp:Button ID="btnSave" runat="server" OnClick="btnSave_Click" OnClientClick="return btnSave_Click(this,event)"
+                    <asp:Button ID="btnSave" runat="server" OnClientClick="return btnSave_Click(this,event)"
                         Text="Save"></asp:Button>
                     <asp:Button ID="btnCancel" runat="server" Text="Cancel"></asp:Button>
                 </div>

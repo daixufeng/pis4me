@@ -45,18 +45,32 @@
   <ItemGroup>
     <Reference Include="AjaxControlToolkit, Version=3.0.31106.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\SINOMA.Library\AjaxControlToolkit.dll</HintPath>
+      <HintPath>..\..\Library\AjaxControlToolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=4.4.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
-      <HintPath>..\SINOMA.Library\log4net.dll</HintPath>
+      <HintPath>..\..\Library\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Library\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>..\SINOMA.Library\nunit.framework.dll</HintPath>
+      <HintPath>..\..\Library\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Aop">
+      <HintPath>..\..\Library\Spring.Aop.dll</HintPath>
     </Reference>
     <Reference Include="Spring.Core">
       <HintPath>..\..\Library\Spring.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Spring.Web">
+      <HintPath>..\..\Library\Spring.Web.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data.Entity" />
@@ -73,46 +87,56 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account.aspx.cs">
+    <Compile Include="Common\HttpApplicationStateExtensions.cs" />
+    <Compile Include="IoC\Bootstrapper.cs" />
+    <Compile Include="Modules\Account.aspx.cs">
       <DependentUpon>Account.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Account.aspx.designer.cs">
+    <Compile Include="Modules\Account.aspx.designer.cs">
       <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="LogManagement.aspx.cs">
+    <Compile Include="Modules\BugManagement.aspx.cs">
+      <DependentUpon>BugManagement.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Modules\BugManagement.aspx.designer.cs">
+      <DependentUpon>BugManagement.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="IoC\UnityHttpModule.cs" />
+    <Compile Include="Modules\LogManagement.aspx.cs">
       <DependentUpon>LogManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="LogManagement.aspx.designer.cs">
+    <Compile Include="Modules\LogManagement.aspx.designer.cs">
       <DependentUpon>LogManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ProjectManagement.aspx.cs">
+    <Compile Include="Modules\ProjectManagement.aspx.cs">
       <DependentUpon>ProjectManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ProjectManagement.aspx.designer.cs">
+    <Compile Include="Modules\ProjectManagement.aspx.designer.cs">
       <DependentUpon>ProjectManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="RoleManagement.aspx.cs">
+    <Compile Include="Modules\RoleManagement.aspx.cs">
       <DependentUpon>RoleManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="RoleManagement.aspx.designer.cs">
+    <Compile Include="Modules\RoleManagement.aspx.designer.cs">
       <DependentUpon>RoleManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="TaskManagement.aspx.cs">
+    <Compile Include="Modules\TaskManagement.aspx.cs">
       <DependentUpon>TaskManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TaskManagement.aspx.designer.cs">
+    <Compile Include="Modules\TaskManagement.aspx.designer.cs">
       <DependentUpon>TaskManagement.aspx</DependentUpon>
     </Compile>
-    <Compile Include="UserManagement.aspx.cs">
+    <Compile Include="Modules\UserManagement.aspx.cs">
       <DependentUpon>UserManagement.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="UserManagement.aspx.designer.cs">
+    <Compile Include="Modules\UserManagement.aspx.designer.cs">
       <DependentUpon>UserManagement.aspx</DependentUpon>
     </Compile>
     <Compile Include="BasePages\AuthBasePage.cs">
@@ -124,11 +148,11 @@
     <Compile Include="Common\UserLoginComponent.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.cs">
+    <Compile Include="Modules\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Default.aspx.designer.cs">
+    <Compile Include="Modules\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
     <Compile Include="ErrorPages\SiteErrorPage.aspx.cs">
@@ -169,10 +193,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Config\Controller.xml" />
-    <Content Include="App_Data\Config\ModelMapping.xml" />
-    <Content Include="App_Data\Config\Repository.xml" />
     <Content Include="App_Data\Logs\release.txt" />
+    <Content Include="Modules\BugManagement.aspx" />
     <Content Include="images\ico-catalog.png" />
     <Content Include="images\ico-configuration.png" />
     <Content Include="images\ico-content.png" />
@@ -185,9 +207,12 @@
     <Content Include="images\ico-stat1.gif" />
     <Content Include="images\ico-system.png" />
     <Content Include="images\WebResource.gif" />
-    <Content Include="LogManagement.aspx" />
-    <Content Include="ProjectManagement.aspx" />
-    <Content Include="RoleManagement.aspx" />
+    <Content Include="Modules\LogManagement.aspx" />
+    <Content Include="pageObjects.xml">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Modules\ProjectManagement.aspx" />
+    <Content Include="Modules\RoleManagement.aspx" />
     <Content Include="Scripts\highcharts.js" />
     <Content Include="Scripts\jquery-1.4.min.js" />
     <Content Include="Scripts\jquery.superfishmenu.js" />
@@ -241,14 +266,12 @@
     <Content Include="Styles\jquery.ui.selectable.css" />
     <Content Include="Styles\jquery.ui.slider.css" />
     <Content Include="Styles\jquery.ui.tabs.css" />
-    <Content Include="TaskManagement.aspx" />
-    <Content Include="UserManagement.aspx" />
+    <Content Include="Modules\TaskManagement.aspx" />
+    <Content Include="Modules\UserManagement.aspx" />
     <Content Include="Attachments\none use.txt" />
     <Content Include="ErrorPages\SiteErrorPage.aspx" />
     <Content Include="images\bg.gif" />
     <Content Include="images\checked.png" />
-    <Content Include="images\gridview-pager.png" />
-    <Content Include="images\listview-pager.png" />
     <Content Include="images\plus.png" />
     <Content Include="Scripts\messages_cn.js" />
     <Content Include="Styles\images\blank.gif" />
@@ -290,8 +313,8 @@
     <Content Include="Temp\none use.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account.aspx" />
-    <Content Include="Default.aspx" />
+    <Content Include="Modules\Account.aspx" />
+    <Content Include="Modules\Default.aspx" />
     <Content Include="Global.asax" />
     <Content Include="images\ajax-loader.gif" />
     <Content Include="images\calendar.png" />
@@ -323,21 +346,29 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Service\MyRabbit.Entity\MyRabbit.Data.csproj">
-      <Project>{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}</Project>
+    <ProjectReference Include="..\..\Data\MyRabbit.Data\MyRabbit.Data.csproj">
+      <Project>{F6A6897F-8E81-4BF7-A4BA-73AC63503121}</Project>
       <Name>MyRabbit.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Entity\MyRabbit.Entity\MyRabbit.Entity.csproj">
+      <Project>{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}</Project>
+      <Name>MyRabbit.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Service\MyRabbit.IService\MyRabbit.IService.csproj">
+      <Project>{61B92694-2590-4E9C-93CC-67C347339170}</Project>
+      <Name>MyRabbit.IService</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Service\MyRabbit.Service\MyRabbit.Service.csproj">
       <Project>{DFB34F45-CACF-4522-987B-F9826433A00E}</Project>
       <Name>MyRabbit.Service</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyRabbit.UserControl\MyRabbit.UserControl.csproj">
-      <Project>{69DBC8B8-199D-4A77-A8FF-0C7C4719E27E}</Project>
-      <Name>MyRabbit.UserControl</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Utility\MyRabbit.Utility\MyRabbit.Utility.csproj">
       <Project>{67652E7F-B48F-4AFC-A6FF-EB4C8A865967}</Project>
       <Name>MyRabbit.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MyRabbit.UserControl\Aspx.UserControl.csproj">
+      <Project>{69DBC8B8-199D-4A77-A8FF-0C7C4719E27E}</Project>
+      <Name>Aspx.UserControl</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -347,7 +378,10 @@
     <Content Include="App_Data\release.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ExcelTemplate\" />
+    <Folder Include="XlsTpl\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -362,7 +396,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60815</DevelopmentServerPort>
+          <DevelopmentServerPort>1242</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

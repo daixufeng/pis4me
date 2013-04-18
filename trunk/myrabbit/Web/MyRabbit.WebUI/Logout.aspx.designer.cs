@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SINOMA.WebUI {
+namespace MyRabbit.WebUI {
     
     
     public partial class Logout {

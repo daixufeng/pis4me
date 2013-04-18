@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SINOMA.WebUI.ErrorPages
+namespace MyRabbit.WebUI.ErrorPages
 {
 
 

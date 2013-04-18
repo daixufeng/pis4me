@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace SINOMA.WebUI.ErrorPages
+namespace MyRabbit.WebUI.ErrorPages
 {
     public partial class SiteErrorPage : System.Web.UI.Page
     {

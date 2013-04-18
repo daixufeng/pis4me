@@ -10,7 +10,25 @@
 namespace MyRabbit.WebUI {
     
     
-    public partial class UserMgt {
+    public partial class BugList {
+        
+        /// <summary>
+        /// tvwCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TreeView tvwCategory;
+        
+        /// <summary>
+        /// UpdatePanel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
         /// NickName control.
@@ -31,15 +49,6 @@ namespace MyRabbit.WebUI {
         protected global::System.Web.UI.WebControls.TextBox Email;
         
         /// <summary>
-        /// dplCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList dplCategory;
-        
-        /// <summary>
         /// btnSearch control.
         /// </summary>
         /// <remarks>
@@ -47,15 +56,6 @@ namespace MyRabbit.WebUI {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSearch;
-        
-        /// <summary>
-        /// btnClear control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnClear;
         
         /// <summary>
         /// btnAdd control.
@@ -67,22 +67,13 @@ namespace MyRabbit.WebUI {
         protected global::System.Web.UI.WebControls.Button btnAdd;
         
         /// <summary>
-        /// btnDelete control.
+        /// gvwBug control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnDelete;
-        
-        /// <summary>
-        /// gvwUser control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvwUser;
+        protected global::System.Web.UI.WebControls.GridView gvwBug;
         
         /// <summary>
         /// gvwUserPager control.
@@ -91,7 +82,7 @@ namespace MyRabbit.WebUI {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::MyRabbit.UserControl.GridViewPager gvwUserPager;
+        protected global::Aspx.UserControl.GridViewPager gvwUserPager;
         
         /// <summary>
         /// modalUserEdit control.

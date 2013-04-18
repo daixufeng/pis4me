@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyRabbit.WebUI;
 
-namespace SINOMA.WebUI
+namespace MyRabbit.WebUI
 {
     public partial class Login : BasePage
     {
@@ -44,7 +44,7 @@ namespace SINOMA.WebUI
             catch (Exception ex)
             {
                 if (!ex.GetType().Equals(typeof(System.Threading.ThreadAbortException)))
-                    Log.Error(ex);
+                    SysLog.Error(ex);
             }
         }
     }

@@ -5,7 +5,8 @@ using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MyRabbit.UserControl
+[assembly: WebResource("Aspx.UserControl.images.listview-pager.png", "image/png")]
+namespace Aspx.UserControl
 {
     public class ListViewPager : WebControl, IPostBackEventHandler, IPostBackDataHandler
     {
@@ -68,11 +69,11 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                return (ViewState["PageSize"] == null ? 20 : (int)ViewState["PageSize"]);
+                return (ViewState[this.ID + "_PageSize"] == null ? 20 : (int)ViewState[this.ID + "_PageSize"]);
             }
             set
             {
-                ViewState["PageSize"] = value;
+                ViewState[this.ID + "_PageSize"] = value;
             }
         }
 
@@ -80,14 +81,14 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                if (ViewState["RecordCount"] != null && ViewState["RecordCount"] is int)
+                if (ViewState[this.ID + "_RecordCount"] != null && ViewState[this.ID + "_RecordCount"] is int)
                     return (int)ViewState["RecordCount"];
                 else
                     return 0;
             }
             set
             {
-                ViewState["RecordCount"] = value;
+                ViewState[this.ID + "_RecordCount"] = value;
             }
         }
 
@@ -95,37 +96,13 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                return (ViewState["CurrentPageIndex"] == null ? 0 : (int)ViewState["CurrentPageIndex"]);
+                return (ViewState[this.ID + "_CurrentPageIndex"] == null ? 0 : (int)ViewState[this.ID + "_CurrentPageIndex"]);
             }
             set
             {
-                ViewState["CurrentPageIndex"] = value;
+                ViewState[this.ID + "_CurrentPageIndex"] = value;
             }
-        }
-
-        /// <summary>
-        /// button image
-        /// </summary>
-        [EditorAttribute(typeof(System.Web.UI.Design.ImageUrlEditor), typeof(System.Drawing.Design.UITypeEditor))]
-        public string IconImageUrl
-        {
-            get
-            {
-                string str = (String)ViewState["ListViewPager_IconImageUrl"];
-                if (str != null)
-                {
-                    return str;
-                }
-                else
-                {
-                    return String.Empty;
-                }
-            }
-            set
-            {
-                ViewState["ListViewPager_IconImageUrl"] = value;
-            }
-        }
+        }        
         #endregion
 
         #region Protected Methods 
@@ -160,19 +137,36 @@ namespace MyRabbit.UserControl
             output.Write("<div style=\"width:100%; height:26px;\"><table style=\"float:right;\"><tr><td></td>");
 
             if (this.CurrentPageIndex > 0)
-                output.Write("<td style=\"width:30px;\"><a style=\"display:block;height:22px; width:22px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat 0px 0px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "PrevPage") + "\"></a></td>");
+                output.Write("<td style=\"width:30px;\"><a style=\"display:block;height:22px; width:22px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat 0px 0px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "PrevPage") + "\"></a></td>");
 
             output.Write("<td style=\"font-size:14px; text-align:center;\">" + (CurrentPageIndex + 1).ToString() + "/" + PageCount + "</td>");
 
             output.Write("<td style=\"width:72px;padding:1px;\"><a style=\"display:block;height:22px; width:70px;");
 
             if (this.CurrentPageIndex < this.PageCount - 1)
-                output.Write("background:url(" + IconImageUrl + ") no-repeat -40px 0px;text-decoration:none;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "NextPage") + "\"></a></td>");
+                output.Write("background:url(" + GetImageUrl() + ") no-repeat -40px 0px;text-decoration:none;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "NextPage") + "\"></a></td>");
             else
-                output.Write("background:url(" + IconImageUrl + ") no-repeat -125px 0px;text-decoration:none;\"></a></td>");
+                output.Write("background:url(" + GetImageUrl() + ") no-repeat -125px 0px;text-decoration:none;\"></a></td>");
 
             output.Write("</tr></table></div>");
         }
         #endregion
+
+        /// <summary>
+        /// button image
+        /// </summary>
+        public string GetImageUrl()
+        {
+            string str = Page.ClientScript.GetWebResourceUrl(this.GetType(), "SME.WebControl.images.gridview-pager.png");
+
+            if (str != null)
+            {
+                return str;
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
     }
 }

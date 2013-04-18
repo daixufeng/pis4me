@@ -5,7 +5,8 @@ using System.Drawing;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace MyRabbit.UserControl
+[assembly: WebResource("Aspx.UserControl.images.gridview-pager.png", "image/png")]
+namespace Aspx.UserControl
 {
     public class GridViewPager : WebControl, IPostBackEventHandler, IPostBackDataHandler
     {
@@ -78,11 +79,11 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                return (ViewState["PageSize"] == null ? 20 : (int)ViewState["PageSize"]);
+                return (ViewState[this.ID + "_PageSize"] == null ? 20 : (int)ViewState[this.ID + "_PageSize"]);
             }
             set
             {
-                ViewState["PageSize"] = value;
+                ViewState[this.ID + "_PageSize"] = value;
             }
         }
 
@@ -90,14 +91,14 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                if (ViewState["RecordCount"] != null && ViewState["RecordCount"] is int)
-                    return (int)ViewState["RecordCount"];
+                if (ViewState[this.ID + "_RecordCount"] != null && ViewState[this.ID + "_RecordCount"] is int)
+                    return (int)ViewState[this.ID + "_RecordCount"];
                 else
                     return 0;
             }
             set
             {
-                ViewState["RecordCount"] = value;
+                ViewState[this.ID + "_RecordCount"] = value;
             }
         }
 
@@ -105,11 +106,11 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                return (ViewState["CurrentPageIndex"] == null ? 0 : (int)ViewState["CurrentPageIndex"]);
+                return (ViewState[this.ID + "_CurrentPageIndex"] == null ? 0 : (int)ViewState[this.ID + "_CurrentPageIndex"]);
             }
             set
             {
-                ViewState["CurrentPageIndex"] = value;
+                ViewState[this.ID + "_CurrentPageIndex"] = value;
             }
         }
 
@@ -144,9 +145,9 @@ namespace MyRabbit.UserControl
         {
             get
             {
-                if (this.ViewState["AppointPage"] != null && !this.ViewState["AppointPage"].ToString().Equals(""))
+                if (this.ViewState[this.ID + "_AppointPage"] != null && !this.ViewState[this.ID + "_AppointPage"].ToString().Equals(""))
                 {
-                    return this.ViewState["AppointPage"].ToString();
+                    return this.ViewState[this.ID + "_AppointPage"].ToString();
                 }
                 else
                 {
@@ -155,7 +156,7 @@ namespace MyRabbit.UserControl
             }
             set
             {
-                this.ViewState["AppointPage"] = value;
+                this.ViewState[this.ID + "_AppointPage"] = value;
             }
         }
         #endregion
@@ -190,32 +191,49 @@ namespace MyRabbit.UserControl
 
             if (this.CurrentPageIndex > 0)
             {
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_FirstPage\" title=\"第一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat 1px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "FirstPage") + "\"></a></td>");
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_PrevPage\" title=\"前一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -96px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "PrevPage") + "\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_FirstPage\" title=\"第一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat 1px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "FirstPage") + "\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_PrevPage\" title=\"前一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -96px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "PrevPage") + "\"></a></td>");
             }
             else
             {
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_FirstPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -16px -2px;\" href=\"javascript:return false;\"></a></td>");
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_PrevPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -111px -2px;\" href=\"javascript:return false;\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_FirstPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -16px -2px;\" href=\"javascript:return false;\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_PrevPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -111px -2px;\" href=\"javascript:return false;\"></a></td>");
             }
 
             output.Write("<td style=\"text-align:center; padding:0px 10px 0px 10px;\"><input type=\"text\" name=\"" + this.UniqueID + "\" style=\"width:20px;\" value=\"" + (CurrentPageIndex + 1).ToString() + "\"/>&nbsp;&nbsp;/&nbsp;&nbsp;" + PageCount + "页</td>");
 
             if (this.CurrentPageIndex < this.PageCount - 1)
             {
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_NextPage\" title=\"下一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -65px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "NextPage") + "\"></a></td>");
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_LastPage\" title=\"最后页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -33px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "LastPage") + "\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_NextPage\" title=\"下一页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -65px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "NextPage") + "\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_LastPage\" title=\"最后页\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -33px -2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "LastPage") + "\"></a></td>");
             }
             else
             {
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_NextPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -80px -2px;\" href=\"#\"></a></td>");
-                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_LastPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -50px -2px;\" href=\"#\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_NextPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -80px -2px;\" href=\"#\"></a></td>");
+                output.Write("<td style=\"padding:0px;\"><a id=\"" + this.ID + "_LastPage\" style=\"display:block;height:16px; width:16px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -50px -2px;\" href=\"#\"></a></td>");
             }
 
-            output.Write("<td style=\"padding:0px 0px 0px 10px;\"><a id=\"" + this.ID + "_Refresh\" style=\"display:block;height:22px; width:22px; text-decoration:none;background:url(" + IconImageUrl + ") no-repeat -136px 2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "Refresh") + "\"></a></td>");
+            output.Write("<td style=\"padding:0px 0px 0px 10px;\"><a id=\"" + this.ID + "_Refresh\" style=\"display:block;height:22px; width:22px; text-decoration:none;background:url(" + GetImageUrl() + ") no-repeat -136px 2px;\" href=\"javascript:" + Page.ClientScript.GetPostBackEventReference(this, "Refresh") + "\"></a></td>");
 
             output.Write("</tr></table></div>");
         }
         #endregion
+
+        /// <summary>
+        /// button image
+        /// </summary>
+        public string GetImageUrl()
+        {
+            string str = Page.ClientScript.GetWebResourceUrl(this.GetType(), "Aspx.UserControl.images.gridview-pager.png");
+
+            if (str != null)
+            {
+                return str;
+            }
+            else
+            {
+                return String.Empty;
+            }
+        }
     }
 }

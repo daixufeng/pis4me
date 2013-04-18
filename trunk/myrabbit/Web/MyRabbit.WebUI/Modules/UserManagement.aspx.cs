@@ -6,18 +6,24 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyRabbit.Utility;
 using MyRabbit.Entity;
+using MyRabbit.IService;
+using Microsoft.Practices.Unity;
 
 namespace MyRabbit.WebUI
 {
-    public partial class UserMgt : AuthBasePage
+    public partial class UserManagement : AuthBasePage
     {
         #region Fields
         private readonly string USERS = "UserMgt_Users";
         private readonly string CURRENTUSER = "UserMgt_CurrentUser";
 
-        private MyRabbit.Entity.User selectedUser = new MyRabbit.Entity.User();
+        private MyRabbit.Entity.User selectedUser
+        {
+            get { return ViewState[CURRENTUSER] as MyRabbit.Entity.User; }
+            set { ViewState[CURRENTUSER] = value; }
+        }
         private PageData<MyRabbit.Entity.User> PageData { get; set; }
-
+       
         #endregion
 
         #region Protected Methods
@@ -35,17 +41,13 @@ namespace MyRabbit.WebUI
                     BindData(1);
 
                     //if single login, show this function
-                    gvwUser.Columns[4].Visible = SingleLogin;
-                    gvwUser.Columns[6].Visible = SingleLogin;
-                }
-                else
-                {
-                    selectedUser = Session[CURRENTUSER] as MyRabbit.Entity.User;
+                    //gvwUser.Columns[4].Visible = SingleLogin;
+                    //gvwUser.Columns[6].Visible = SingleLogin;
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -55,10 +57,11 @@ namespace MyRabbit.WebUI
             try
             {
                 BindData(1);
+                uplMain.Update();
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -74,7 +77,7 @@ namespace MyRabbit.WebUI
                 selectedUser.LoginName = txtLoginName.Text;
                 selectedUser.Email = txtEmail.Text;
                 selectedUser.Password = desEncrypt.Encrypt(txtPassword.Text);
-                selectedUser.RoleId = Int32.Parse(dplUserRole.SelectedValue);
+                //selectedUser.RoleId = Int32.Parse(dplUserRole.SelectedValue);
                 if (selectedUser.Id > 0)
                     userService.Update(selectedUser);
                 else
@@ -92,7 +95,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -113,12 +116,12 @@ namespace MyRabbit.WebUI
                 txtLoginName.Enabled = true;
 
                 hdfEditStatus.Value = string.Empty;
-
+                uplEdit.Update();
                 modalUserEdit.Show();
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -127,7 +130,7 @@ namespace MyRabbit.WebUI
         {
             try
             {
-                IList<MyRabbit.Entity.User> lstUser = new List<MyRabbit.Entity.User>();
+                List<MyRabbit.Entity.User> lstUser = new List<MyRabbit.Entity.User>();
 
                 IList<MyRabbit.Entity.User> displayUser = Session[USERS] as List<MyRabbit.Entity.User>;
                 for (int i = 0; i < gvwUser.Rows.Count; i++)
@@ -157,7 +160,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -168,19 +171,20 @@ namespace MyRabbit.WebUI
             {
                 lblEditTitle.Text = "编辑用户";
 
-                IList<MyRabbit.Entity.User> users = Session[USERS] as List<MyRabbit.Entity.User>;
-
+                IList<MyRabbit.Entity.User> users = ViewState[USERS] as List<MyRabbit.Entity.User>;
+                gvwUser.DataSource = users;
+                gvwUser.DataBind();
                 selectedUser = users[e.NewEditIndex];
                 //if (selectedUser.Id.Equals(LogonUser.Id))
                 //{
                 //    ShowMessage("不能对自己进行编辑！");
                 //    return;
                 //}
-                Session[CURRENTUSER] = selectedUser;
+                //Session[CURRENTUSER] = selectedUser;
 
                 txtNickName.Text = selectedUser.NickName;
                 txtLoginName.Text = selectedUser.LoginName;
-                dplUserRole.SelectedValue = selectedUser.RoleId.ToString();
+                //dplUserRole.SelectedValue = selectedUser.RoleId.ToString();
                 DESEncrypt desEncrypt = new DESEncrypt();
                 txtPassword.Attributes["value"] = desEncrypt.Decrypt(selectedUser.Password);
 
@@ -196,7 +200,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -232,7 +236,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 GoToErrorPage();
             }
         }
@@ -249,7 +253,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -260,14 +264,14 @@ namespace MyRabbit.WebUI
             {
                 if (e.Row.RowType.Equals(DataControlRowType.DataRow))
                 {
-                    MyRabbit.Entity.User user = e.Row.DataItem as MyRabbit.Entity.User;
+                    //MyRabbit.Entity.User user = e.Row.DataItem as MyRabbit.Entity.User;
                     //e.Row.Cells[3].Text = user.RoleName;
                     //e.Row.Cells[4].Text = GetUserStatus(user);
                 }
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -302,11 +306,13 @@ namespace MyRabbit.WebUI
 
         private void BindData(int pageNo)
         {
-            PageData = userService.GetPageData(pageNo, gvwUserPager.PageSize, new Entity.User());
-            gvwUser.DataSource = PageData.Entities;
+            PageData = userService.GetPageData(pageNo, gvwUserPager.PageSize, p => p.Id > 0, p => p.NickName);
+
+            gvwUserPager.CurrentPageIndex = pageNo - 1;
+            gvwUserPager.RecordCount = PageData.TotalCount;
+            ViewState[USERS] = PageData.Records;
+            gvwUser.DataSource = PageData.Records;
             gvwUser.DataBind();
-            gvwUserPager.RecordCount = PageData.Count;
-            Session[USERS] = PageData.Entities;
         }
         #endregion
     }
