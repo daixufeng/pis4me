@@ -9,13 +9,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="" />
     <meta name="GENERATOR" content="MSHTML 9.00.8112.16430" />
-    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Styles/jquery.ui.all.css" rel="stylesheet" type="text/css" />
-    <script type="text/javascript" src="Scripts/jquery-1.4.1.js"></script>
-    <script type="text/javascript" src="Scripts/jquery-ui-1.8.14.custom.min.js"></script>
-    <script type="text/javascript" src="Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="Scripts/jquery.metadata.js"></script>
-    <script type="text/javascript" src="Scripts/messages_cn.js" charset="UTF-8"></script>
+    <link href="<%=ResolveUrl("~/Styles/Site.css")%>" rel="stylesheet" type="text/css" />
+    <link href="<%=ResolveUrl("~/Styles/jquery.ui.all.css")%>" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-1.4.1.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery-ui-1.8.14.custom.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.validate.min.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/jquery.metadata.js")%>"></script>
+    <script type="text/javascript" src="<%=ResolveUrl("~/Scripts/messages_cn.js")%>" charset="UTF-8"></script>
     <script type="text/javascript">
         var onlineCheckId = 0;
         window.onload = function () {
@@ -36,7 +36,7 @@
 </head>
 <body>
     <form runat="server" id="mainForm">
-    <asp:ToolkitScriptManager ID="ToolkitScriptManager1" runat="server">
+    <asp:ToolkitScriptManager ID="ToolkitScriptManager" runat="server">
     </asp:ToolkitScriptManager>
     <div class="master-waper">
         <div class="header">
@@ -45,11 +45,11 @@
             <div class="languageselector">
             </div>
             <div class="links">
-                <a href="/home">Home</a> <span class="separator">|</span><a>Clear Cache</a>
+                <a href="<%=ResolveUrl("~/Default.aspx")%>">Home</a> <span class="separator">|</span><a>Clear Cache</a>
             </div>
             <div class="login-info">
-                <a href="https://appengine.google.com/dashboard?&app_id=s~daixuf">xufeng.dai@hotmail.com</a>
-                <a href="/logout">Logout?</a>
+                <a href="<%=ResolveUrl("~/Default.aspx")%>">xufeng.dai@hotmail.com</a>
+                <a href="<%=ResolveUrl("~/Logout.aspx")%>">Logout?</a>
             </div>
         </div>
         <div class="clear">
@@ -57,32 +57,24 @@
         <div class="header-menu">
             <ul class="sf-menu">
                 <li><a title="View the dashboard" href="/">
-                    <img alt="Dashboard" src="/images/ico-dashboard.png" />Dashboard </a></li>
+                    <img alt="Dashboard" src="/images/ico-dashboard.png"/>控制面板</a></li>
                 <li><a title="Catalog Home" href="/">
-                    <img alt="Catalog" src="/images/ico-catalog.png" />
-                    项目管理 </a>
+                    <img alt="Catalog" src="/images/ico-catalog.png"/>项目管理</a>
                     <ul>
                         <li><a title="项目管理" href="ProjectManagement.aspx">项目管理</a></li>
                         <li><a title="任务管理" href="TaskManagement.aspx">任务管理</a></li>
                     </ul>
                 </li>
-                <%--<li><a title="Configuration Home" href="">
-                    <img alt="Configuration" src="/images/ico-configuration.png" />
-                    Account </a>
+                <li><a title="Catalog Home" href="/">
+                    <img alt="Catalog" src="/images/ico-catalog.png" />
+                    Bug管理 </a>
                     <ul>
-                        <li><a title="Configure Global Settings" href="/">Sign in</a></li>
-                        <li><a title="Configure Email Accounts" href="/">Change Password</a></li>
-                        <li><a title="Manage banned IP addresses and networks" href="#">Blacklist</a></li>
-                        <li><a title="Payment Settings Home" href="#">Payment</a>
-                            <ul>
-                                <li><a title="Manage Credit Cards" href="#">Credit Cards</a></li>
-                                <li><a title="Manage Payment Methods" href="#">Payment Methods</a></li>
-                            </ul>
-                        </li>
+                        <li><a title="Bug管理" href="BugManagement.aspx">Bug管理</a></li>
+                        <li><a title="任务管理" href="TaskManagement.aspx">任务管理</a></li>
                     </ul>
-                </li>--%>
+                </li>
                 <li><a title="System Home" href="#">
-                    <img alt="System" src="images/ico-system.png" />
+                    <img alt="System" src="/images/ico-system.png" />
                     系统管理 </a>
                     <ul>
                         <li><a title="User Management" href="UserManagement.aspx">User Management</a></li>
@@ -90,14 +82,6 @@
                         <li><a title="Log Management" href="LogManagement.aspx">Role Management</a></li>
                     </ul>
                 </li>
-                <%--<li><a title="Help Home" href="#">
-                    <img alt="Help" src="/images/ico-help.png" />
-                    Help </a>
-                    <ul>
-                        <li><a title="View Help Topics" href="#">Help Topics</a></li>
-                        <li><a title="Visit nopCommerce Community Forum" href="#">Community Forums</a></li>
-                    </ul>
-                </li>--%>
             </ul>
         </div>
         <div class="master-waper-page">

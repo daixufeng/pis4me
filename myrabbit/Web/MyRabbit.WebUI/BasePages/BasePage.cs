@@ -3,25 +3,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
-using log4net;
-using MyRabbit.Service;
 using MyRabbit.Entity;
+using MyRabbit.IService;
+using log4net;
+using Microsoft.Practices.Unity;
 
 namespace MyRabbit.WebUI
 {
     /// <summary>
     /// Un logon Base Page
     /// </summary>
-    public class BasePage : Page
+    public class BasePage : System.Web.UI.Page
     {
         #region Fields
 
-        protected UserService userService = new UserService();
+        protected IBugService  bugService{get;set;}
 
-        //protected SystemProfileManager systemProfileManager = new SystemProfileManager();
+        protected IBugTrackService bugTrackService {get;set;}
 
-        //protected OperationLogManager operationLogManager = new OperationLogManager();
+        protected IProjectService projectService{get;set;}
 
+        protected ITaskService taskService {get;set;}
+
+        protected ITaskTrackService taskTrackService { get; set; }
+
+        [Dependency]
+        public IUserService userService { get; set; }
         /// <summary>
         /// Server root path
         /// </summary>
@@ -82,7 +89,7 @@ namespace MyRabbit.WebUI
         /// <summary>
         /// Application Log
         /// </summary>
-        protected ILog Log
+        protected ILog SysLog
         {
             get
             {
@@ -115,7 +122,7 @@ namespace MyRabbit.WebUI
         /// <param name="strMessage">message string</param>
         protected void ShowMessage(string strMessage)
         {
-            ScriptManager.RegisterClientScriptBlock(this.Page,Page.GetType(), "", "alert('" + strMessage + "');", true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, Page.GetType(), "", "alert('" + strMessage + "');", true);
         }
 
         /// <summary>
@@ -132,7 +139,7 @@ namespace MyRabbit.WebUI
 
             strScript = string.Format(strScript, strMessage, redirectUrl);
 
-            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(BasePage), "", strScript, true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "", strScript, true);
         }
 
         protected void GoToErrorPage()
@@ -153,7 +160,7 @@ namespace MyRabbit.WebUI
 
             strScript = string.Format(strScript, RootPath + url);
 
-            ScriptManager.RegisterClientScriptBlock(this.Page, typeof(BasePage), "", strScript, true);
+            ScriptManager.RegisterClientScriptBlock(this.Page, this.GetType(), "", strScript, true);
         }
 
         /// <summary>

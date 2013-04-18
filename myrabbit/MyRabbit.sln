@@ -8,22 +8,20 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{3686C568-1850-4F95-960E-B903FB445848}"
 	ProjectSection(SolutionItems) = preProject
 		Library\AjaxControlToolkit.dll = Library\AjaxControlToolkit.dll
-		Library\Common.Logging.dll = Library\Common.Logging.dll
 		Library\EmitMapper.dll = Library\EmitMapper.dll
 		Library\EntityFramework.dll = Library\EntityFramework.dll
 		Library\log4net.dll = Library\log4net.dll
+		Library\Microsoft.Practices.Unity.dll = Library\Microsoft.Practices.Unity.dll
 		Library\nunit.framework.dll = Library\nunit.framework.dll
 		Library\Spring.Core.dll = Library\Spring.Core.dll
 		Library\Spring.Web.Mvc.dll = Library\Spring.Web.Mvc.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.Data", "Service\MyRabbit.Entity\MyRabbit.Data.csproj", "{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.Service", "Service\MyRabbit.Service\MyRabbit.Service.csproj", "{DFB34F45-CACF-4522-987B-F9826433A00E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.WebUI", "Web\MyRabbit.WebUI\MyRabbit.WebUI.csproj", "{B67FC155-3C6F-49C1-8106-E442729B88EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.UserControl", "Web\MyRabbit.UserControl\MyRabbit.UserControl.csproj", "{69DBC8B8-199D-4A77-A8FF-0C7C4719E27E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aspx.UserControl", "Web\MyRabbit.UserControl\Aspx.UserControl.csproj", "{69DBC8B8-199D-4A77-A8FF-0C7C4719E27E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Utility", "Utility", "{51A577F6-41C6-465D-A86E-C629EEC74A17}"
 EndProject
@@ -31,16 +29,22 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.Utility", "Utility
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.ServiceTest", "Service\MyRabbit.ServiceTest\MyRabbit.ServiceTest.csproj", "{536803A8-090F-41A1-81B8-0C19954700D8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.IService", "Service\MyRabbit.IService\MyRabbit.IService.csproj", "{61B92694-2590-4E9C-93CC-67C347339170}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{E05A241F-D24B-4F71-918B-FA70CFFDA819}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.Data", "Data\MyRabbit.Data\MyRabbit.Data.csproj", "{F6A6897F-8E81-4BF7-A4BA-73AC63503121}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entity", "Entity", "{B90E8A63-C7DC-408B-933D-B9033E7AFF8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRabbit.Entity", "Entity\MyRabbit.Entity\MyRabbit.Entity.csproj", "{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DFB34F45-CACF-4522-987B-F9826433A00E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DFB34F45-CACF-4522-987B-F9826433A00E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DFB34F45-CACF-4522-987B-F9826433A00E}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -61,6 +65,18 @@ Global
 		{536803A8-090F-41A1-81B8-0C19954700D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{536803A8-090F-41A1-81B8-0C19954700D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{536803A8-090F-41A1-81B8-0C19954700D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61B92694-2590-4E9C-93CC-67C347339170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61B92694-2590-4E9C-93CC-67C347339170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61B92694-2590-4E9C-93CC-67C347339170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61B92694-2590-4E9C-93CC-67C347339170}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6A6897F-8E81-4BF7-A4BA-73AC63503121}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6A6897F-8E81-4BF7-A4BA-73AC63503121}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6A6897F-8E81-4BF7-A4BA-73AC63503121}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6A6897F-8E81-4BF7-A4BA-73AC63503121}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,9 +84,11 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B67FC155-3C6F-49C1-8106-E442729B88EA} = {110A48EF-DD2C-4143-A26B-2D8CBE978FFB}
 		{69DBC8B8-199D-4A77-A8FF-0C7C4719E27E} = {110A48EF-DD2C-4143-A26B-2D8CBE978FFB}
-		{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1} = {93A63192-CADE-4EA5-AF2B-DA411551B714}
 		{DFB34F45-CACF-4522-987B-F9826433A00E} = {93A63192-CADE-4EA5-AF2B-DA411551B714}
 		{536803A8-090F-41A1-81B8-0C19954700D8} = {93A63192-CADE-4EA5-AF2B-DA411551B714}
+		{61B92694-2590-4E9C-93CC-67C347339170} = {93A63192-CADE-4EA5-AF2B-DA411551B714}
 		{67652E7F-B48F-4AFC-A6FF-EB4C8A865967} = {51A577F6-41C6-465D-A86E-C629EEC74A17}
+		{F6A6897F-8E81-4BF7-A4BA-73AC63503121} = {E05A241F-D24B-4F71-918B-FA70CFFDA819}
+		{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115} = {B90E8A63-C7DC-408B-933D-B9033E7AFF8A}
 	EndGlobalSection
 EndGlobal

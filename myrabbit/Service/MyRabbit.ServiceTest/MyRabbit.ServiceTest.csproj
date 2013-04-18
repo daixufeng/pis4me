@@ -37,8 +37,15 @@
     <Reference Include="log4net">
       <HintPath>..\..\Library\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=2.1.505.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Library\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework">
       <HintPath>..\..\Library\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Spring.Core">
+      <HintPath>..\..\Library\Spring.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -55,13 +62,21 @@
     <Compile Include="UserServiceTest.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Data\MyRabbit.Data\MyRabbit.Data.csproj">
+      <Project>{F6A6897F-8E81-4BF7-A4BA-73AC63503121}</Project>
+      <Name>MyRabbit.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Entity\MyRabbit.Entity\MyRabbit.Entity.csproj">
+      <Project>{96B015FC-5E22-4D3D-B7C4-A3EA36BB5115}</Project>
+      <Name>MyRabbit.Entity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Utility\MyRabbit.Utility\MyRabbit.Utility.csproj">
       <Project>{67652E7F-B48F-4AFC-A6FF-EB4C8A865967}</Project>
       <Name>MyRabbit.Utility</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MyRabbit.Entity\MyRabbit.Data.csproj">
-      <Project>{5CF59A44-DCBD-42C0-8D97-9F1B5ACBD0F1}</Project>
-      <Name>MyRabbit.Data</Name>
+    <ProjectReference Include="..\MyRabbit.IService\MyRabbit.IService.csproj">
+      <Project>{61B92694-2590-4E9C-93CC-67C347339170}</Project>
+      <Name>MyRabbit.IService</Name>
     </ProjectReference>
     <ProjectReference Include="..\MyRabbit.Service\MyRabbit.Service.csproj">
       <Project>{DFB34F45-CACF-4522-987B-F9826433A00E}</Project>
@@ -69,7 +84,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="applicationContext.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

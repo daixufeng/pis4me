@@ -16,6 +16,8 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Web.Script.Serialization;
 using MyRabbit.Entity;
+using Microsoft.Practices.Unity;
+using MyRabbit.IService;
 
 namespace MyRabbit.WebUI
 {
@@ -24,6 +26,7 @@ namespace MyRabbit.WebUI
     /// </summary>
     public class AuthBasePage : BasePage
     {
+
         #region Protected Methods
         /// <summary>
         /// BasePage Init Event
@@ -36,14 +39,20 @@ namespace MyRabbit.WebUI
 #if DEBUG
             if (LogonUser == null)
             {
-                LogonUser = userService.GetById(1);
+                SysLog.Debug(bugService);
+                SysLog.Debug(bugTrackService);
+                SysLog.Debug(projectService);
+                SysLog.Debug(taskService);
+                SysLog.Debug(taskTrackService);
+
+                LogonUser = Application.GetContainer().Resolve<IUserService>().GetById(1);
             }
 #endif
             if (LogonUser == null)
             {
                 //ShowMessage("请登录", "Default.aspx");
                 //ScriptRedirect("Login.aspx");
-                Response.Redirect("~/Login.aspx?url=" + Request.RawUrl, true);
+                //Response.Redirect("~/Login.aspx?url=" + Request.RawUrl, true);
             }
             //if (LogonUser.RoleName.Equals(MyRabbit.Entity.UserRole.Designer)
             //    || LogonUser.Role.Equals(MyRabbit.Entity.UserRole.Operator)
@@ -72,24 +81,24 @@ namespace MyRabbit.WebUI
         /// <param name="type">
         /// Operation Type: Insert,Update,Delete</param>
         /// <param name="message">Message about operation such as : Add product 回转窑</param>
-        protected void WriteOperationLog(OperationLogType type, string message)
-        {
-            try
-            {
-                //OperationLog log = new OperationLog()
-                //{
-                //    OperationType = type,
-                //    Operator = LogonUser,
-                //    CreateTime = DateTime.Now,
-                //    Message = message
-                //};
-                //operationLogManager.WriteOperationLog(log);
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex);
-            }
-        }
+        //protected void WriteOperationLog(OperationLogType type, string message)
+        //{
+        //    try
+        //    {
+        //        //OperationLog log = new OperationLog()
+        //        //{
+        //        //    OperationType = type,
+        //        //    Operator = LogonUser,
+        //        //    CreateTime = DateTime.Now,
+        //        //    Message = message
+        //        //};
+        //        //operationLogManager.WriteOperationLog(log);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Log.Error(ex);
+        //    }
+        //}
         #endregion
     }
 }

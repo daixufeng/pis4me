@@ -5,10 +5,12 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using MyRabbit.Utility;
+using Microsoft.Practices.Unity;
+using MyRabbit.IService;
 
 namespace MyRabbit.WebUI
 {
-    public partial class Account :  BasePage
+    public partial class Account: BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -29,7 +31,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }
@@ -45,7 +47,7 @@ namespace MyRabbit.WebUI
             }
             catch (Exception ex)
             {
-                Log.Error(ex);
+                SysLog.Error(ex);
                 RedirectToErrorPage();
             }
         }

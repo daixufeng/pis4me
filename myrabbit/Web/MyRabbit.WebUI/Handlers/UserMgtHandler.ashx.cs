@@ -6,7 +6,7 @@ using log4net;
 using System.Web.SessionState;
 using MyRabbit.Entity;
 using MyRabbit.WebUI;
-using MyRabbit.Service;
+using MyRabbit.IService;
 
 namespace MyRabbit.WebUI.Handlers
 {
@@ -35,7 +35,7 @@ namespace MyRabbit.WebUI.Handlers
             }
         }
 
-        private UserService userService = new UserService();
+        private IUserService userService { get; set; }
         #endregion
 
         public void ProcessRequest(HttpContext context)
@@ -51,10 +51,10 @@ namespace MyRabbit.WebUI.Handlers
                 {
                     logMessage = string.Format(messageFormat, context.Request.Url, "null", "Invalidate Request");
                 }
-                else if (!operateUser.RoleId.Equals("Admin"))
-                {
-                    logMessage = string.Format(messageFormat, context.Request.Url, operateUser.NickName, "Access denied");
-                }
+                //else if (!operateUser.RoleId.Equals("Admin"))
+                //{
+                //    logMessage = string.Format(messageFormat, context.Request.Url, operateUser.NickName, "Access denied");
+                //}
                 else
                 {
                     string userName = context.Request.QueryString["userName"];//用户名
