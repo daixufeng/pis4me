@@ -103,19 +103,19 @@ $(document).ready(function(){
 							<tbody>
 								<tr class="rowstyle">
 									<td>Quantity(￥)</td>
-									<td>$yearData['0']</td>
-									<td>$yearData['1']</td>
-									<td>$yearData['2']</td>
-									<td>$yearData['3']</td>
-									<td>$yearData['4']</td>
-									<td>$yearData['5']</td>
-									<td>$yearData['6']</td>
-									<td>$yearData['7']</td>
-									<td>$yearData['8']</td>
-									<td>$yearData['9']</td>
-									<td>$yearData['10']</td>
-									<td>$yearData['11']</td>
-									<td>$yearData['total']</td>
+									<td>$number.format("#0.00", $yearData['0'])</td>
+									<td>$number.format("#0.00", $yearData['1'])</td>
+									<td>$number.format("#0.00", $yearData['2'])</td>
+									<td>$number.format("#0.00", $yearData['3'])</td>
+									<td>$number.format("#0.00", $yearData['4'])</td>
+									<td>$number.format("#0.00", $yearData['5'])</td>
+									<td>$number.format("#0.00", $yearData['6'])</td>
+									<td>$number.format("#0.00", $yearData['7'])</td>
+									<td>$number.format("#0.00", $yearData['8'])</td>
+									<td>$number.format("#0.00", $yearData['9'])</td>
+									<td>$number.format("#0.00", $yearData['10'])</td>
+									<td>$number.format("#0.00", $yearData['11'])</td>
+									<td>$number.format("#0.00", $yearData['total'])</td>
 								</tr>
 							</tbody>
 						</table>
@@ -138,7 +138,7 @@ $(document).ready(function(){
 												<tr #if( $foreach.index % 2 == 0) class="rowstyle" #else class="altrowstyle" #end>													
 												<td>$foreach.count</td>
 												<td>$o.categoryName </td>
-												<td>number.format('0.00', $o.qty)</td>
+												<td>$number.format("#0.00", $o.qty)</td>
 												</tr>
 											#end
 										</tbody>
