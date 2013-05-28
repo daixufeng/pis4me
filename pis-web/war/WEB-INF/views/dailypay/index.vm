@@ -80,7 +80,7 @@
 								<tr #if($foreach.index %2 == 0) class="rowstyle" #else class="altrowstyle" #end>									
 									<td><input type="checkbox" /></td>
 									<td>$o.categoryName</td>
-									<td>$o.qty </td>
+									<td>$number.format("#0.00", $o.qty) </td>
 									<td>$!date.format("yyyy-MM-dd", $!o.createDate)</td>
 									<td>$!o.remark</td>
 									<td><a href="/dailypay/edit/$o.id">Edit</a></td>
