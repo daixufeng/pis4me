@@ -11,6 +11,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.FetchOptions;
 import com.google.appengine.api.datastore.PreparedQuery;
@@ -24,27 +27,14 @@ import com.pis.service.CategoryService;
 import com.pis.service.DailyPayService;
 import com.pis.service.DictionaryService;
 
+@Service("dailyPayService")
 public class DailyPayServiceImpl extends BaseService implements DailyPayService {
 
+	@Autowired
 	private CategoryService categoryService;
-
-	public CategoryService getCategoryService() {
-		return categoryService;
-	}
-
-	public void setCategoryService(CategoryService categoryService) {
-		this.categoryService = categoryService;
-	}
-
+	
+	@Autowired
 	private DictionaryService dictionaryService;
-
-	public DictionaryService dictionaryService() {
-		return dictionaryService;
-	}
-
-	public void setDictionaryService(DictionaryService dictionaryService) {
-		this.dictionaryService = dictionaryService;
-	}
 
 	@Override
 	public Map<String, Object> getById(Long id) {

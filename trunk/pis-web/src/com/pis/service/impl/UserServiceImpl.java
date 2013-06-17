@@ -3,6 +3,8 @@ package com.pis.service.impl;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -10,6 +12,7 @@ import com.pis.domain.MyEntities;
 import com.pis.domain.Page;
 import com.pis.service.UserService;
 
+@Service("userService")
 public class UserServiceImpl extends BaseService implements UserService {
 
 	@Override

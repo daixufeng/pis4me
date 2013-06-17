@@ -16,6 +16,7 @@ import com.pis.service.DailyPayService;
 
 @Controller
 public class HomeController {
+	
 	@Autowired
 	private DailyPayService dailyPayService;
 	
