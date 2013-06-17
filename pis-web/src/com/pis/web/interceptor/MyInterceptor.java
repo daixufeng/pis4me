@@ -9,15 +9,11 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.util.PathMatcher;
-import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.UrlPathHelper;
 
-import com.pis.common.PisConstants;
 import com.pis.common.exception.UnLoginException;
-import com.pis.common.exception.UnPermissionException;
-import com.pis.web.common.AuthHelper;
 import com.pis.web.dto.UserObject;
 
 public class MyInterceptor extends HandlerInterceptorAdapter {
@@ -77,6 +73,7 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
 	 * @param url
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	private boolean lookupMapping(UserObject userObject, String url) {
 		for (String ownUrl : userObject.getUrls()) {
 			if (ownUrl.equals(url)) {

@@ -4,13 +4,12 @@
     <servlet> 
         <servlet-name>dispatcher</servlet-name>
 				<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-				<load-on-startup>1</load-on-startup>
 				<init-param>
 					<description>load the spring mvc configuration</description>
 					<param-name>contextConfigLocation</param-name>
-					<!--<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>-->
 					<param-value>/WEB-INF/spring-servlet.xml</param-value>
 				</init-param>
+				<load-on-startup>1</load-on-startup>
     </servlet>     
     
     <servlet-mapping> 
@@ -54,6 +53,7 @@
 	<!-- security policy -->
 	<security-constraint>
       <web-resource-collection>
+          <web-resource-name>Normal Resources</web-resource-name>
           <url-pattern>/*</url-pattern>
       </web-resource-collection>
       <auth-constraint>
@@ -63,6 +63,7 @@
 
   <security-constraint>
       <web-resource-collection>
+          <web-resource-name>Admin Resources</web-resource-name>
           <url-pattern>WEB-INF/views/*</url-pattern>
       </web-resource-collection>
       <auth-constraint>
