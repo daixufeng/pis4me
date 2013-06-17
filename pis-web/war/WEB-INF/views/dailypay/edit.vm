@@ -82,10 +82,10 @@ var category = $("#category"),
 			<div class="content">
 				<div class="cph">
 					<div class="section-title">
-						<img alt="Dashboard" src="/images/ico-dashboard.png" />$!{model.title}
+						<img alt="Dashboard" src="/images/ico-dashboard.png" />$!{title}
 					</div>
 					<div class="section-body">						
-						<form method="post" id="myform" action="$!{model.action}">
+						<form method="post" id="myform" action="$!{action}">
 							<table class="table-container">
 								<tr>
 									<th>Category:</th>

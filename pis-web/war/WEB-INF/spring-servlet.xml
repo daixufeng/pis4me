@@ -22,6 +22,23 @@
     <!-- SpringMVC相关Bean配置 --> 
 		<context:component-scan base-package="com.pis.web.controllers" />
 		
+		<!-- 拦截器 -->  
+	<mvc:interceptors>
+		<!-- 多个拦截器,顺序执行 -->
+		<mvc:interceptor>
+			<!-- 如果不配置或/**,将拦截所有的Controller -->
+			<mvc:mapping path="/**" />
+			<bean class="com.pis.web.interceptor.MyInterceptor">
+				<property name="excludeMappings">
+					<list>
+						<value>/</value>
+						<value>/login</value>
+					</list>
+				</property>
+			</bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+		
 		<!-- 配置静态文件
     <mvc:resources mapping="/js/**" location="/js/" />
 		<mvc:resources mapping="/style/**" location="/style/" />

@@ -48,7 +48,7 @@ public class DailyPayController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("action", "/dailypay/save");
 		model.addAttribute("title", "Daily Pay Add");
-		return new ModelAndView("dailypay/edit", "model", model);
+		return new ModelAndView("dailypay/edit");
 	}
 
 	@RequestMapping(value = "/dailypay/edit/{dailyPayId}", method = RequestMethod.GET)
@@ -62,7 +62,7 @@ public class DailyPayController {
 		}
 		model.addAttribute("action", "/dailypay/update");
 		model.addAttribute("title", "Daily Pay Edit");
-		return new ModelAndView("dailypay/edit", "model", model);
+		return new ModelAndView("dailypay/edit");
 	}
 
 	@RequestMapping(value = "/dailypay/update", method = RequestMethod.POST)
@@ -171,7 +171,7 @@ public class DailyPayController {
 		model.addAttribute("criteria", params);
 		model.addAttribute("total", total);
 
-		return new ModelAndView("dailypay/index", "model", model);
+		return new ModelAndView("dailypay/index");
 	}
 
 	@RequestMapping(value = "/dailypay/export")

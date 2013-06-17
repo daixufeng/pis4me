@@ -93,7 +93,7 @@
 						</table>
 						<div class="blackbar"></div>
 						<div>
-							合计：$model.total
+							合计：$number.format("#0.00", $total)
 							&nbsp;&nbsp;&nbsp;&nbsp;元
 						</div>
 					</div>
