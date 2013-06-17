@@ -33,7 +33,7 @@
 								<tr>
 									<th>Remark:</th>
 									<td><input type="text" class="textBox" name="remark"
-										value="$!dictionary.Remark" /></td>
+										value="$!dictionary.remark" /></td>
 								</tr>
 								<tr>
 									<td colspan="2"><c:choose>
