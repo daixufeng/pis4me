@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
@@ -14,6 +16,7 @@ import com.pis.domain.Page;
 import com.pis.service.DictionaryService;
 import com.pis.util.CacheUtil;
 
+@Service("dictionaryService")
 public class DictionaryServiceImpl extends BaseService implements DictionaryService {	
 	private static final String ALL_DICTIONARY = "all_dictionary";
 	

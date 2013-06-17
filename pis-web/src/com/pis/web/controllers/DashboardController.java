@@ -12,6 +12,7 @@ import com.pis.service.DailyPayService;
 
 @Controller
 public class DashboardController {
+	
 	@Autowired
 	private DailyPayService dailyPayService;
 	

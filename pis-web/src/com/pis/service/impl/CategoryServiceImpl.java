@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.google.appengine.api.datastore.Entity;
 import com.pis.domain.MyEntities;
 import com.pis.domain.Page;
 import com.pis.service.CategoryService;
 import com.pis.util.CacheUtil;
 
+@Service("categoryService")
 public class CategoryServiceImpl extends BaseService implements CategoryService {	
 	private static final String ALL_CATEGORY = "all_category";
 	

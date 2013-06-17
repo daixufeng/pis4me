@@ -25,6 +25,7 @@ import com.pis.web.common.ExcelView;
 @Controller
 @RequestMapping(value = "/dictionary")
 public class DictionaryController {
+	
 	@Autowired
 	private DictionaryService dictionaryService;
 

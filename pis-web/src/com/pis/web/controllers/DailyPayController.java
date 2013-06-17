@@ -30,10 +30,13 @@ import com.pis.web.common.ExcelView;
 
 @Controller
 public class DailyPayController {
+	
 	@Autowired
 	private DailyPayService dailyPayService;
+	
 	@Autowired
 	private CategoryService categoryService;
+	
 	@Autowired
 	private DictionaryService dictionaryService;
 

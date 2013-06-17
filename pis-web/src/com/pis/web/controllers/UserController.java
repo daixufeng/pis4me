@@ -27,10 +27,13 @@ import com.pis.service.UserService;
 
 @Controller
 public class UserController {
+	
 	@Autowired
 	private UserService userService;
+	
 	@Autowired
 	private CategoryService categoryService;
+	
 	@Autowired
 	private DictionaryService dictionaryService;
 

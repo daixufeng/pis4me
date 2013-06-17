@@ -2,11 +2,5 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
-	<bean id="categoryService" class="com.pis.service.impl.CategoryServiceImpl"/>
-	<bean id="dailyPayService" class="com.pis.service.impl.DailyPayServiceImpl">
-		<property name="categoryService" ref="categoryService"/>
-		<property name="dictionaryService" ref="dictionaryService"/>
-	</bean>
-	<bean id="dictionaryService" class="com.pis.service.impl.DictionaryServiceImpl"/>
-	<bean id="userService" class="com.pis.service.impl.UserServiceImpl"/>	
+	
 </beans>
