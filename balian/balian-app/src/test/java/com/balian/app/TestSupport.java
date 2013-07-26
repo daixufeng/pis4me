@@ -11,18 +11,20 @@ public class TestSupport  extends TestCase{
 
 	public TestSupport( String testName )
     {
-        super( testName );
+        super(testName);
     }
 	
 	@BeforeClass
 	public ApplicationContext getContext() {
 		//加载文件系统下的路径中的配置文件
-		if(context == null)
-			  context = new ClassPathXmlApplicationContext(new String[]{
-					  "classpath*:/spring/spring-dao.xml", 
-					  "classpath*:/spring/spring-hibernate.xml", 
-					  "classpath*:/spring/spring-resource.xml", 
-					  "classpath*:/spring/spring-service.xml"});
+		if(context == null){
+			//context = new ClassPathXmlApplicationContext(new String[]{
+				//"classpath*:/spring/spring-dao.xml", 
+				//"classpath*:/spring/spring-hibernate.xml", 
+				//"classpath*:/spring/spring-resource.xml", 
+				//"classpath*:/spring/spring-service.xml"});
+			context = new ClassPathXmlApplicationContext("classpath*:/spring/*.xml");
+		}
 		return context;
 	}
 	
