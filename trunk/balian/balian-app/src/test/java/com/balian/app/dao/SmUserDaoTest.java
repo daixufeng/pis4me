@@ -47,7 +47,7 @@ public class SmUserDaoTest extends TestSupport{
 			User user = new User();
 			//user.setEmail("wangqin@qq.com");
 			user.setUserName("xufeng");
-			user.setPassword("11111");
+			user.setPassword("111111");
 			//smService.createUser(user);
 			boolean flg = smService.doLogin(user);
 			System.out.println(flg);

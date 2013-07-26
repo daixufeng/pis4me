@@ -122,7 +122,7 @@ public class SmUserDao{
 				psd.setString(3, user.getEmail());
 				
 				psd.execute();
-				throw new SQLException("over count\r\n");
+				//throw new SQLException("over count\r\n");
 			}
 			conn.commit();
 			conn.close();
