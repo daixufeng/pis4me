@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/jee
+	http://www.springframework.org/schema/jee/spring-jee-2.5.xsd">
+
+	<!-- Property files test  -->
+	<context:property-placeholder location="classpath:jdbc.local.properties" />
+
+	<!-- Transaction manager -->
+	<bean id="jtaTransactionManager" class="org.jencks.factory.TransactionManagerFactoryBean" />
+
+	<bean id="transactionManager"
+		class="org.springframework.transaction.jta.JtaTransactionManager">
+		<property name="transactionManager" ref="jtaTransactionManager" />
+		<property name="allowCustomIsolationLevels" value="true" />
+	</bean>
+
+	<!-- Mysql -->
+	<bean id="mysqlConnectionManager" class="org.jencks.factory.ConnectionManagerFactoryBean">
+		<property name="transactionManager" ref="jtaTransactionManager" />
+	</bean>
+	<bean id="mysqlJdbcManagedConnectionFactory" class="org.jencks.tranql.DataSourceMCF">
+		<property name="driverName" value="${mysql.jdbc.driver}" />
+		<property name="url" value="${mysql.jdbc.url}" />
+		<property name="user" value="${mysql.jdbc.username}" />
+		<property name="password" value="${mysql.jdbc.password}" />
+	</bean>
+	<bean id="mysqlDS" class="org.jencks.factory.ConnectionFactoryFactoryBean">
+		<property name="managedConnectionFactory" ref="mysqlJdbcManagedConnectionFactory" />
+		<property name="connectionManager" ref="mysqlConnectionManager" />
+	</bean>
+	
+	<!-- Oracle 
+		<bean id="oracleConnectionManager" class="org.jencks.factory.ConnectionManagerFactoryBean">
+			<property name="transactionManager" ref="jtaTransactionManager" />
+			<property name="poolMaxSize" value="${oracle.jdbc.maxsize}" />
+			<property name="poolMinSize" value="${oracle.jdbc.minsize}" />
+		</bean>
+		<bean id="oracleJdbcManagedConnectionFactory" class="org.tranql.connector.oracle.XAMCF">
+			<property name="driverType" value="thin" />
+			<property name="serverName" value="${oracle.jdbc.server}" />
+			<property name="serviceName" value="${oracle.jdbc.service}" />
+			<property name="portNumber" value="${oracle.jdbc.port}" />
+			<property name="userName" value="${oracle.jdbc.username}" />
+			<property name="password" value="${oracle.jdbc.password}" />
+		</bean>
+		<bean id="oracleDS" class="org.jencks.factory.ConnectionFactoryFactoryBean">
+			<property name="managedConnectionFactory" ref="oracleJdbcManagedConnectionFactory" />
+			<property name="connectionManager" ref="oracleConnectionManager" />
+		</bean>-->
+</beans>
