@@ -1,40 +1,40 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.balian</groupId>
-  <artifactId>balian</artifactId>
-  <packaging>pom</packaging>
-  <version>1.0-SNAPSHOT</version>
-  <name>balian</name>
-  
-  <modules>
-	<module>balian-app</module>
-	<module>balian-webapp</module>
-  </modules>
-  
-  <build>
-	<pluginManagement>
-		<plugins>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</pluginManagement>
-  </build>
-  
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.0</version>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.balian</groupId>
+	<artifactId>balian</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>balian</name>
+
+	<modules>
+		<module>balian-app</module>
+		<module>balian-webapp</module>
+	</modules>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<configuration>
+						<source>1.6</source>
+						<target>1.6</target>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.14</version>
@@ -61,22 +61,22 @@
 			<version>2.5</version>
 		</dependency>
 		<dependency>
-  <groupId>javax.servlet.jsp</groupId>
-  <artifactId>jsp-api</artifactId>
-  <version>2.1</version>
-  <scope>provided</scope>
-</dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
 
-<dependency>
-  <groupId>taglibs</groupId>
-  <artifactId>standard</artifactId>
-  <version>1.1.2</version>
-</dependency>
-<dependency>
-  <groupId>javax.servlet</groupId>
-  <artifactId>jstl</artifactId>
-  <version>1.2</version>
-</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -138,12 +138,17 @@
 			<version>3.2</version>
 		</dependency>
 		<dependency>
-		  <groupId>wss4j</groupId>
-		  <artifactId>wss4j</artifactId>
-		  <version>1.5.1</version>
+			<groupId>wss4j</groupId>
+			<artifactId>wss4j</artifactId>
+			<version>1.5.1</version>
+		</dependency>
+		<dependency>
+			<groupId>net.sf.ehcache</groupId>
+			<artifactId>ehcache</artifactId>
+			<version>2.7.2</version>
 		</dependency>
 	</dependencies>
-    
+
 	<!-- ================================================ -->
 	<!-- Website and reporting -->
 	<!-- ================================================ -->
@@ -160,7 +165,7 @@
 			</plugin>
 		</plugins>
 	</reporting>
-	
+
 	<repositories>
 		<repository>
 			<id>crunii artifactory</id>
