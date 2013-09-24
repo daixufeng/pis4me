@@ -1,16 +1,18 @@
 package com.balian.app.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import com.balian.app.dao.OrderDao;
 import com.balian.app.domain.Order;
 import com.balian.app.service.OrderService;
+import com.balian.app.utils.CacheUtil;
 
 public class OrderServiceImpl implements OrderService {
 
 	OrderDao orderDao = new OrderDao();
-	
+
 	@Override
 	public Order get(Long id) {
 		return orderDao.get(id);
@@ -28,7 +30,11 @@ public class OrderServiceImpl implements OrderService {
 
 	@Override
 	public List<Order> find(Map<String, String> filter) {
-		return orderDao.find(filter);
+		List<Order> orders = CacheUtil.get("ORDER_ALL");
+		if(orders == null){
+			orders = orderDao.find(filter);
+		}
+		return orders;
 	}
 	
 	@Override
@@ -46,8 +52,14 @@ public class OrderServiceImpl implements OrderService {
 		orderDao.doOnlyUpdate(order);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Order> select(String ProductName, String ClientName) {
-		return orderDao.select(ProductName, ClientName);
+	public List<Order> select(String productName, String clientName) {
+		List<Order> orders = (ArrayList<Order>)CacheUtil.get("ORDER_ALL");
+		if(orders == null){
+			orders = orderDao.select(productName, clientName);
+			CacheUtil.put("ORDER_ALL", orders);
+		}
+		return orders;
 	}
 }

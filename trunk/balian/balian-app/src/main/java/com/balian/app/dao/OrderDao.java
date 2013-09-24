@@ -28,13 +28,11 @@ public class OrderDao {
 			while (rs.next()) {
 				order = new Order();
 				order.setId(id);
-				order.setOrderDate(java.sql.Date.valueOf(rs
-						.getString("order_date")));
+				order.setOrderDate(java.sql.Date.valueOf(rs.getString("order_date")));
 				order.setProductName(rs.getString("product_name"));
 				order.setCustomerName(rs.getString("customer_name"));
 				order.setProductQty(Double.valueOf(rs.getString("product_qty")));
-				order.setProductPrice(Double.valueOf(rs
-						.getString("product_price")));
+				order.setProductPrice(Double.valueOf(rs.getString("product_price")));
 				order.setAmount(Double.valueOf(rs.getString("amount")));
 			}
 		} catch (Exception ex) {
@@ -51,7 +49,7 @@ public class OrderDao {
 		Connection conn = null;
 
 		try {
-			conn=getConnection();
+			conn = getConnection();
 			PreparedStatement psd = conn.prepareStatement(strSql);
 			rs = psd.executeQuery();
 
@@ -64,8 +62,7 @@ public class OrderDao {
 				order.setProductName(rs.getString("product_name"));
 				order.setCustomerName(rs.getString("customer_name"));
 				order.setProductQty(Double.valueOf(rs.getString("product_qty")));
-				order.setProductPrice(Double.valueOf(rs
-						.getString("product_price")));
+				order.setProductPrice(Double.valueOf(rs.getString("product_price")));
 				order.setAmount(Double.valueOf(rs.getString("amount")));
 
 				orders.add(order);
@@ -87,8 +84,7 @@ public class OrderDao {
 			String strSql = "INSERT INTO om_order (order_date, product_name, customer_name, product_qty, product_price, amount) VALUES(?,?,?,?,?,?)";
 			for (Order order : orders) {
 				PreparedStatement psd = conn.prepareStatement(strSql);
-				psd.setDate(1,
-						java.sql.Date.valueOf(sdf.format(order.getOrderDate())));
+				psd.setDate(1, java.sql.Date.valueOf(sdf.format(order.getOrderDate())));
 				psd.setString(2, order.getProductName());
 				psd.setString(3, order.getCustomerName());
 				psd.setDouble(4, order.getProductQty());
@@ -128,7 +124,7 @@ public class OrderDao {
 		List<Order> orders = new ArrayList<Order>();
 		Connection conn = null;
 		try {
-			conn=getConnection();
+			conn = getConnection();
 			String sqlString = "select * from om_order where ID= ?";
 			PreparedStatement psd = conn.prepareStatement(sqlString);
 			psd.setInt(1, OrderId);
@@ -138,13 +134,11 @@ public class OrderDao {
 			while (rs.next()) {
 				order = new Order();
 				order.setId(Long.valueOf(rs.getString("id")));
-				order.setOrderDate(java.sql.Date.valueOf(rs
-						.getString("order_date")));
+				order.setOrderDate(java.sql.Date.valueOf(rs.getString("order_date")));
 				order.setProductName(rs.getString("product_name"));
 				order.setCustomerName(rs.getString("customer_name"));
 				order.setProductQty(Double.valueOf(rs.getString("product_qty")));
-				order.setProductPrice(Double.valueOf(rs
-						.getString("product_price")));
+				order.setProductPrice(Double.valueOf(rs.getString("product_price")));
 				order.setAmount(Double.valueOf(rs.getString("amount")));
 				orders.add(order);
 			}
@@ -155,7 +149,7 @@ public class OrderDao {
 	}
 
 	public void update(List<Order> orders) {
-		Connection conn =null;
+		Connection conn = null;
 		try {
 			conn = getConnection();
 			conn.setAutoCommit(false);
@@ -163,8 +157,7 @@ public class OrderDao {
 			String sqlString = "update om_order set order_date=?, product_name=?, customer_name=?, product_qty=?, product_price=?, amount=? where ID_product=? ";
 			PreparedStatement psd = conn.prepareStatement(sqlString);
 			for (Order order : orders) {
-				psd.setDate(1,
-						java.sql.Date.valueOf(sdf.format(order.getOrderDate())));
+				psd.setDate(1, java.sql.Date.valueOf(sdf.format(order.getOrderDate())));
 				psd.setString(2, order.getProductName());
 				psd.setString(3, order.getCustomerName());
 				psd.setDouble(4, order.getProductQty());
@@ -183,9 +176,9 @@ public class OrderDao {
 	// 5.1//根据ID参数查询
 	public Order getById(int OrderId) {
 		Order order = new Order();
-		Connection conn =null;
+		Connection conn = null;
 		try {
-			conn=getConnection();
+			conn = getConnection();
 			String sqlString = "select * from om_order where OrderId=?";
 			PreparedStatement psd = conn.prepareStatement(sqlString);
 			psd.setInt(1, OrderId);
@@ -193,13 +186,11 @@ public class OrderDao {
 			while (rs.next()) {
 				order = new Order();
 				order.setId(Long.valueOf(rs.getString("id")));
-				order.setOrderDate(java.sql.Date.valueOf(rs
-						.getString("order_date")));
+				order.setOrderDate(java.sql.Date.valueOf(rs.getString("order_date")));
 				order.setProductName(rs.getString("product_name"));
 				order.setCustomerName(rs.getString("customer_name"));
 				order.setProductQty(Double.valueOf(rs.getString("product_qty")));
-				order.setProductPrice(Double.valueOf(rs
-						.getString("product_price")));
+				order.setProductPrice(Double.valueOf(rs.getString("product_price")));
 				order.setAmount(Double.valueOf(rs.getString("amount")));
 				break;
 			}
@@ -213,21 +204,21 @@ public class OrderDao {
 
 	// 5.2//修改
 	public void doOnlyUpdate(Order order) {
-		Connection conn =null; 
+		Connection conn = null;
 		try {
 			conn = getConnection();
 			String sqlString = "update om_order set order_date=?, product_name=?, customer_name=?, product_qty=?, product_price=?, amount=? where ID=? ";
 			PreparedStatement psd = conn.prepareStatement(sqlString);//
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//时间格式转换
-			psd.setDate(1, java.sql.Date.valueOf(sdf.format(order.getOrderDate())));//。。。
-			psd.setString(2,order.getProductName());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");// 时间格式转换
+			psd.setDate(1, java.sql.Date.valueOf(sdf.format(order.getOrderDate())));// 。。。
+			psd.setString(2, order.getProductName());
 			psd.setString(3, order.getCustomerName());
 			psd.setDouble(4, order.getProductQty());
-			psd.setDouble(5,order.getProductPrice());
+			psd.setDouble(5, order.getProductPrice());
 			psd.setDouble(6, order.getAmount());
 			psd.setLong(7, order.getId());
 			psd.execute();
-		
+
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -238,33 +229,33 @@ public class OrderDao {
 	public List<Order> select(String productName, String cutomName) {// 查询
 		List<Order> orders = new ArrayList<Order>();
 
-		Connection conn =null; 
+		Connection conn = null;
 		try {
-			conn=getConnection();
+			conn = getConnection();
 			String sqlString = "select ID, date_format(order_date,'%Y-%m-%d') as order_date, product_name, customer_name, product_qty, product_price, amount from om_order";
 			//
 			String sqlWhere = "";
-			if(productName != null && !productName.equals("")){
-				if(sqlWhere.length() > 0){
+			if (productName != null && !productName.equals("")) {
+				if (sqlWhere.length() > 0) {
 					sqlWhere += " and ";
 				}
 				sqlWhere += "product_name=?";
 			}
-			if(cutomName != null && !cutomName.equals("")){
-				if(sqlWhere.length() > 0){
+			if (cutomName != null && !cutomName.equals("")) {
+				if (sqlWhere.length() > 0) {
 					sqlWhere += " and ";
 				}
 				sqlWhere += "custom_name=?";
 			}
-			if(sqlWhere.length() > 0){
-				sqlString += " where "+ sqlWhere;
+			if (sqlWhere.length() > 0) {
+				sqlString += " where " + sqlWhere;
 			}
 			PreparedStatement psd = conn.prepareStatement(sqlString);
 			int i = 1;
-			if(productName != null && !productName.equals("")){
+			if (productName != null && !productName.equals("")) {
 				psd.setString(i++, productName);
 			}
-			if(cutomName != null && !cutomName.equals("")){
+			if (cutomName != null && !cutomName.equals("")) {
 				psd.setString(i++, cutomName);
 			}
 			//
@@ -272,13 +263,11 @@ public class OrderDao {
 			while (rs.next()) {
 				Order order = new Order();
 				order.setId(Long.valueOf(rs.getString("id")));
-				order.setOrderDate(java.sql.Date.valueOf(rs
-						.getString("order_date")));
+				order.setOrderDate(java.sql.Date.valueOf(rs.getString("order_date")));
 				order.setProductName(rs.getString("product_name"));
 				order.setCustomerName(rs.getString("customer_name"));
 				order.setProductQty(Double.valueOf(rs.getString("product_qty")));
-				order.setProductPrice(Double.valueOf(rs
-						.getString("product_price")));
+				order.setProductPrice(Double.valueOf(rs.getString("product_price")));
 				order.setAmount(Double.valueOf(rs.getString("amount")));
 				orders.add(order);
 			}
@@ -291,7 +280,7 @@ public class OrderDao {
 	}
 
 	public static void main(String[] args) {
-		//增-----------------------------
+		// 增-----------------------------
 		OrderDao dao = new OrderDao();
 		Order order = new Order();
 		order.setOrderDate(new java.util.Date());
@@ -301,15 +290,15 @@ public class OrderDao {
 		order.setProductPrice(800.00);
 		order.setAmount(800.00);
 		dao.create(order);
-		//删-----------------------------
-		//dao.delete(1);
-		//改-----------------------------
+		// 删-----------------------------
+		// dao.delete(1);
+		// 改-----------------------------
 		dao.doOnlyUpdate(order);
-		//查-----------------------------
+		// 查-----------------------------
 		String ProductName = "P1";
 		String ClientName = "C1";
 		dao.select(ProductName, ClientName);
-		
+
 	}
 
 	public static Connection getConnection() {
@@ -319,8 +308,7 @@ public class OrderDao {
 			Class.forName("com.mysql.jdbc.Driver");// 注册驱动
 
 			// 建立连接的语句，注意用的test数据库，用户为root，密码为空，这个根据实际调整
-			conn = DriverManager.getConnection(
-					"jdbc:mysql://127.0.0.1:3306/crunii", "root", "guan");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/crunii", "root", "root");
 
 			return conn;
 		} catch (Exception ex) {
