@@ -1,6 +1,7 @@
 package com.pis.web.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
@@ -29,19 +30,21 @@ import com.pis.service.DictionaryService;
 import com.pis.web.common.ExcelView;
 
 @Controller
-public class DailyPayController {
-	
+public class DailyPayController extends BaseController {
+
+	private static final String RECENT_DAILY_PAY = "RECENT_DAILY_PAY";
+
 	@Autowired
 	private DailyPayService dailyPayService;
-	
+
 	@Autowired
 	private CategoryService categoryService;
-	
+
 	@Autowired
 	private DictionaryService dictionaryService;
 
 	@RequestMapping(value = "/dailypay", method = RequestMethod.GET)
-	public ModelAndView dailyPay(@RequestParam Map<String,Object> request, Model model) {
+	public ModelAndView dailyPay(@RequestParam Map<String, Object> request, Model model) {
 		return search(1, request, model);
 	}
 
@@ -51,6 +54,7 @@ public class DailyPayController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("action", "/dailypay/save");
 		model.addAttribute("title", "Daily Pay Add");
+		model.addAttribute("list", getRecent());
 		return new ModelAndView("dailypay/edit");
 	}
 
@@ -59,19 +63,18 @@ public class DailyPayController {
 		List<Map<String, Object>> categories = getCategories();
 		model.addAttribute("categories", categories);
 		if (!model.containsAttribute("dailyPay")) {
-			Map<String, Object> dailyPay = this.dailyPayService
-					.getById(dailyPayId);
+			Map<String, Object> dailyPay = this.dailyPayService.getById(dailyPayId);
 			model.addAttribute("dailypay", dailyPay);
 		}
 		model.addAttribute("action", "/dailypay/update");
 		model.addAttribute("title", "Daily Pay Edit");
+		model.addAttribute("list", getRecent());
 		return new ModelAndView("dailypay/edit");
 	}
 
 	@RequestMapping(value = "/dailypay/update", method = RequestMethod.POST)
-	public ModelAndView update(@RequestParam Map<String,Object> request, Model model) {
-		MyEntity result = EntityFactory.getEntityFormRequest(request,
-				MyEntities.DailyPay.class);
+	public ModelAndView update(@RequestParam Map<String, Object> request, Model model) {
+		MyEntity result = EntityFactory.getEntityFormRequest(request, MyEntities.DailyPay.class);
 		if (!result.validation) {
 			model.addAttribute("messages", result.messages);
 			model.addAttribute("dailypay", result.entity);
@@ -93,9 +96,8 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/save", method = RequestMethod.POST)
-	public ModelAndView save(@RequestParam Map<String,Object> request, Model model) {
-		MyEntity result = EntityFactory.getEntityFormRequest(request,
-				MyEntities.DailyPay.class);
+	public ModelAndView save(@RequestParam Map<String, Object> request, Model model) {
+		MyEntity result = EntityFactory.getEntityFormRequest(request, MyEntities.DailyPay.class);
 		if (!result.validation) {
 			model.addAttribute("messages", result.messages);
 			return add(model);
@@ -104,6 +106,7 @@ public class DailyPayController {
 		setCategoryName(dailyPay);
 		try {
 			dailyPayService.create(dailyPay);
+			addToRecent(EntityFactory.entityToMap(dailyPay));
 			model.addAttribute("success", true);
 			model.addAttribute("message", "保存成功！");
 			Long id = dailyPay.getKey().getId();
@@ -123,16 +126,13 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/index/{index}", method = RequestMethod.GET)
-	public ModelAndView index(@PathVariable int index,
-			@RequestParam Map<String,Object> request, Model model) {
+	public ModelAndView index(@PathVariable int index, @RequestParam Map<String, Object> request, Model model) {
 		return search(index, request, model);
 	}
 
-	public ModelAndView search(int index, @RequestParam Map<String,Object> request,
-			Model model) {
+	public ModelAndView search(int index, @RequestParam Map<String, Object> request, Model model) {
 		int pageSize = 15;
-		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(
-				request, MyEntities.DailyPay.class);
+		Map<String, Object> params = EntityFactory.getCriteriaFromRequest(request, MyEntities.DailyPay.class);
 		Map<String, Object> filterMap = new HashMap<String, Object>();
 		Map<String, Object> likeMap = new HashMap<String, Object>();
 		Map<String, Object> sortMap = new HashMap<String, Object>();
@@ -143,24 +143,20 @@ public class DailyPayController {
 
 		Calendar calendar = Calendar.getInstance();
 		if (params.get("begDate") == null) {
-			calendar.set(calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.MONTH), 1, 0, 0, 0);
-			
-			params.put("begDate",sdf.format(calendar.getTime()));
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1, 0, 0, 0);
+
+			params.put("begDate", sdf.format(calendar.getTime()));
 		}
-		filterMap.put("BegDate",params.get("begDate"));
+		filterMap.put("BegDate", params.get("begDate"));
 		if (params.get("endDate") == null) {
-			calendar.set(calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.MONTH),
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
 					calendar.getActualMaximum(Calendar.DATE), 23, 59, 59);
 			params.put("endDate", sdf.format(calendar.getTime()));
 		}
-		filterMap.put("EndDate",params.get("endDate"));
+		filterMap.put("EndDate", params.get("endDate"));
 
-		Page page = this.dailyPayService.getPageData(index, pageSize,
-				filterMap, likeMap, sortMap);
-		ViewPager pager = new ViewPager("/dailypay/index", index, pageSize,
-				page.count, params);
+		Page page = this.dailyPayService.getPageData(index, pageSize, filterMap, likeMap, sortMap);
+		ViewPager pager = new ViewPager("/dailypay/index", index, pageSize, page.count, params);
 		List<Map<String, Object>> categories = getCategories();
 
 		float total = 0;
@@ -178,7 +174,7 @@ public class DailyPayController {
 	}
 
 	@RequestMapping(value = "/dailypay/export")
-	public ModelAndView export(@RequestParam Map<String,Object> params) {
+	public ModelAndView export(@RequestParam Map<String, Object> params) {
 		Map<String, Object> filterMap = new HashMap<String, Object>();
 		Map<String, Object> likeMap = new HashMap<String, Object>();
 		Map<String, Object> sortMap = new HashMap<String, Object>();
@@ -189,21 +185,19 @@ public class DailyPayController {
 
 		Calendar calendar = Calendar.getInstance();
 		if (params.get("begDate") == null) {
-			calendar.set(calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.MONTH), 1, 0, 0, 0);			
-			params.put("begDate",sdf.format(calendar.getTime()));
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1, 0, 0, 0);
+			params.put("begDate", sdf.format(calendar.getTime()));
 		}
-		filterMap.put("BegDate",params.get("begDate"));
+		filterMap.put("BegDate", params.get("begDate"));
 		if (params.get("endDate") == null) {
-			calendar.set(calendar.get(Calendar.YEAR),
-					calendar.get(Calendar.MONTH),
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
 					calendar.getActualMaximum(Calendar.DATE), 23, 59, 59);
 			params.put("endDate", sdf.format(calendar.getTime()));
 		}
-		filterMap.put("EndDate",params.get("endDate"));
+		filterMap.put("EndDate", params.get("endDate"));
 
 		List<Map<String, Object>> list = dailyPayService.find(filterMap, likeMap, sortMap);
-		
+
 		Map<String, Object> header = new HashMap<String, Object>();
 		header.put("id", "Id");
 		header.put("categoryId", "CategoryId");
@@ -211,26 +205,67 @@ public class DailyPayController {
 		header.put("qty", "金额");
 		header.put("createDate", "日期");
 		header.put("remark", "备注");
-		
+
 		list.add(0, header);
-		
+
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put(ExcelView.XLS_MODEL_KEY, list);
 		return new ModelAndView(new ExcelView("Dialy-Pay-List"), map);
 	}
-	
+
 	private List<Map<String, Object>> getCategories() {
-		Map<String, Object> item = dictionaryService.getByTypeAndValue(
-				"Category", "DailyPay");
+		Map<String, Object> item = dictionaryService.getByTypeAndValue("Category", "DailyPay");
 		List<Map<String, Object>> categories = this.categoryService
 				.getByType(Long.parseLong(item.get("id").toString()));
 		return categories;
 	}
 
 	private void setCategoryName(Entity dailyPay) {
-		Long categoryId = Long.parseLong(dailyPay.getProperty("CategoryId")
-				.toString());
+		Long categoryId = Long.parseLong(dailyPay.getProperty("CategoryId").toString());
 		Object value = categoryService.getById(categoryId).get("name");
 		dailyPay.setProperty("CategoryName", value);
+	}
+
+	/**
+	 * 返回最近新增的记录
+	 * @return
+	 */
+	private List<Map<String, Object>> getRecent() {
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> list = (List<Map<String, Object>>) getHttpSession().getAttribute(RECENT_DAILY_PAY);
+		if (list == null || list.size() < 3) {
+			list = new ArrayList<Map<String, Object>>();
+			Map<String, Object> filterMap = new HashMap<String, Object>();
+			Map<String, Object> likeMap = new HashMap<String, Object>();
+			Map<String, Object> sortMap = new HashMap<String, Object>();
+
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+			Calendar calendar = Calendar.getInstance();
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1, 0, 0, 0);
+			filterMap.put("BegDate", sdf.format(calendar.getTime()));
+
+			calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH),
+					calendar.getActualMaximum(Calendar.DATE), 23, 59, 59);
+			filterMap.put("EndDate", sdf.format(calendar.getTime()));
+
+			Page page = this.dailyPayService.getPageData(1, 3, filterMap, likeMap, sortMap);
+			list = page.data;
+			getHttpSession().setAttribute(RECENT_DAILY_PAY, list);
+		}
+		
+		return list;
+	}
+	
+	/**
+	 * 把新增的数据放到最近消费中
+	 * @param data
+	 */
+	private void addToRecent(Map<String, Object> data){
+		@SuppressWarnings("unchecked")
+		List<Map<String, Object>> list = (List<Map<String, Object>>) getHttpSession().getAttribute(RECENT_DAILY_PAY);
+		list.add(0, data);
+		list.remove(list.size() - 1);
+		getHttpSession().setAttribute(RECENT_DAILY_PAY, list);
 	}
 }
