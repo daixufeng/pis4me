@@ -14,6 +14,7 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.UrlPathHelper;
 
 import com.pis.common.exception.UnLoginException;
+import com.pis.util.HttpHelper;
 import com.pis.web.dto.UserObject;
 
 public class MyInterceptor extends HandlerInterceptorAdapter {
@@ -27,6 +28,9 @@ public class MyInterceptor extends HandlerInterceptorAdapter {
 	}
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+		
+		HttpHelper.setHttpSession(request.getSession());
+		
 		String url = urlPathHelper.getLookupPathForRequest(request);
 
 		// 查找到，表示不需要权限控制

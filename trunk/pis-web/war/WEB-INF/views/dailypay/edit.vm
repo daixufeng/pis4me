@@ -130,6 +130,30 @@ var category = $("#category"),
 						<div class="blackbar"></div>
 						
 						#parse( "/shared/warning.vm" )
+                 <div>
+					  <table id="dailypaygrid"
+							style="width: 600px; border-collapse: collapse;" class="tablestyle"
+							border="1" cellspacing="0">
+							<tr class="headerstyle">
+								<th style="width: 12px;"><input type="checkbox" /></th>
+								<th>Category</th>
+								<th>Quantity(元)</th>
+								<th>Date</th>
+								<th>Edit</th>
+							</tr>
+							<tbody>
+								#foreach($o in $list)
+								<tr #if($foreach.index %2 == 0) class="rowstyle" #else class="altrowstyle" #end>									
+									<td><input type="checkbox" /></td>
+									<td>$o.categoryName</td>
+									<td>$number.format("#0.00", $o.qty) </td>
+									<td>$!date.format("yyyy-MM-dd", $!o.createDate)</td>
+									<td><a href="/dailypay/edit/$o.id">Edit</a></td>
+									</tr>
+								#end
+							</tbody>
+						</table>
+					  </div>
 					</div>
 				</div>
 			</div>
