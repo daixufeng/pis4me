@@ -38,7 +38,7 @@ public class DictionaryController {
 	public ModelAndView add(Model model) {
 		model.addAttribute("action", "/dictionary/save");
 		model.addAttribute("title", "Dictionary Add");
-		return new ModelAndView("dictionary/edit", "model", model);
+		return new ModelAndView("dictionary/edit");
 	}
 
 	@RequestMapping(value = "/edit/{dictionaryId}", method = RequestMethod.GET)
@@ -49,7 +49,7 @@ public class DictionaryController {
 		}
 		model.addAttribute("action", "/dictionary/update");
 		model.addAttribute("title", "Dictionary Edit");
-		return new ModelAndView("dictionary/edit", "model", model);
+		return new ModelAndView("dictionary/edit");
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -159,6 +159,6 @@ public class DictionaryController {
 		model.addAttribute("pager", pager.render());
 		model.addAttribute("criteria", params);
 
-		return new ModelAndView("dictionary/index", "model", model);
+		return new ModelAndView("dictionary/index");
 	}
 }

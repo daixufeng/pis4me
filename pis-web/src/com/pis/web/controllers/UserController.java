@@ -87,7 +87,7 @@ public class UserController {
 		model.addAttribute("criteria", filterMap);
 		model.addAttribute("categories", categories);
 
-		return new ModelAndView("user/index", "model", model);
+		return new ModelAndView("user/index");
 	}
 
 	@RequestMapping(value = "/user/add", method = RequestMethod.GET)
@@ -96,7 +96,7 @@ public class UserController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("action", "/user/save");
 		model.addAttribute("title", "User Add");
-		return new ModelAndView("user/edit", "model", model);
+		return new ModelAndView("user/edit");
 	}
 
 	@RequestMapping(value = "/user/edit/{userId}", method = RequestMethod.GET)
@@ -109,7 +109,7 @@ public class UserController {
 		model.addAttribute("categories", categories);
 		model.addAttribute("action", "/user/update");
 		model.addAttribute("title", "User Edit");
-		return new ModelAndView("user/edit", "model", model);
+		return new ModelAndView("user/edit");
 	}
 
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)

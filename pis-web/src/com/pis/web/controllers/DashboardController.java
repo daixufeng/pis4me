@@ -25,6 +25,6 @@ public class DashboardController {
 		Calendar calendar = Calendar.getInstance();
 		model.addAttribute("month",calendar.get(Calendar.MONTH) + 1);
 		model.addAttribute("year", calendar.get(Calendar.YEAR));
-		return new ModelAndView("dashboard/index","model",model);
+		return new ModelAndView("dashboard/index");
 	}
 }
