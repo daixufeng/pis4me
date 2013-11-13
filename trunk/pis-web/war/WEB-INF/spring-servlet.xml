@@ -29,7 +29,7 @@
 			<bean class="com.pis.web.interceptor.MyInterceptor">
 				<property name="excludeMappings">
 					<list>
-						<value>/</value>
+						<value>/dologin</value>
 						<value>/login</value>
 					</list>
 				</property>

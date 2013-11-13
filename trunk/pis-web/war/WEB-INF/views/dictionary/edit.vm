@@ -13,7 +13,7 @@
 						<img alt="Dashboard" src="/images/ico-dashboard.png">$title 
 					</div>
 					<div class="section-body">
-						<form method="POST" action="$!model.action">
+						<form method="POST" action="$!action">
 							<table class="table-container">
 								<tr>
 									<th>Type:</th>
@@ -47,16 +47,10 @@
 								</tr>
 							</table>
 							<input type="hidden" name="id" value="$!dictionary.id" />
-						</form>
-						<div style="line-height:32px;">
-            		#if($!success == true)
-            			<img src="/style/images/warnings-tick.png" />
-            			<span>$!message</span>
-            		#elseif($!model.success == false)
-            			<img src="/style/images/warnings-cross.png"></img>
-            			<span>$!message</span>
-            		#end
-</div>
+						</form>						
+						<div class="blackbar"></div>
+						<div class="blackbar"></div>	
+						#parse("/shared/warning.vm")		
 					</div>
 				</div>
 			</div>

@@ -36,7 +36,7 @@ public class CategoryController {
 	@RequestMapping(value = "/category")
 	public ModelAndView category(@RequestParam Map<String,Object> request, Model model) {
 		search(1, request, model);
-		return new ModelAndView("category/index", "model", model);
+		return new ModelAndView("category/index");
 	}
 
 	@RequestMapping(value = "/category/add")
@@ -47,7 +47,7 @@ public class CategoryController {
 		model.addAttribute("dictionaries", dictionaries);
 		model.addAttribute("action", "/category/save");
 		model.addAttribute("title", "Category Add");
-		return new ModelAndView("category/edit_page", "model", model);
+		return new ModelAndView("category/edit_page");
 	}
 
 	@RequestMapping(value = "/category/edit/{categoryId}")
@@ -61,7 +61,7 @@ public class CategoryController {
 		model.addAttribute("dictionaries", dictionaries);
 		model.addAttribute("title", "Category Edit");
 		model.addAttribute("action", "/category/update");
-		return new ModelAndView("category/edit_page", "model", model);
+		return new ModelAndView("category/edit_page");
 	}
 
 	@RequestMapping(value = "/category/update")
@@ -126,14 +126,14 @@ public class CategoryController {
 	public ModelAndView post(@PathVariable int index,
 			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
-		return new ModelAndView("category/index", "model", model);
+		return new ModelAndView("category/index");
 	}
 
 	@RequestMapping(value = "/category/list/{index}")
 	public ModelAndView list(@PathVariable int index,
 			@RequestParam Map<String,Object> request, Model model) {
 		search(index, request, model);
-		return new ModelAndView("category/list", "model", model);
+		return new ModelAndView("category/list");
 	}
 
 	@RequestMapping(value = "/category/export")
