@@ -12,7 +12,7 @@ public class DbUtills {
 			Class.forName("com.mysql.jdbc.Driver");// 注册驱动
 
 			// 建立连接的语句，注意用的test数据库，用户为root，密码为空，这个根据实际调整
-			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/crunii", "root", "guan");
+			conn = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/pis", "root", "guan");
 
 			return conn;
 		} catch (Exception ex) {
