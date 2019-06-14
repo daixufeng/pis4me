@@ -1,9 +1,0 @@
-<div style="line-height:32px;">
-		#if($!{success} == true)
-			<img src="/style/images/warnings-tick.png" />
-			<span>$!{message}</span>
-		#elseif($!{success} == false)
-			<img src="/style/images/warnings-cross.png"></img>
-			<span>$!message</span>
-		#end
-</div>
